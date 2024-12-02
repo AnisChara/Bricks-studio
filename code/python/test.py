@@ -23,7 +23,7 @@ while running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_m]:
       running = False
-    if keys[pygame.K_d]:
+    if keys[pygame.K_x]:
       player_pos.x = 100
 
 
