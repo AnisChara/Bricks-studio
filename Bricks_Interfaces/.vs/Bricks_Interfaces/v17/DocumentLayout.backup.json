@@ -1,22 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\",
+  "WorkspaceRootPath": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|c:\\users\\landa levy\\source\\repos\\bricks_interfaces\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|c:\\users\\landa levy\\desktop\\esiea\\notes-cours\\pi_projet informatique\\pi_bricks\\bricks-studio\\bricks_interfaces\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|c:\\users\\landa levy\\source\\repos\\bricks_interfaces\\views\\assets.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|c:\\users\\landa levy\\desktop\\esiea\\notes-cours\\pi_projet informatique\\pi_bricks\\bricks-studio\\bricks_interfaces\\views\\rendu_statique.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|solutionrelative:views\\rendu_statique.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|c:\\users\\landa levy\\desktop\\esiea\\notes-cours\\pi_projet informatique\\pi_bricks\\bricks-studio\\bricks_interfaces\\views\\assets.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|solutionrelative:views\\assets.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|c:\\users\\landa levy\\source\\repos\\bricks_interfaces\\views\\onglets.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|c:\\users\\landa levy\\desktop\\esiea\\notes-cours\\pi_projet informatique\\pi_bricks\\bricks-studio\\bricks_interfaces\\views\\onglets.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|solutionrelative:views\\onglets.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|c:\\users\\landa levy\\source\\repos\\bricks_interfaces\\views\\rendu_statique.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{C8E0E51A-1CF5-4B5B-B0D6-D5334F0F60E2}|Bricks_Interfaces.csproj|solutionrelative:views\\rendu_statique.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +30,11 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Rendu_statique.xaml",
-              "DocumentMoniker": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Views\\Rendu_statique.xaml",
+              "DocumentMoniker": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Views\\Rendu_statique.xaml",
               "RelativeDocumentMoniker": "Views\\Rendu_statique.xaml",
-              "ToolTip": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Views\\Rendu_statique.xaml",
+              "ToolTip": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Views\\Rendu_statique.xaml",
               "RelativeToolTip": "Views\\Rendu_statique.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-26T10:27:31.816Z",
@@ -42,11 +42,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Assets.xaml",
-              "DocumentMoniker": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Views\\Assets.xaml",
+              "DocumentMoniker": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Views\\Assets.xaml",
               "RelativeDocumentMoniker": "Views\\Assets.xaml",
-              "ToolTip": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Views\\Assets.xaml",
+              "ToolTip": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Views\\Assets.xaml",
               "RelativeToolTip": "Views\\Assets.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-26T10:23:03.425Z",
@@ -54,11 +54,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Onglets.xaml",
-              "DocumentMoniker": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Views\\Onglets.xaml",
+              "DocumentMoniker": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Views\\Onglets.xaml",
               "RelativeDocumentMoniker": "Views\\Onglets.xaml",
-              "ToolTip": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Views\\Onglets.xaml",
+              "ToolTip": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Views\\Onglets.xaml",
               "RelativeToolTip": "Views\\Onglets.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-26T09:04:47.843Z",
@@ -68,10 +68,10 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\MainWindow.xaml*",
+              "RelativeToolTip": "MainWindow.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-26T08:25:49.128Z",
               "EditorCaption": ""

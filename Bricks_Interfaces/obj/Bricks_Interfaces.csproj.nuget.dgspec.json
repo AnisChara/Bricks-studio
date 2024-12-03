@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Bricks_Interfaces.csproj": {}
+    "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Bricks_Interfaces.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Bricks_Interfaces.csproj": {
+    "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Bricks_Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Bricks_Interfaces.csproj",
+        "projectUniqueName": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Bricks_Interfaces.csproj",
         "projectName": "Bricks_Interfaces",
-        "projectPath": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\Bricks_Interfaces.csproj",
+        "projectPath": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\Bricks_Interfaces.csproj",
         "packagesPath": "C:\\Users\\LANDA Levy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LANDA Levy\\source\\repos\\Bricks_Interfaces\\obj\\",
+        "outputPath": "C:\\Users\\LANDA Levy\\Desktop\\ESIEA\\Notes-Cours\\PI_Projet Informatique\\PI_Bricks\\bricks-studio\\Bricks_Interfaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LANDA Levy\\AppData\\Roaming\\NuGet\\NuGet.Config",
