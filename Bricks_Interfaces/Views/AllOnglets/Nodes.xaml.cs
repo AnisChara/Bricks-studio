@@ -23,6 +23,24 @@ namespace Bricks_Interfaces.Views.AllOnglets
         public Nodes()
         {
             InitializeComponent();
+
+            ListNode.Children.Clear();
+
+            string[] blocks = { "Node 1", "Node 2", "Node 3" };
+
+            foreach (var block in blocks)
+            {
+                // Créer un TextBlock dynamiquement
+                TextBlock textBlock = new TextBlock
+                {
+                    Text = block,
+                    Margin = new Thickness(5),
+                    FontSize = 16
+                };
+
+                // Ajouter le TextBlock au WrapPanel
+                ListNode.Children.Add(textBlock);
+            }
         }
     }
 }

@@ -64,3 +64,5 @@ C:\Users\LANDA Levy\Desktop\ESIEA\Notes-Cours\PI_Projet Informatique\PI_Bricks\b
 C:\Users\LANDA Levy\Desktop\ESIEA\Notes-Cours\PI_Projet Informatique\PI_Bricks\bricks-studio\Bricks_Interfaces\obj\Debug\net8.0-windows\Bricks_Interfaces.pdb
 C:\Users\LANDA Levy\Desktop\ESIEA\Notes-Cours\PI_Projet Informatique\PI_Bricks\bricks-studio\Bricks_Interfaces\obj\Debug\net8.0-windows\Bricks_Interfaces.genruntimeconfig.cache
 C:\Users\LANDA Levy\Desktop\ESIEA\Notes-Cours\PI_Projet Informatique\PI_Bricks\bricks-studio\Bricks_Interfaces\obj\Debug\net8.0-windows\ref\Bricks_Interfaces.dll
+C:\Users\LANDA Levy\Desktop\ESIEA\Notes-Cours\PI_Projet Informatique\PI_Bricks\bricks-studio\Bricks_Interfaces\obj\Debug\net8.0-windows\Index.g.cs
+C:\Users\LANDA Levy\Desktop\ESIEA\Notes-Cours\PI_Projet Informatique\PI_Bricks\bricks-studio\Bricks_Interfaces\obj\Debug\net8.0-windows\Index.baml

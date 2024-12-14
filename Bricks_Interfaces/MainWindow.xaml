@@ -39,7 +39,10 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="1">
-                    <Button Content="Lancer le jeu" Margin="2" Width="80" HorizontalAlignment="Left"/>
+                    <WrapPanel>
+                        <Button Content="Lancer le jeu" Margin="2" Width="80" HorizontalAlignment="Left"/>
+                        <Button Content="Lancer le jeu" Margin="2" Width="80" />
+                    </WrapPanel>
                 </StackPanel>
             </Grid>
 

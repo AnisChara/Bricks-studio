@@ -23,6 +23,24 @@ namespace Bricks_Interfaces.Views.AllOnglets
         public Mecanique()
         {
             InitializeComponent();
+
+            ListMecanique.Children.Clear();
+
+            string[] blocks = { "Mecanique 1", "Mecanique 2", "Mecanique 3" };
+
+            foreach (var block in blocks)
+            {
+                // Créer un TextBlock dynamiquement
+                TextBlock textBlock = new TextBlock
+                {
+                    Text = block,
+                    Margin = new Thickness(5),
+                    FontSize = 16
+                };
+
+                // Ajouter le TextBlock au WrapPanel
+                ListMecanique.Children.Add(textBlock);
+            }
         }
     }
 }
