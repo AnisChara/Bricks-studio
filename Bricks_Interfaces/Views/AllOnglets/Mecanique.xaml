@@ -8,8 +8,18 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <StackPanel Background="Beige">
-            <TextBlock Text="Onglet Mécaniques" FontSize="20"></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="AliceBlue" Grid.Column="0">
+            <WrapPanel Name="ListMecanique">
+
+            </WrapPanel>
+        </StackPanel>
+        <StackPanel Background="Beige" Grid.Column="1">
+            <TextBlock Text="Onglet Mécaniques" FontSize="20" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </UserControl>

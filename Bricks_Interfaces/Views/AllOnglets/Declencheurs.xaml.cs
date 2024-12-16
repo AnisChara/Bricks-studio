@@ -23,6 +23,24 @@ namespace Bricks_Interfaces.Views.AllOnglets
         public Declencheurs()
         {
             InitializeComponent();
+
+            ListDeclencheur.Children.Clear();
+
+            string[] blocks = { "Declencheur 1", "Declencheur 2", "Declencheur 3" };
+
+            foreach (var block in blocks)
+            {
+                // Créer un TextBlock dynamiquement
+                TextBlock textBlock = new TextBlock
+                {
+                    Text = block,
+                    Margin = new Thickness(5),
+                    FontSize = 16
+                };
+
+                // Ajouter le TextBlock au WrapPanel
+                ListDeclencheur.Children.Add(textBlock);
+            }
         }
     }
 }

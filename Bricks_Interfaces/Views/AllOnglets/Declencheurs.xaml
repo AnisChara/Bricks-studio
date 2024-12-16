@@ -8,8 +8,18 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <StackPanel Background="NavajoWhite">
-            <TextBlock Text="Onglet Déclencheurs" FontSize="20"></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="AliceBlue" Grid.Column="0">
+            <WrapPanel Name="ListDeclencheur">
+                
+            </WrapPanel>
+        </StackPanel>
+        <StackPanel Background="NavajoWhite" Grid.Column="1">
+            <TextBlock Text="Onglet Déclencheurs" FontSize="20" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </UserControl>
