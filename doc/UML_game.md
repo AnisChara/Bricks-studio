@@ -7,8 +7,7 @@ class Game {
     +clock clock
     +bool running
     +list_entity entities
-    +player player
-    +level level
+    +list_level levels
 }
 
 class Level {
@@ -49,8 +48,6 @@ class Square_Collision {
 }
 class Circle_Collision {
     +int radius
-    +int x_center
-    +int y_center
 
     +bool is_collide()
 }
@@ -125,4 +122,3 @@ Projectile --> Emitter
 Entity --> Collision
 Entity --> Gravity
 Entity --> Jump
-Structure --> movement

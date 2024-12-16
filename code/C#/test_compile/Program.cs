@@ -13,7 +13,7 @@ class Program
 
 
         Node node = new Node("keys[pygame.K_m]","running = False", "Reset");
-        Node node2 = new Node("keys[pygame.K_x]","player_pos.x = 100", "TP");
+        Node node2 = new Node("keys[pygame.K_o]","player_pos.x = 100", "TP");
         List<Node> nodes = new List<Node>();
         nodes.Add(node);
         nodes.Add(node2);
@@ -31,9 +31,11 @@ class Program
         var nodes = JsonSerializer.Deserialize<List<Node>>(json);
         string code = string.Empty;
 
+        code += "    if keys[pygame.K_ESCAPE]: \n      running = False \n";
+
         foreach (Node node in nodes)
         {
-            code += "    if " + node.trigger + ":" +
+            code += "    elif " + node.trigger + ":" +
             "\n" + "      " + node.action + "\n";
         }
 

@@ -49,3 +49,8 @@ node_modules/
 *.vspscc
 *.vssscc
 *.csproj.user
+
+code\python\__pycache__
+code\C#\test_compile\.vs
+code\C#\test_compile\bin
+code\C#\test_compile\obj
