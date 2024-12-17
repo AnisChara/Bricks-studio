@@ -20,5 +20,20 @@ namespace Bricks_Interfaces
         {
             InitializeComponent();
         }
+
+        private void AjouterTextBox(Panel parentPanel, double width = 200, double height = 30, string text = "Nouvelle TextBox", Thickness? margin = null)
+        {
+
+            TextBox nouvelleTextBox = new TextBox
+            {
+                Width = width,
+                Height = height,
+                Margin = margin ?? new Thickness(5),
+                Text = text
+            };
+
+
+            parentPanel.Children.Add(nouvelleTextBox);
+        }
     }
 }
