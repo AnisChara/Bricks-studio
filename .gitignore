@@ -50,10 +50,10 @@ node_modules/
 *.vssscc
 *.csproj.user
  
-/code/C#/test_compile/obj/
-/code/C#/test_compile/bin/
-/code/C#/test_compile/.vs/
+./code/C#/test_compile/obj/
+./code/C#/test_compile/bin/
+./code/C#/test_compile/.vs/
 /code/python/__pycache__/
-Bricks_Interfaces/.vs/
-Bricks_Interfaces/bin/
-Bricks_Interfaces/obj/
+./Bricks_Interfaces/.vs/
+./Bricks_Interfaces/bin/
+./Bricks_Interfaces/obj/
