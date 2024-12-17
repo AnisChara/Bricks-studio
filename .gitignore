@@ -1,56 +1,59 @@
 # Visual Studio
 .vs/
-
+ 
 # Build outputs
 bin/
 obj/
-
+ 
 # User-specific files
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
-
+ 
 # Auto-generated files
 *.g.*
 *.gen.*
 *.Designer.cs
-
+ 
 # Logs and reports
 *.log
 TestResults/
-
+ 
 # Package management
 packages/
 *.nupkg
 project.lock.json
 project.fragment.lock.json
 artifacts/
-
+ 
 # Configurations locales
 appsettings.Development.json
 appsettings.local.json
-
+ 
 # Extensions et cache
 .vscode/
 .idea/
 .ReSharper*
 *.cache
-
+ 
 # Fichiers temporaires
 *.tmp
 *.temp
 *.bak
-
+ 
 # Dépendances externes
 node_modules/
-
+ 
 # .NET
 *.vspscc
 *.vssscc
 *.csproj.user
-
-code\python\__pycache__
-code\C#\test_compile\.vs
-code\C#\test_compile\bin
-code\C#\test_compile\obj
+ 
+/code/C#/test_compile/obj/
+/code/C#/test_compile/bin/
+/code/C#/test_compile/.vs/
+/code/python/__pycache__/
+Bricks_Interfaces/.vs/
+Bricks_Interfaces/bin/
+Bricks_Interfaces/obj/
