@@ -59,12 +59,14 @@ class Pawn {
 
 class Gravity {
 
+    +bool is_gravity
     +bool is_falling
     +int falling_initial_speed
     +int falling_maximum_speed
     +int time_for_maximum_falling_speed
 
     +void fall()
+    +bool is_falling()
 }
 
 class Jump {
@@ -99,7 +101,6 @@ class Emitter {
 
 class Projectile {
     +Emitter Emitter
-    +int velocity
 }
 
 class movement {

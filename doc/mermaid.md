@@ -10,48 +10,43 @@ classDiagram
     }
 
     class Node{
+
         + list~mechanique~
         + list~declencheur~
         + nom
-        
-
     }
 
     class Mechanique{
 
        + nom 
-       + list ~action~
-
+       + list ~string~ actions
     }
 
     class Declencheur {
 
         + nom
-        + list ~event~   
-        
-         }
-
-    class Asset {
-
-    + string coordonné
-    + double variable
-}    
+        + list ~string~ events  
+    }
 
     class Entity {
 
-    + string coordonné
-    + double variable
+    +int id
+    +string type
+    +string collision_type
+    +bool is_collidable
+    +int x
+    +int y
+    +int velocity
+    +int width
+    +int height
+    +string image
+    +bool gravity
+    +bool jump
+    +bool can_shoot
 }    
-
-     class Player
-
-     class Ennemi
 
 
      Projet "1" -->"n" Node
-
-     Entity <|-- Player
-     Entity <|-- Ennemi
 
 
 
