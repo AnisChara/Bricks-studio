@@ -12,7 +12,7 @@ class Program
         string output_path = "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\code\\python";
 
 
-        Node node = new Node("keys[pygame.K_m]","running = False", "Reset");
+        Node node = new Node("keys[pygame.K_m]","running = False", "Shutdown");
         Node node2 = new Node("keys[pygame.K_o]","player_pos.x = 100", "TP");
         List<Node> nodes = new List<Node>();
         nodes.Add(node);

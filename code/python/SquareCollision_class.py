@@ -7,4 +7,4 @@ class SquareCollision(Collision):
 
     def is_colliding(self, other_entity):
         #TODO
-        return
+        pass

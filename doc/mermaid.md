@@ -28,22 +28,6 @@ classDiagram
         + list ~string~ events  
     }
 
-    class Entity {
-
-    +int id
-    +string type
-    +string collision_type
-    +bool is_collidable
-    +int x
-    +int y
-    +int velocity
-    +int width
-    +int height
-    +string image
-    +bool gravity
-    +bool jump
-    +bool can_shoot
-}    
 
 
      Projet "1" -->"n" Node

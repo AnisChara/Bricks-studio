@@ -7,4 +7,4 @@ class Ennemy(Pawn) :
         self.pattern = []
 
     def follow_pattern(self) :
-        pass
+        pass #TODO

@@ -6,3 +6,6 @@ class Pawn(Entity) :
         super().__init__(x, y, width, height,  speed, is_collidable, shape)
         self.max_health = health
         self.health = health
+
+    def take_damage(self, damage):
+        pass#TODO

@@ -2,12 +2,13 @@ import pygame
 import uuid
 from CircleCollision_class import CircleCollision
 from SquareCollision_class import SquareCollision
+from Emitter_class import Emitter
 
 class Entity(pygame.sprite.Sprite) :
 
-    def __init__(self, x, y, width, height, speed = 1, is_collidable = False, shape = "square") : #ajouter arg pour image
+    def __init__(self,id, x, y, width, height, speed = 1, is_collidable = False, shape = "square") : #ajouter arg pour image
         super().__init__()
-        self.id = uuid.uuid4()
+        self.id = id
         self.image = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/mario.png")
         self.image = pygame.transform.scale(self.image,(width, height))
         self.rect = self.image.get_rect()
@@ -25,3 +26,6 @@ class Entity(pygame.sprite.Sprite) :
         self.is_collidable = is_collidable
         self.speed = speed
         self.direction = ""
+
+    def set_weapon(self):
+        self.weapon = Emitter()
