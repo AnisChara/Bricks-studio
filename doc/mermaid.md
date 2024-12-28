@@ -19,16 +19,28 @@ classDiagram
     class Mechanique{
 
        + nom 
-       + list ~string~ actions
+       + list ~action~ actions
     }
 
     class Declencheur {
 
         + nom
-        + list ~string~ events  
+        + list ~event~ events  
     }
 
+    class Action {
 
+        +string nom
+        +string function
+        +string description
+    }
+
+    class Event { 
+        
+        +string nom
+        +string function
+        +string description
+    }
 
      Projet "1" -->"n" Node
 

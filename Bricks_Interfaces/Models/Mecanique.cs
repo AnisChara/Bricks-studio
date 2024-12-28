@@ -8,8 +8,14 @@ namespace Bricks_Interfaces.Models
 {
     public class Mecanique
     {
-        public string Nom { get; set; }
-        public List<string> Actions { get; set; } = new List<string>();
+        public string Name { get; set; }
+        public List<Action> Actions { get; set; }
+
+        public Mecanique(List<Action> Actions , string name) { 
+            
+            this.Actions = Actions;
+            this.Name = name;
+        }
     }
 
 }

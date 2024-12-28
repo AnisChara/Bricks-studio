@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bricks_Interfaces.ViewModels;
+using Bricks_Interfaces.Models;
 
 namespace Bricks_Interfaces
 {
@@ -16,24 +18,12 @@ namespace Bricks_Interfaces
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(string project_path)
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel(project_path);
         }
 
-        private void AjouterTextBox(Panel parentPanel, double width = 200, double height = 30, string text = "Nouvelle TextBox", Thickness? margin = null)
-        {
-
-            TextBox nouvelleTextBox = new TextBox
-            {
-                Width = width,
-                Height = height,
-                Margin = margin ?? new Thickness(5),
-                Text = text
-            };
-
-
-            parentPanel.Children.Add(nouvelleTextBox);
-        }
+        
     }
 }

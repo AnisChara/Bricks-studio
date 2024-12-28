@@ -27,7 +27,7 @@ namespace Bricks_Interfaces
         private void OnNewProjectClick(object sender, RoutedEventArgs e)
         {
             // Créez une instance de la fenêtre de création de projet et affichez-la
-            var mainWindow = new MainWindow();
+            var mainWindow = new MainWindow("path");
 
             // Synchroniser les dimensions et l'état de la fenêtre
             mainWindow.Width = this.Width;
@@ -48,7 +48,7 @@ namespace Bricks_Interfaces
             // Exemple : OpenFileDialog openFileDialog = new OpenFileDialog();
 
             // Ouvrir la fenêtre principale après sélection (ou directement)
-            var mainWindow = new MainWindow();
+            var mainWindow = new MainWindow("path");
 
             // Synchroniser les dimensions et l'état de la fenêtre
             mainWindow.Width = this.Width;

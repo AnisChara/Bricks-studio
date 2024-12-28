@@ -18,7 +18,7 @@
                 
             </WrapPanel>
         </StackPanel>
-        <StackPanel Background="NavajoWhite" Grid.Column="1">
+        <StackPanel Background="NavajoWhite" Grid.Column="1" Name="board">
             <TextBlock Text="Onglet Déclencheurs" FontSize="20" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>

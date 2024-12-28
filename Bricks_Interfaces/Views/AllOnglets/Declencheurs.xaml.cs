@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bricks_Interfaces.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,17 +26,43 @@ namespace Bricks_Interfaces.Views.AllOnglets
             InitializeComponent();
 
             ListDeclencheur.Children.Clear();
+            Event[] events = [ new Event("nam","fun","description")];
 
-            string[] blocks = { "Declencheur 1", "Declencheur 2", "Declencheur 3" };
+            Create_events_list(events);
 
-            foreach (var block in blocks)
+        }
+
+        private void Add_event_box_on_board(Panel parentPanel, double width = 200, double height = 30, string text = "Nouvelle TextBox", Thickness? margin = null)
+        {
+
+            TextBlock nouvelleTextBox = new TextBlock
+            {
+                Width = width,
+                Height = height,
+                Margin = margin ?? new Thickness(5),
+                Text = text,
+                Background = new SolidColorBrush(Colors.Red)
+            };
+
+
+            parentPanel.Children.Add(nouvelleTextBox);
+        }
+
+        public void Create_events_list(Event[] events)
+        {
+            foreach (Event evenement in events)
             {
                 // Créer un TextBlock dynamiquement
-                TextBlock textBlock = new TextBlock
+                Button textBlock = new Button
                 {
-                    Text = block,
+                    Content = evenement.name,
                     Margin = new Thickness(5),
-                    FontSize = 16
+                    FontSize = 16,
+                    Command = new RelayCommand((o) =>
+                    {
+                        Add_event_box_on_board(board , 50, 20, evenement.name);
+                    })
+
                 };
 
                 // Ajouter le TextBlock au WrapPanel
