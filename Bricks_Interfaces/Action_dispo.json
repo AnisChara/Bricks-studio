@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "fermer le jeu",
+    "Function": "running = False",
+    "Description" :  "permet de fermer le jeu"
+  },
+  {
+    "Name": "TP AU CENTRE horizontal",
+    "Function": "player_pos.x = screen.get_width() / 2",
+    "Description": "teleporte au milieu de l'écran"
+  },
+  {
+    "Name": "TP au hasard",
+    "Function": "player_pos.x = random.randint(0,1000)",
+    "Description": "teleporte au hasard"
+  }
+]

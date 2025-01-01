@@ -41,8 +41,7 @@
 
                 <StackPanel Grid.Column="1">
                     <WrapPanel>
-                        <Button Content="Lancer le jeu" Margin="2" Width="80" HorizontalAlignment="Left"/>
-                        <Button Content="Lancer le jeu" Margin="2" Width="80" />
+                        <Button Content="Lancer le jeu" Margin="2" Width="80" HorizontalAlignment="Left" Command="{Binding CompileCommand}"/>
                     </WrapPanel>
                 </StackPanel>
             </Grid>

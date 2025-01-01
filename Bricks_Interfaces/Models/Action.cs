@@ -8,15 +8,15 @@ namespace Bricks_Interfaces.Models
 {
     public class Action
     {
-        public string name;
-        public string function;
-        public string description;
+        public string Name { get; set; }
+        public string Function { get; set; }
+        public string Description { get; set; }
 
-        public Action(string name, string function, string description)
+        public Action(string Name, string Function, string Description)
         {
-            this.name = name;
-            this.function = function;
-            this.description = description;
+            this.Name = Name;
+            this.Function = Function;
+            this.Description = Description;
         }
     }
 }

@@ -8,13 +8,13 @@ namespace Bricks_Interfaces.Models
 {
     public class Declencheur
     {
-        public string Nom { get; set; }
+        public string Name { get; set; }
         public List<Event> Events { get; set; }
 
-        public Declencheur(List<Event> Events, string Nom) {
+        public Declencheur(List<Event> events, string Name) {
                
-            this.Events = Events;
-            this.Nom = Nom;
+            this.Events = events;
+            this.Name = Name;
 
         }
     }

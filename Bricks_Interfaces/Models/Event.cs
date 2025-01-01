@@ -8,15 +8,15 @@ namespace Bricks_Interfaces.Models
 {
     public class Event
     {
-        public string name;
-        public string function;
-        public string description;
+        public string Name { get; set; }
+        public string Function { get; set; }
+        public string Description { get; set; }
 
         public Event(string name, string function, string description)
         {
-            this.name = name;
-            this.function = function;
-            this.description = description;
+            this.Name = name;
+            this.Function = function;
+            this.Description = description;
         }
     }
 }

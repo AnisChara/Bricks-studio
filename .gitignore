@@ -57,3 +57,5 @@ node_modules/
 ./Bricks_Interfaces/.vs/
 ./Bricks_Interfaces/bin/
 ./Bricks_Interfaces/obj/
+
+.venv

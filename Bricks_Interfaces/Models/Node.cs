@@ -8,9 +8,16 @@ namespace Bricks_Interfaces.Models
 {
     public class Node
     {
-        public string Nom { get; set; }
-        public List<Mecanique> Mecaniques { get; set; } = new List<Mecanique>();
-        public List<Declencheur> Declencheurs { get; set; } = new List<Declencheur>();
+        public string Name { get; set; }
+        public Mecanique Mecanique { get; set; } 
+        public Declencheur Declencheur { get; set; } 
+
+        public Node(string name, Mecanique mecanique, Declencheur declencheur) { 
+            
+            Name = name;
+            Mecanique = mecanique;
+            Declencheur = declencheur;
+        }
     }
 
 }

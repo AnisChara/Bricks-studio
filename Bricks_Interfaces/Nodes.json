@@ -1,0 +1,25 @@
+[
+  {
+    "Name": "Node1",
+    "Mecanique": {
+      "Name": "a",
+      "Actions": [
+        {
+          "Name": "fermer le jeu",
+          "Function": "running = False",
+          "Description": "permet de fermer le jeu"
+        }
+      ]
+    },
+    "Declencheur": {
+      "Name": "c",
+      "Events": [
+        {
+          "Name": "press c",
+          "Function": "keys[pygame.K_c]",
+          "Description": null
+        }
+      ]
+    }
+  }
+]

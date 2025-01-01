@@ -20,6 +20,14 @@
         </StackPanel>
         <StackPanel Background="Bisque" Grid.Column="1">
             <TextBlock Text="Onglet Nodes" FontSize="20" HorizontalAlignment="Center"></TextBlock>
+            <DataGrid ItemsSource="{Binding Nodes}" Height="auto" Width="auto" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <!-- Affiche la propriété Name -->
+                    <DataGridTextColumn Binding="{Binding Name}" />
+                    <DataGridTextColumn Binding="{Binding Declencheur.Name}" />
+                    <DataGridTextColumn Binding="{Binding Mecanique.Name}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </UserControl>

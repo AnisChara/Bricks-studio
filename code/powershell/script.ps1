@@ -3,10 +3,10 @@ Param(
 )
 
 # Chemin vers PyInstaller
-$pyinstaller = "C:\Users\user\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\Scripts\pyinstaller.exe"
+$pyinstaller = "C:\Users\anisc\AppData\Roaming\Python\Python312\Scripts\pyinstaller.exe"
 
 # Chemin du script Python à compiler
-$pythonScript = "C:\Users\user\Documents\COURS\C#\Projet\bricks-studio\code\python\test.py"
+$pythonScript = "A:\Code\bricks-studio\code\python\test.py"
 
 # Compilation avec PyInstaller
 & $pyinstaller --onefile --windowed --distpath $customDistPath $pythonScript
@@ -31,3 +31,5 @@ $shortcut.Description = "Raccourci pour test.exe"
 $shortcut.Save()
 
 Write-Host "Compilation terminée, exécutable généré dans '$customDistPath' et raccourci créé sur le Bureau."
+
+& $executablePath

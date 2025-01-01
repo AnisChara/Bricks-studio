@@ -14,12 +14,29 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Background="AliceBlue" Grid.Column="0">
-            <WrapPanel Name="ListDeclencheur">
-                
-            </WrapPanel>
+            <ItemsControl ItemsSource="{Binding Events}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}" Command="{Binding DataContext.AddEventCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Width="auto" Height="20"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
         <StackPanel Background="NavajoWhite" Grid.Column="1" Name="board">
             <TextBlock Text="Onglet Déclencheurs" FontSize="20" HorizontalAlignment="Center"/>
+            <Grid>
+                <DataGrid ItemsSource="{Binding Declencheur}" Height="auto" Width="auto" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                    <!-- Affiche la propriété Name -->
+                    <DataGridTextColumn Binding="{Binding Name}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <TextBox Text="{Binding DeclencheurName}" Width="100" Height="20" Margin="5" />
+            <Button Content="Confirmer" Width="100" Height="30" Margin="5" Command="{Binding ConfirmCommand}" CommandParameter="{Binding DeclencheurName}" />
+            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content ="Clear" Width="30" Height="30" Background="Red" Command="{Binding DataContext.ClearDeclencheurCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
         </StackPanel>
+        
+
     </Grid>
 </UserControl>
