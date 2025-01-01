@@ -41,8 +41,28 @@ namespace Bricks_Interfaces.ViewModels
 
             foreach (Node node in nodes)
             {
-                code += "    elif " + node.Declencheur.Events[0].Function + ":" +
-                "\n" + "      " + node.Mecanique.Actions[0].Function + "\n";
+                string declencheur = string.Empty;
+                string mecanique = string.Empty;
+
+                for (int i = 0; i < node.Declencheur.Events.Count; i++)
+                {
+                    if (i == node.Declencheur.Events.Count-1)
+                    {
+                        declencheur += node.Declencheur.Events[i].Function;
+                    }
+                    else
+                    {
+                        declencheur += node.Declencheur.Events[i].Function + " & ";
+                    }
+                }
+                for (int i = 0; i < node.Mecanique.Actions.Count; i++)
+                {
+                        mecanique += node.Mecanique.Actions[i].Function + "\n        ";
+                }
+
+
+                code += "    elif " + declencheur + ":" +
+                "\n" + "        " + mecanique + "\n";
             }
 
             text = text + code + end;

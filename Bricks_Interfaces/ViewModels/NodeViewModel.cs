@@ -8,11 +8,29 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace Bricks_Interfaces.ViewModels
 {
     public class NodeViewModel : BaseNotifyPropertyChanded
     {
+        public ICommand DeleteNodeCommand { get; set; }
+        public ICommand AddNodeCommand { get; set; }
+
+        private string node_name;
+        public string Node_name
+        {
+            get => node_name;
+            set
+            {
+                if (node_name != value)
+                {
+                    node_name = value;
+                    OnPropertyChanged(nameof(Node_name));
+                }
+            }
+        }
         public ObservableCollection<Node> PreMadeNode { get; set; }
         private ObservableCollection<Node> _nodes { get; set; }
         public ObservableCollection<Node> Nodes { get => _nodes;
@@ -27,16 +45,26 @@ namespace Bricks_Interfaces.ViewModels
         private FileSystemWatcher _fileWatcher;
         public NodeViewModel() {
 
+            DeleteNodeCommand = new RelayCommand(DeleteNode);
+            AddNodeCommand = new RelayCommand(AddNode);
+
             InitializeFileWatcher();
-            LoadData();
+            LoadDataAsync();
 
         }
 
-        private void LoadData()
+        private async Task LoadDataAsync()
         {
-            string json = File.ReadAllText("A:/Code/bricks-studio/Bricks_Interfaces/Nodes.json");
-            Nodes = new ObservableCollection<Node>(JsonSerializer.Deserialize<List<Node>>(json));
+            using (FileStream fileStream = new FileStream("A:/Code/bricks-studio/Bricks_Interfaces/Nodes.json", FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    string json = await reader.ReadToEndAsync();
+                    Nodes = new ObservableCollection<Node>(JsonSerializer.Deserialize<List<Node>>(json));
+                }
+            }
         }
+
 
         private void InitializeFileWatcher()
         {
@@ -54,14 +82,46 @@ namespace Bricks_Interfaces.ViewModels
             _fileWatcher.Changed += (sender, e) =>
             {
                 // Lorsque le fichier JSON est modifié, rechargez les données
-                LoadData();
+                LoadDataAsync();
             };
             _fileWatcher.Renamed += (sender, e) =>
-                LoadData();
+                LoadDataAsync();
             _fileWatcher.Created += (sender, e) =>
-                LoadData();
+                LoadDataAsync();
 
             _fileWatcher.EnableRaisingEvents = true; // Active la surveillance
+        }
+
+        private void DeleteNode(object parameter)
+        {
+            string node_name = parameter as string;
+            int index = Nodes.IndexOf(Nodes.FirstOrDefault(i => i.Name == node_name));
+            if (index != -1)
+            {
+                Nodes.RemoveAt(index);
+                string json = JsonSerializer.Serialize(Nodes, new JsonSerializerOptions { WriteIndented = true });
+                System.IO.File.WriteAllText("A:\\Code\\bricks-studio\\Bricks_Interfaces\\Nodes.json", json);
+            }
+        }
+
+        private void AddNode(object parameter)
+        {
+            if (Nodes.Count() > 0 && Nodes[Nodes.Count - 1].Mecanique == null && Nodes[Nodes.Count - 1].Declencheur == null) 
+            {
+                MessageBox.Show("Votre dernier noeud n'est pas fini");
+                return;
+            }
+            if(string.IsNullOrEmpty(node_name))
+            {
+                MessageBox.Show("Veuillez nommer votre noeud");
+                return;
+            }
+
+            Nodes.Add(new Node(Node_name, null, null));
+            string json = JsonSerializer.Serialize(Nodes, new JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText("A:\\Code\\bricks-studio\\Bricks_Interfaces\\Nodes.json", json);
+            Node_name = string.Empty;
+
         }
     }
 }

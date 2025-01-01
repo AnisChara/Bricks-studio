@@ -24,8 +24,13 @@ while running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]: 
       running = False 
-    elif keys[pygame.K_c]:
-      running = False
+    elif keys[pygame.K_a] & keys[pygame.K_c]:
+        running = False
+        
+    elif keys[pygame.K_b] & keys[pygame.K_c]:
+        player_pos.y = random.randint(0,700)
+        player_pos.x = random.randint(0,1000)
+        
 
 
     # flip() the display to put your work on screen

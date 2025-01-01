@@ -26,8 +26,19 @@
                     <DataGridTextColumn Binding="{Binding Name}" />
                     <DataGridTextColumn Binding="{Binding Declencheur.Name}" />
                     <DataGridTextColumn Binding="{Binding Mecanique.Name}" />
+                    <DataGridTemplateColumn Header="Actions">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="delete" Background="Red" Width="auto" Height="auto" Command="{Binding DataContext.DeleteNodeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Name}"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <TextBox Text="{Binding Node_name}" Width="100" Height="20" Margin="5" />
+
+            <Button Content="Add node" Width="auto" Height="auto" Command="{Binding DataContext.AddNodeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"></Button>
+
         </StackPanel>
     </Grid>
 </UserControl>

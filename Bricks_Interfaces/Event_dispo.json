@@ -7,11 +7,11 @@
   {
     "Name": "press b",
     "Function": "keys[pygame.K_b]",
-    "Descritption": "l'utilisateur appuie sur b"
+    "Description": "l'utilisateur appuie sur b"
   },
   {
     "Name": "press c",
     "Function": "keys[pygame.K_c]",
-    "Descritption": "l'utilisateur appuie sur c"
+    "Description": "l'utilisateur appuie sur c"
   }
 ]

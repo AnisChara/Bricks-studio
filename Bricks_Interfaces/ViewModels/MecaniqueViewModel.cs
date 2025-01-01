@@ -69,13 +69,26 @@ namespace Bricks_Interfaces.ViewModels
         {
             string name = parameter as string;
 
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name) && Mecanique.Count() > 0)
             {
-                Final_mecanique = new Models.Mecanique(Mecanique.ToList(), name);
-                ClearMecanique(parameter);
                 string json = System.IO.File.ReadAllText("A:/Code/bricks-studio/Bricks_Interfaces/Nodes.json");
                 ObservableCollection<Node> Nodes = new ObservableCollection<Node>(JsonSerializer.Deserialize<List<Node>>(json));
-                Nodes[0].Mecanique = Final_mecanique;
+
+                if (Nodes.Count <= 0)
+                {
+                    MessageBox.Show("Veuillez d'abord créer un noeud");
+                    return;
+                }
+
+                if (Nodes[Nodes.Count - 1].Mecanique != null)
+                {
+                    MessageBox.Show("Une mecanique est deja dans le dernier noeud");
+                    return;
+                }
+
+                Final_mecanique = new Models.Mecanique(Mecanique.ToList(), name);
+                ClearMecanique(parameter);
+                Nodes[Nodes.Count - 1].Mecanique = Final_mecanique;
 
                 json = JsonSerializer.Serialize(Nodes, new JsonSerializerOptions { WriteIndented = true });
                 System.IO.File.WriteAllText("A:\\Code\\bricks-studio\\Bricks_Interfaces\\Nodes.json", json);
@@ -83,7 +96,7 @@ namespace Bricks_Interfaces.ViewModels
             }
             else
             {
-                MessageBox.Show("Veuillez rentrez un nom valide");
+                MessageBox.Show("Veuillez rentrez un nom et/ou une mecanique valide");
             }
         }
     }
