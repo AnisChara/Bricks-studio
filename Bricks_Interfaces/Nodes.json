@@ -1,28 +1,28 @@
 [
   {
-    "Name": "droite",
+    "Name": "efz",
     "Mecanique": {
-      "Name": "droite",
+      "Name": "erfz",
       "Actions": [
         {
           "Name": "Droite de ",
           "Function": "player_pos.x \u002B= *",
           "Description": "Deplace le joeur de x pixel vers la droite",
           "Param_count": 1,
-          "Parameters": "10",
+          "Parameters": "200",
           "Param_box": "Visible"
         }
       ]
     },
     "Declencheur": {
-      "Name": "d",
+      "Name": "ef",
       "Events": [
         {
           "Name": "press",
           "Function": "keys[pygame.K_*]",
           "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
           "Param_count": 1,
-          "Parameters": "d",
+          "Parameters": "e",
           "Param_box": "Visible"
         }
       ]

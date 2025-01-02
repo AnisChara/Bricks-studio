@@ -80,7 +80,7 @@ namespace Bricks_Interfaces.ViewModels
                 return;
             }
 
-            if (selectedEvent.Parameters.Length > 1)
+            if (selectedEvent.Param_count > 0 && selectedEvent.Parameters.Length > 1)
             {
                 MessageBox.Show("Veuillez fournir une valeure valide.");
                 return;

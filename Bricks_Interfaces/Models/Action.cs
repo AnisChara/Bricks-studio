@@ -12,19 +12,20 @@ namespace Bricks_Interfaces.Models
         public string Function { get; set; }
         public string Description { get; set; }
         public int Param_count { get; set; }
-        public string? Parameters { get; set; }
+        public string? Parameters { get; set; } = null;
         public string Param_box { get; set; }
 
-        public Action(string Name, string Function, string Description, int param_count, string? parameters)
+        public Action(string Name, string Function, string Description, int Param_count, string? Parameters)
         {
             this.Name = Name;
             this.Function = Function;
             this.Description = Description;
-            this.Param_count = param_count;
-            this.Parameters = parameters;
+            this.Param_count = Param_count;
+            this.Parameters = Parameters;
 
-            if (Param_count > 0 ) { this.Param_box = "Visible"; }
+            if (Param_count > 0) { this.Param_box = "Visible"; }
             else this.Param_box = "Collapsed";
+
         }
 
         public string Formate()

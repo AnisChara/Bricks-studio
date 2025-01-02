@@ -19,13 +19,13 @@
     "Function": "player_pos.x += *",
     "Description": "Deplace le joeur de x pixel vers la droite",
     "Param_count": 1,
-    "Parameters": null
+    "parameters": null
   },
   {
     "Name": "Haut de ",
     "Function": "player_pos.y -= *",
     "Description": "Deplace le joeur de x pixel vers le haut",
     "Param_count": 1,
-    "Parameters": null
+    "parameters": null
   }
 ]

@@ -9,7 +9,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -21,15 +21,16 @@
                             <Button Content="{Binding Name}" 
                             Command="{Binding DataContext.AddActionCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                             CommandParameter="{Binding}" 
-                            Width="auto" 
-                            Height="auto">
+                            Width="70" 
+                            Height="30"
+                            FontSize="13">
                                 <Button.ToolTip>
                                     <ToolTip Content="{Binding Description}" />
                                 </Button.ToolTip>
                             </Button>
 
 
-                            <TextBox Width="auto" Height="20"
+                            <TextBox Width="30" FontSize="20" Height="auto"
                              Text="{Binding Parameters}" Visibility="{Binding Param_box}"/>
                         </StackPanel>
                     </DataTemplate>
