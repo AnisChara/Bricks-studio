@@ -27,34 +27,5 @@
         }
       ]
     }
-  },
-  {
-    "Name": "haut",
-    "Mecanique": {
-      "Name": "haut",
-      "Actions": [
-        {
-          "Name": "Haut de ",
-          "Function": "player_pos.y -= *",
-          "Description": "Deplace le joeur de x pixel vers le haut",
-          "Param_count": 1,
-          "Parameters": "10",
-          "Param_box": "Visible"
-        }
-      ]
-    },
-    "Declencheur": {
-      "Name": "z",
-      "Events": [
-        {
-          "Name": "press",
-          "Function": "keys[pygame.K_*]",
-          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
-          "Param_count": 1,
-          "Parameters": "z",
-          "Param_box": "Visible"
-        }
-      ]
-    }
   }
 ]

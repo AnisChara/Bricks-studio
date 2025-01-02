@@ -27,9 +27,6 @@ while running:
     if keys[pygame.K_d]:
         player_pos.x += 10
         
-    if keys[pygame.K_z]:
-        player_pos.y -= 10
-        
 
 
     # flip() the display to put your work on screen

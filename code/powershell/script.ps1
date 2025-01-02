@@ -6,7 +6,7 @@ Param(
 $pyinstaller = "C:\Users\anisc\AppData\Roaming\Python\Python312\Scripts\pyinstaller.exe"
 
 # Chemin du script Python à compiler
-$pythonScript = "A:\Code\bricks-studio\code\python\test.py"
+$pythonScript = Join-Path -Path $customDistPath -ChildPath "test.py"
 
 # Compilation avec PyInstaller
 & $pyinstaller --onefile --windowed --distpath $customDistPath $pythonScript
