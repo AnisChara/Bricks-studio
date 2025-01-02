@@ -117,6 +117,14 @@ namespace Bricks_Interfaces.ViewModels
                 return;
             }
 
+            int index = Nodes.IndexOf(Nodes.FirstOrDefault(i => i.Name == node_name));
+
+            if (index != -1)
+            {
+                MessageBox.Show("Un noeud avec ce nom existe deja.");
+                return;
+            }
+
             Nodes.Add(new Node(Node_name, null, null));
             string json = JsonSerializer.Serialize(Nodes, new JsonSerializerOptions { WriteIndented = true });
             System.IO.File.WriteAllText("A:\\Code\\bricks-studio\\Bricks_Interfaces\\Nodes.json", json);

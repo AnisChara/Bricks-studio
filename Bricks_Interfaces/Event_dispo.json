@@ -1,17 +1,9 @@
 [
   {
-    "Name": "press a",
-    "Function": "keys[pygame.K_a]",
-    "Description": "l'utilisateur appuie sur a"
-  },
-  {
-    "Name": "press b",
-    "Function": "keys[pygame.K_b]",
-    "Description": "l'utilisateur appuie sur b"
-  },
-  {
-    "Name": "press c",
-    "Function": "keys[pygame.K_c]",
-    "Description": "l'utilisateur appuie sur c"
+    "Name": "press",
+    "Function": "keys[pygame.K_*]",
+    "Description": "l'utilisateur appuie sur la touche désignée",
+    "Param_count": 1,
+    "Parameters" : null
   }
 ]

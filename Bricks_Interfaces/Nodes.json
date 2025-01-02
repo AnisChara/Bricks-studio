@@ -1,61 +1,58 @@
 [
   {
-    "Name": "quitter le jeu",
+    "Name": "droite",
     "Mecanique": {
-      "Name": "quit",
+      "Name": "droite",
       "Actions": [
         {
-          "Name": "fermer le jeu",
-          "Function": "running = False",
-          "Description": "permet de fermer le jeu"
+          "Name": "Droite de ",
+          "Function": "player_pos.x \u002B= *",
+          "Description": "Deplace le joeur de x pixel vers la droite",
+          "Param_count": 1,
+          "Parameters": "10",
+          "Param_box": "Visible"
         }
       ]
     },
     "Declencheur": {
-      "Name": "a\u002Bc",
+      "Name": "d",
       "Events": [
         {
-          "Name": "press a",
-          "Function": "keys[pygame.K_a]",
-          "Description": "l\u0027utilisateur appuie sur a"
-        },
-        {
-          "Name": "press c",
-          "Function": "keys[pygame.K_c]",
-          "Description": "l\u0027utilisateur appuie sur c"
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
+          "Param_count": 1,
+          "Parameters": "d",
+          "Param_box": "Visible"
         }
       ]
     }
   },
   {
-    "Name": "tp au hasard",
+    "Name": "haut",
     "Mecanique": {
-      "Name": "tp au hasard",
+      "Name": "haut",
       "Actions": [
         {
-          "Name": "TP au hasard y",
-          "Function": "player_pos.y = random.randint(0,700)",
-          "Description": "teleporte au milieu de l\u0027\u00E9cran"
-        },
-        {
-          "Name": "TP au hasard x",
-          "Function": "player_pos.x = random.randint(0,1000)",
-          "Description": "teleporte au hasard"
+          "Name": "Haut de ",
+          "Function": "player_pos.y -= *",
+          "Description": "Deplace le joeur de x pixel vers le haut",
+          "Param_count": 1,
+          "Parameters": "10",
+          "Param_box": "Visible"
         }
       ]
     },
     "Declencheur": {
-      "Name": "b\u002Bc",
+      "Name": "z",
       "Events": [
         {
-          "Name": "press b",
-          "Function": "keys[pygame.K_b]",
-          "Description": "l\u0027utilisateur appuie sur b"
-        },
-        {
-          "Name": "press c",
-          "Function": "keys[pygame.K_c]",
-          "Description": "l\u0027utilisateur appuie sur c"
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
+          "Param_count": 1,
+          "Parameters": "z",
+          "Param_box": "Visible"
         }
       ]
     }

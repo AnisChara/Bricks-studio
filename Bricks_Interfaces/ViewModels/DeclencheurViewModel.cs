@@ -18,13 +18,27 @@ namespace Bricks_Interfaces.ViewModels
     public class DeclencheurViewModel : BaseNotifyPropertyChanded
     {
 
-        public ObservableCollection<Event> Events { get; set; } // JSON a recuperer
-        public ObservableCollection<Event> Declencheur { get; set; }
         public ICommand AddEventCommand { get; set; }
         public ICommand ClearDeclencheurCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
-
         public Declencheur Final_declencheur { get; set; }
+
+        public ObservableCollection<Event> Declencheur { get; set; }
+
+        private ObservableCollection<Event> events { get; set; }
+        public ObservableCollection<Event> Events
+        {
+            get => events;
+            set
+            {
+                if (events != value)
+                {
+                    events = value;
+                    OnPropertyChanged(nameof(Events));
+                }
+            }
+        }
+        
 
         private string declencheurName;
         public string DeclencheurName
@@ -52,10 +66,26 @@ namespace Bricks_Interfaces.ViewModels
 
         private void AddEvent(object parameter)
         {
-            if (parameter is Event selectedEvent && !Declencheur.Contains(selectedEvent))
+            Event selectedEvent = parameter as Event;    
+
+            if (Declencheur.Contains(selectedEvent))
             {
-                Declencheur.Add(selectedEvent);
+                MessageBox.Show("Evenement deja dans le declencheur");
+                return;
             }
+
+            if (selectedEvent.Param_count > 0 && selectedEvent.Parameters == null)
+            {
+                MessageBox.Show("Veuillez fournir une valeur");
+                return;
+            }
+
+            if (selectedEvent.Parameters.Length > 1)
+            {
+                MessageBox.Show("Veuillez fournir une valeure valide.");
+                return;
+            }
+            Declencheur.Add(selectedEvent);
         }
 
         private void ClearDeclencheur(object parameter)

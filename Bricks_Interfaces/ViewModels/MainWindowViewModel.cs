@@ -48,20 +48,20 @@ namespace Bricks_Interfaces.ViewModels
                 {
                     if (i == node.Declencheur.Events.Count-1)
                     {
-                        declencheur += node.Declencheur.Events[i].Function;
+                        declencheur += node.Declencheur.Events[i].Formate();
                     }
                     else
                     {
-                        declencheur += node.Declencheur.Events[i].Function + " & ";
+                        declencheur += node.Declencheur.Events[i].Formate() + " & ";
                     }
                 }
                 for (int i = 0; i < node.Mecanique.Actions.Count; i++)
                 {
-                        mecanique += node.Mecanique.Actions[i].Function + "\n        ";
+                        mecanique += node.Mecanique.Actions[i].Formate() + "\n        ";
                 }
 
 
-                code += "    elif " + declencheur + ":" +
+                code += "    if " + declencheur + ":" +
                 "\n" + "        " + mecanique + "\n";
             }
 

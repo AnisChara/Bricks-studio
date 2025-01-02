@@ -17,18 +17,34 @@
             <ItemsControl ItemsSource="{Binding Actions}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Name}" Command="{Binding DataContext.AddActionCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Width="auto" Height="20"/>
+                        <StackPanel Orientation="Horizontal" Width="auto">
+                            <Button Content="{Binding Name}" 
+                            Command="{Binding DataContext.AddActionCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                            CommandParameter="{Binding}" 
+                            Width="auto" 
+                            Height="auto">
+                                <Button.ToolTip>
+                                    <ToolTip Content="{Binding Description}" />
+                                </Button.ToolTip>
+                            </Button>
+
+
+                            <TextBox Width="auto" Height="20"
+                             Text="{Binding Parameters}" Visibility="{Binding Param_box}"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </StackPanel>
+
         <StackPanel Background="Beige" Grid.Column="1" Name="board">
             <TextBlock Text="Onglet Mécanique" FontSize="20" HorizontalAlignment="Center"/>
             <Grid>
-                <DataGrid ItemsSource="{Binding Mecanique}" Height="auto" Width="auto" AutoGenerateColumns="False">
+                <DataGrid ItemsSource="{Binding Mecanique}" Height="auto" Width="auto" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <!-- Affiche la propriété Name -->
-                        <DataGridTextColumn Binding="{Binding Name}" />
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Action"/>
+                        <DataGridTextColumn Binding="{Binding Parameters}" Header="valeur" Visibility="{Binding Param_box}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

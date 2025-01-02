@@ -15,7 +15,19 @@ namespace Bricks_Interfaces.ViewModels
     public class MecaniqueViewModel : BaseNotifyPropertyChanded
     {
 
-        public ObservableCollection<Models.Action> Actions { get; set; }
+        private ObservableCollection<Models.Action> actions;
+        public ObservableCollection<Models.Action> Actions
+        {
+            get => actions;
+            set
+            {
+                if (actions != value)
+                {
+                    actions = value;
+                    OnPropertyChanged(nameof(Actions));
+                }
+            }
+        }
         public ObservableCollection<Models.Action> Mecanique { get; set; }
         public ICommand AddActionCommand { get; set; }
         public ICommand ClearMecaniqueCommand { get; set; }
@@ -53,10 +65,26 @@ namespace Bricks_Interfaces.ViewModels
 
         private void AddAction(object parameter)
         {
-            if (parameter is Models.Action selectedEvent && !Mecanique.Contains(selectedEvent))
+            Models.Action selectedAction = parameter as Models.Action;
+
+            if (Mecanique.Contains(selectedAction))
             {
-                Mecanique.Add(selectedEvent);
+                MessageBox.Show("Action deja dans la Mecanique");
+                return;
             }
+
+            if (selectedAction.Param_count > 0 && selectedAction.Parameters == null)
+            {
+                MessageBox.Show("Veuillez fournir une valeur");
+                return;
+            }
+
+            if (selectedAction.Param_count > 0 && selectedAction.Parameters.Length > 4)
+            {
+                MessageBox.Show("Veuillez fournir une valeure valide.");
+                return;
+            }
+            Mecanique.Add(selectedAction);
         }
 
         private void ClearMecanique(object parameter)

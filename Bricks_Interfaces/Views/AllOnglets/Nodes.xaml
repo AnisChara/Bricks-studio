@@ -20,13 +20,13 @@
         </StackPanel>
         <StackPanel Background="Bisque" Grid.Column="1">
             <TextBlock Text="Onglet Nodes" FontSize="20" HorizontalAlignment="Center"></TextBlock>
-            <DataGrid ItemsSource="{Binding Nodes}" Height="auto" Width="auto" AutoGenerateColumns="False">
+            <DataGrid ItemsSource="{Binding Nodes}" Height="auto" Width="auto" AutoGenerateColumns="False" IsReadOnly="True"> 
                 <DataGrid.Columns>
                     <!-- Affiche la propriété Name -->
-                    <DataGridTextColumn Binding="{Binding Name}" />
-                    <DataGridTextColumn Binding="{Binding Declencheur.Name}" />
-                    <DataGridTextColumn Binding="{Binding Mecanique.Name}" />
-                    <DataGridTemplateColumn Header="Actions">
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Noeud"/>
+                    <DataGridTextColumn Binding="{Binding Declencheur.Name}" Header="Declencheur" />
+                    <DataGridTextColumn Binding="{Binding Mecanique.Name}" Header="Mecanique"/>
+                    <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="delete" Background="Red" Width="auto" Height="auto" Command="{Binding DataContext.DeleteNodeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Name}"></Button>
