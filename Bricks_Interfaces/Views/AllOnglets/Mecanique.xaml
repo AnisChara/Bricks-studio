@@ -30,8 +30,15 @@
                             </Button>
 
 
+                            <ComboBox Width="30" FontSize="20" Height="auto"
+                                 SelectedItem="{Binding Parameter_value}"
+                                 ItemsSource="{Binding Available_parameter_values}" 
+                                 Visibility="{Binding Show_list}">                              
+                            </ComboBox>
+
+
                             <TextBox Width="30" FontSize="20" Height="auto"
-                             Text="{Binding Parameters}" Visibility="{Binding Param_box}"/>
+                                Text="{Binding Parameter_value}" Visibility="{Binding Show_number}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -45,13 +52,13 @@
                     <DataGrid.Columns>
                         <!-- Affiche la propriété Name -->
                         <DataGridTextColumn Binding="{Binding Name}" Header="Action"/>
-                        <DataGridTextColumn Binding="{Binding Parameters}" Header="valeur" Visibility="{Binding Param_box}"/>
+                        <DataGridTextColumn Binding="{Binding Parameter_value}" Header="valeur"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
             <TextBox Text="{Binding MecaniqueName}" Width="100" Height="20" Margin="5" />
             <Button Content="Confirmer" Width="100" Height="30" Margin="5" Command="{Binding ConfirmCommand}" CommandParameter="{Binding MecaniqueName}" />
-            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Content ="Clear" Width="30" Height="30" Background="Red" Command="{Binding DataContext.ClearMecaniqueCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+            <Button HorizontalAlignment="center" VerticalAlignment="Bottom" Content ="Clear" Width="30" Height="30" Background="Red" Command="{Binding DataContext.ClearMecaniqueCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
         </StackPanel>
     </Grid>
 </UserControl>

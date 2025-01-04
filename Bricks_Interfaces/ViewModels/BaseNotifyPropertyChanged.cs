@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bricks_Interfaces.ViewModels
 {
-    public class BaseNotifyPropertyChanded : INotifyPropertyChanged
+    public class BaseNotifyPropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -15,7 +15,7 @@ using System.Text.Json;
 
 namespace Bricks_Interfaces.ViewModels
 {
-    public class DeclencheurViewModel : BaseNotifyPropertyChanded
+    public class DeclencheurViewModel : BaseNotifyPropertyChanged
     {
 
         public ICommand AddEventCommand { get; set; }
@@ -55,8 +55,7 @@ namespace Bricks_Interfaces.ViewModels
         }
         public DeclencheurViewModel() {
 
-            string json = System.IO.File.ReadAllText("A:/Code/bricks-studio/Bricks_Interfaces/Event_dispo.json");
-            Events = new ObservableCollection<Event>(JsonSerializer.Deserialize<List<Event>>(json));
+            Events = Models.Event.GetEvents();
             Declencheur = new ObservableCollection<Event>();
             AddEventCommand = new RelayCommand(AddEvent);
             ClearDeclencheurCommand = new RelayCommand(ClearDeclencheur);
@@ -73,18 +72,18 @@ namespace Bricks_Interfaces.ViewModels
                 MessageBox.Show("Evenement deja dans le declencheur");
                 return;
             }
-
-            if (selectedEvent.Param_count > 0 && selectedEvent.Parameters == null)
+            if (selectedEvent.Parameter_type == "number" && !int.TryParse(selectedEvent.Parameter_value, out _)) 
             {
-                MessageBox.Show("Veuillez fournir une valeur");
+                MessageBox.Show("Veuillez fournir un parametre valide");
+                return ;
+            }
+
+            if (selectedEvent.Parameter_count > 0 && selectedEvent.Parameter_value == null)
+            {
+                MessageBox.Show("Veuillez fournir une valeur pour tous les parametres");
                 return;
             }
 
-            if (selectedEvent.Param_count > 0 && selectedEvent.Parameters.Length > 1)
-            {
-                MessageBox.Show("Veuillez fournir une valeure valide.");
-                return;
-            }
             Declencheur.Add(selectedEvent);
         }
 

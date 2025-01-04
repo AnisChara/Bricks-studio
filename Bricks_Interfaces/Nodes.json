@@ -1,29 +1,135 @@
 [
   {
-    "Name": "efz",
+    "Name": "DIAG Droite haut",
     "Mecanique": {
-      "Name": "erfz",
+      "Name": "diag",
       "Actions": [
         {
           "Name": "Droite de ",
           "Function": "player_pos.x \u002B= *",
           "Description": "Deplace le joeur de x pixel vers la droite",
-          "Param_count": 1,
-          "Parameters": "200",
-          "Param_box": "Visible"
+          "Available_parameter_values": null,
+          "Parameter_value": "10",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        },
+        {
+          "Name": "Haut de ",
+          "Function": "player_pos.y -= *",
+          "Description": "Deplace le joeur de x pixel vers le Haut",
+          "Available_parameter_values": null,
+          "Parameter_value": "10",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
         }
       ]
     },
     "Declencheur": {
-      "Name": "ef",
+      "Name": "a",
       "Events": [
         {
           "Name": "press",
           "Function": "keys[pygame.K_*]",
           "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
-          "Param_count": 1,
-          "Parameters": "e",
-          "Param_box": "Visible"
+          "Available_parameter_values": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z"
+          ],
+          "Parameter_value": "a",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ]
+    }
+  },
+  {
+    "Name": "close",
+    "Mecanique": {
+      "Name": "close",
+      "Actions": [
+        {
+          "Name": "Fermer le jeu",
+          "Function": "running = False",
+          "Description": "Ferme le jeu",
+          "Available_parameter_values": null,
+          "Parameter_value": null,
+          "Parameter_count": 0,
+          "Show_list": "Collapsed",
+          "Show_number": "Collapsed",
+          "Parameter_type": null
+        }
+      ]
+    },
+    "Declencheur": {
+      "Name": "b",
+      "Events": [
+        {
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z"
+          ],
+          "Parameter_value": "b",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
         }
       ]
     }

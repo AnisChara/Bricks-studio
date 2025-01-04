@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Bricks_Interfaces.ViewModels
 {
-    public class MainWindowViewModel : BaseNotifyPropertyChanded
+    public class MainWindowViewModel : BaseNotifyPropertyChanged
     {
         public ICommand CompileCommand { get; set; }
 

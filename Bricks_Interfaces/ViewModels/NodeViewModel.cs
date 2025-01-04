@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace Bricks_Interfaces.ViewModels
 {
-    public class NodeViewModel : BaseNotifyPropertyChanded
+    public class NodeViewModel : BaseNotifyPropertyChanged
     {
         public ICommand DeleteNodeCommand { get; set; }
         public ICommand AddNodeCommand { get; set; }

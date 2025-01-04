@@ -12,7 +12,7 @@ using Bricks_Interfaces.Views.AllOnglets;
 
 namespace Bricks_Interfaces.ViewModels
 {
-    public class MecaniqueViewModel : BaseNotifyPropertyChanded
+    public class MecaniqueViewModel : BaseNotifyPropertyChanged
     {
 
         private ObservableCollection<Models.Action> actions;
@@ -51,8 +51,7 @@ namespace Bricks_Interfaces.ViewModels
 
         public MecaniqueViewModel()
         {
-            string json = System.IO.File.ReadAllText("A:/Code/bricks-studio/Bricks_Interfaces/Action_dispo.json");
-            Actions = new ObservableCollection<Models.Action>(JsonSerializer.Deserialize<List<Models.Action>>(json));
+            Actions = Models.Action.GetActions();
 
         
             Mecanique = new ObservableCollection<Models.Action>();
@@ -72,18 +71,18 @@ namespace Bricks_Interfaces.ViewModels
                 MessageBox.Show("Action deja dans la Mecanique");
                 return;
             }
-
-            if (selectedAction.Param_count > 0 && selectedAction.Parameters == null)
+            if (selectedAction.Parameter_type == "number" && !int.TryParse(selectedAction.Parameter_value, out _))
             {
-                MessageBox.Show("Veuillez fournir une valeur");
+                MessageBox.Show("Veuillez fournir un parametre valide");
                 return;
             }
 
-            if (selectedAction.Param_count > 0 && selectedAction.Parameters.Length > 4)
+            if (selectedAction.Parameter_count > 0 && selectedAction.Parameter_value == null)
             {
-                MessageBox.Show("Veuillez fournir une valeure valide.");
+                MessageBox.Show("Veuillez fournir une valeur pour tous les parametres");
                 return;
             }
+
             Mecanique.Add(selectedAction);
         }
 

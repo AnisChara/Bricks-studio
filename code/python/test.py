@@ -24,8 +24,12 @@ while running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]: 
       running = False 
-    if keys[pygame.K_d]:
+    if keys[pygame.K_a]:
         player_pos.x += 10
+        player_pos.y -= 10
+        
+    if keys[pygame.K_b]:
+        running = False
         
 
 
