@@ -6,8 +6,14 @@ class Game {
     +surface screen
     +clock clock
     +bool running
-    +list_entity entities
     +list_level levels
+    +int current_level
+
+
+    +surface get_screen()
+    +list_entity get_entities()
+    +int get_current_level()
+    +list_level get_levels_list()
 }
 
 class Level {
@@ -26,16 +32,21 @@ class Entity {
     +int y
     +int velocity
     +string direction
+    +string shape
     +int width
     +int height
     +string image
-    +Gravity gravity
-    +Jump jump
+    +int weight
+    +bool is_jumping
+    +bool is_falling
+    +int jump_height
+    +int jump_speed
     +Emitter Weapon
 
     +void die()
     +void track(target)
-    +void move()
+    +void move(direction)
+    +void jump()
 }
 
 class Collision {
@@ -44,12 +55,12 @@ class Collision {
     +list_entity collision_exception
 }
 class Square_Collision {
-    +bool is_collide()
+    +bool is_collide(target)
 }
 class Circle_Collision {
     +int radius
 
-    +bool is_collide()
+    +bool is_collide(target)
 }
 
 class Pawn {
@@ -60,35 +71,30 @@ class Pawn {
 class Gravity {
 
     +bool is_gravity
-    +bool is_falling
-    +int falling_initial_speed
-    +int falling_maximum_speed
+    +int gravity_force
     +int time_for_maximum_falling_speed
 
     +void fall()
     +bool is_falling()
 }
 
-class Jump {
-
-    +bool is_jumping
-    +int jump_height
-    +int jump_speed
-
-    +void jump()
-}
-
-class Ennemy {
-    +list_movement pattern
-
-    +void follow_pattern()
-}
-
 class Structure { 
     +list_movement pattern
 
-    +void interact()
     +void follow_pattern()
+}
+
+class offensive_entity { 
+
+    +list_movement pattern
+
+    +void follow_pattern()
+    +void deal_damage(target)
+}
+
+class offensive_structure { 
+
+    +void deal_damage(target)
 }
 
 class Emitter {
@@ -97,10 +103,14 @@ class Emitter {
     +int x
     +int y
     +string direction
+
+    +void set_relative_position()
+    +void shoot()
 }
 
 class Projectile {
     +Emitter Emitter
+    +void deal_damage(target)
 }
 
 class movement {
@@ -111,7 +121,6 @@ class movement {
 }
 
 Entity <|-- Pawn
-Pawn <|-- Ennemy
 Entity <|-- Structure
 Entity <|-- Projectile
 Collision <|-- Square_Collision
@@ -121,5 +130,6 @@ Level --> Entity
 Emitter --> Entity
 Projectile --> Emitter
 Entity --> Collision
-Entity --> Gravity
-Entity --> Jump
+Level --> Gravity
+Pawn --> offensive_entity
+Structure --> offensive_structure
