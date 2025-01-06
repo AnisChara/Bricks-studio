@@ -1,10 +1,9 @@
+import pygame
 
 class Game() :
 
-    def __init__(self,screen,clock) : #ajouter arg pour image
-        self.screen = screen
-        self.clock = clock
-        self.running = True
-        self.dt = 0
-        self.entities = []
-        self.levels = []
+    entities = []
+    screen = pygame.display.set_mode((1280, 720))
+    clock = pygame.time.Clock()
+    running = True
+    dt = 0

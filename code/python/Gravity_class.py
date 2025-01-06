@@ -1,16 +1,20 @@
-
+from Game_class import Game
 class Gravity() :
 
-    def __init__(self, initial_falling_speed, maximum_falling_speed, time_for_maximum_falling_speed, entity) : #ajouter arg pour image
+    gravity_force = 3.6
+
+
+    def __init__(self) : #ajouter arg pour image
         self.is_gravity = True
-        self.is_falling = False
-        self.initial_falling_speed = initial_falling_speed
-        self.maximum_falling_speed = maximum_falling_speed
-        self.time_for_maximum_falling_speed = time_for_maximum_falling_speed
-        self.entity = entity
 
     def fall() :
-        pass#TODO
+        for entity in Game.entities : 
+            if entity.collision.is_colliding() == "down" :
+                entity.is_falling = False
+                entity.falling_speed = 0
+                continue
 
-    def check_is_falling(): 
-        pass#TODO
+            if entity.collision.is_colliding() != "down" :
+                entity.is_falling = True
+                entity.falling_speed += Gravity.gravity_force * entity.weight 
+                entity.rect.y += entity.falling_speed * Game.dt
