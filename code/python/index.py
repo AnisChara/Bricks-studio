@@ -2,29 +2,38 @@
 import pygame
 from Pawn_class import Pawn
 from Game_class import Game
+from Gravity_class import Gravity
+from Jump_class import Jump
+from Structure_class import Structure
+from Entity_class import Entity
 
 # pygame setup
 pygame.init()
-Game = Game(pygame.display.set_mode((1280, 720)),pygame.time.Clock())
 
 background = pygame.image.load("C://Users/user/Pictures/wp4470754.webp")
 
-player_pos = pygame.Vector2(Game.screen.get_width() / 2, Game.screen.get_height() / 2)
+Player = Pawn("sdq",0,0,100,100,100,10,True, "square",10)
+left_border = Entity("left_border",-1,-1,-2147483646,2147483646,0,True,"square",0,False)
+right_border = Entity("right_border",Game.screen_width+1,-1,2147483646, 2147483646,0,True,"square",0,False)
+up_border = Entity("up_border",-1,-1,2147483646, -2147483646,0,True,"square",0,False)
+down_border = Entity("down_border",-1,Game.screen_height+1,2147483646, 2147483646,0,True,"square",0,False)
 
-Player = Pawn(1,1,100,100,100,10,False, "circle")
-print(Player.collision.radius)
+Game.entities.append(Player)
+Game.entities.append(left_border)
+Game.entities.append(right_border)
+Game.entities.append(down_border)
 
 while Game.running:
 
     Game.screen.blit(background, (0,0))
-    Game.screen.blit(Player.image, Player.rect)
+    Game.render()
 
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             Game.running = False
- 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                Player.jump(400)
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]: 
@@ -32,13 +41,18 @@ while Game.running:
     elif keys[pygame.K_m]:
       Game.running = False
     if keys[pygame.K_d]:
-      Player.rect.x += 10
+      Player.rect.x += 300 * Game.dt
     if keys[pygame.K_q]:
-      Player.rect.x -= 10
-    if keys[pygame.K_s]:
-      Player.rect.y += 10
+      Player.rect.x -= 300 * Game.dt
     if keys[pygame.K_z]:
-      Player.rect.y -= 10
+      Player.rect.y = 0
+    if keys[pygame.K_w]:
+       print(Player.is_jumping)
+    
+
+    Jump.handle_jump()
+    Gravity.fall()
+
 
 
     # flip() the display to put your work on screen
