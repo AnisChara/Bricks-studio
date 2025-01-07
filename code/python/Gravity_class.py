@@ -8,7 +8,12 @@ class Gravity() :
         self.is_gravity = True
 
     def fall() :
+
         for entity in Game.entities : 
+
+            if entity.is_jumping :
+                continue
+            
             if entity.collision.is_colliding() == "down" :
                 entity.is_falling = False
                 entity.falling_speed = 0

@@ -21,9 +21,6 @@ class Entity(pygame.sprite.Sprite) :
             self.collision = CircleCollision(self, [])
         if shape == "square":
             self.collision = SquareCollision(self, [])
-        # self.gravity = Gravity()
-        # self.jump = Jump()
-        # self.weapon = Emitter()
         self.is_collidable = is_collidable
         self.speed = speed
         self.direction = ""
