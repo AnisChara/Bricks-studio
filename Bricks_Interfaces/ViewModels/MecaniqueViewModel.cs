@@ -98,7 +98,7 @@ namespace Bricks_Interfaces.ViewModels
 
             if (!string.IsNullOrEmpty(name) && Mecanique.Count() > 0)
             {
-                string json = System.IO.File.ReadAllText("A:/Code/bricks-studio/Bricks_Interfaces/Nodes.json");
+                string json = System.IO.File.ReadAllText("../../../Nodes.json");
                 ObservableCollection<Node> Nodes = new ObservableCollection<Node>(JsonSerializer.Deserialize<List<Node>>(json));
 
                 if (Nodes.Count <= 0)
@@ -118,7 +118,7 @@ namespace Bricks_Interfaces.ViewModels
                 Nodes[Nodes.Count - 1].Mecanique = Final_mecanique;
 
                 json = JsonSerializer.Serialize(Nodes, new JsonSerializerOptions { WriteIndented = true });
-                System.IO.File.WriteAllText("A:\\Code\\bricks-studio\\Bricks_Interfaces\\Nodes.json", json);
+                System.IO.File.WriteAllText("../../../Nodes.json", json);
 
             }
             else

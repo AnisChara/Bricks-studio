@@ -55,7 +55,7 @@ namespace Bricks_Interfaces.ViewModels
 
         private async Task LoadDataAsync()
         {
-            using (FileStream fileStream = new FileStream("A:/Code/bricks-studio/Bricks_Interfaces/Nodes.json", FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (FileStream fileStream = new FileStream("../../../Nodes.json", FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
@@ -71,7 +71,7 @@ namespace Bricks_Interfaces.ViewModels
 
             _fileWatcher = new FileSystemWatcher
             {
-                Path = "A:\\Code\\bricks-studio\\Bricks_Interfaces\\",
+                Path = "../../../",
                 Filter = "Nodes.json",
                 NotifyFilter = NotifyFilters.LastWrite
             };
@@ -100,7 +100,7 @@ namespace Bricks_Interfaces.ViewModels
             {
                 Nodes.RemoveAt(index);
                 string json = JsonSerializer.Serialize(Nodes, new JsonSerializerOptions { WriteIndented = true });
-                System.IO.File.WriteAllText("A:\\Code\\bricks-studio\\Bricks_Interfaces\\Nodes.json", json);
+                System.IO.File.WriteAllText("../../../Nodes.json", json);
             }
         }
 
@@ -127,7 +127,7 @@ namespace Bricks_Interfaces.ViewModels
 
             Nodes.Add(new Node(Node_name, null, null));
             string json = JsonSerializer.Serialize(Nodes, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("A:\\Code\\bricks-studio\\Bricks_Interfaces\\Nodes.json", json);
+            System.IO.File.WriteAllText("../../../Nodes.json", json);
             Node_name = string.Empty;
 
         }
