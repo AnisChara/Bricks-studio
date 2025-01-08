@@ -1,8 +1,8 @@
 import pygame
-import uuid
 from CircleCollision_class import CircleCollision
 from SquareCollision_class import SquareCollision
 from Emitter_class import Emitter
+from Game_class import Game
 
 class Entity(pygame.sprite.Sprite) :
 
@@ -14,8 +14,12 @@ class Entity(pygame.sprite.Sprite) :
             self.image = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/mario.png")
             self.image = pygame.transform.scale(self.image,(width, height))
             self.rect = self.image.get_rect()
+            self.rect.x = x
+            self.rect.y = y
         else : 
             self.rect = pygame.Rect(x, y, width, height)
+            self.rect.x = x
+            self.rect.y = y
         self.shape = shape
         if shape == "circle":
             self.collision = CircleCollision(self, [])
@@ -34,15 +38,29 @@ class Entity(pygame.sprite.Sprite) :
     def set_weapon(self):
         self.weapon = Emitter()
 
-    def move(self,direction,speed):
+    def move(self,direction,speed = None):
 
         if speed is None: speed = self.speed
 
+        collide = self.collision.is_colliding_any()
+        
         if direction == "left":
-            self.rect.x -= speed
+            if not (collide and direction in collide):
+                self.rect.x -= speed * Game.dt
+            else: 
+                self.rect.x = collide[collide.index(direction)-1].rect.x + collide[collide.index(direction)-1].rect.width+1
         if direction == "right":
-            self.rect.x += speed
-        if direction == "up":
-            self.rect.y -= speed
-        if direction == "down":
-            self.rect.y += speed
+            if not (collide and direction in collide):
+                self.rect.x += speed * Game.dt
+            else:
+                self.rect.x = collide[collide.index(direction)-1].rect.x-1 - self.rect.width
+        if direction == "top":
+            if not (collide and direction in collide):
+                self.rect.y -= speed * Game.dt
+            else :
+                self.rect.y = collide[collide.index(direction)-1].rect.y + collide[collide.index(direction)-1].rect.height+1
+        if direction == "bottom":
+            if not (collide and direction in collide):
+                self.rect.y += speed * Game.dt
+            else:
+                self.rect.y = collide[collide.index(direction)-1].rect.y-self.rect.height-1

@@ -12,16 +12,19 @@ pygame.init()
 
 background = pygame.image.load("C://Users/user/Pictures/wp4470754.webp")
 
-Player = Pawn("sdq",0,0,100,100,100,10,True, "square",10)
-left_border = Entity("left_border",-1,-1,-2147483646,2147483646,0,True,"square",0,False)
+Player = Pawn("sdq",-1,-1,100,100,100,10,True, "square",10)
+left_border = Entity("left_border",-2147483646,-1,2147483646,2147483646,0,True,"square",0,False)
 right_border = Entity("right_border",Game.screen_width+1,-1,2147483646, 2147483646,0,True,"square",0,False)
-up_border = Entity("up_border",-1,-1,2147483646, -2147483646,0,True,"square",0,False)
+up_border = Entity("up_border",-1,-2147483646,2147483646, 2147483646,0,True,"square",0,False)
 down_border = Entity("down_border",-1,Game.screen_height+1,2147483646, 2147483646,0,True,"square",0,False)
+wall = Structure("wall",600,500,50,100,0,True,"square",0,True)
 
-Game.entities.append(Player)
 Game.entities.append(left_border)
 Game.entities.append(right_border)
+Game.entities.append(up_border)
 Game.entities.append(down_border)
+Game.entities.append(Player)
+Game.entities.append(wall)
 
 while Game.running:
 
@@ -33,23 +36,18 @@ while Game.running:
             Game.running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                Player.jump(400)
+                Player.jump(300)
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]: 
       Game.running = False 
-    elif keys[pygame.K_m]:
-      Game.running = False
     if keys[pygame.K_d]:
-      Player.rect.x += 300 * Game.dt
+      Player.move('right', 1000)
     if keys[pygame.K_q]:
-      Player.rect.x -= 300 * Game.dt
-    if keys[pygame.K_z]:
-      Player.rect.y = 0
+      Player.move('left', 1000)
     if keys[pygame.K_w]:
-       print(Player.is_jumping)
+       print(wall.rect.x)
     
-
     Jump.handle_jump()
     Gravity.fall()
 

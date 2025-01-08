@@ -2,24 +2,30 @@ from Game_class import Game
 class Gravity() :
 
     gravity_force = 3.6
-
-
-    def __init__(self) : #ajouter arg pour image
-        self.is_gravity = True
+    is_gravity = True
 
     def fall() :
 
+        if not Gravity.is_gravity: return
+
         for entity in Game.entities : 
+
+            if entity.weight == 0:
+                continue
 
             if entity.is_jumping :
                 continue
+
             
-            if entity.collision.is_colliding() == "down" :
+            collide = entity.collision.is_colliding_any()
+            if collide and "bottom" in collide:
+
                 entity.is_falling = False
                 entity.falling_speed = 0
+                entity.rect.y = collide[collide.index("bottom")-1].rect.y - entity.rect.height
                 continue
 
-            if entity.collision.is_colliding() != "down" :
+            else:
                 entity.is_falling = True
                 entity.falling_speed += Gravity.gravity_force * entity.weight 
                 entity.rect.y += entity.falling_speed * Game.dt

@@ -12,6 +12,13 @@ class Jump() :
                      continue
                 if not entity.is_jumping:continue
 
+                collide = entity.collision.is_colliding_any()
+                if collide and "top" in collide:
+                    entity.is_jumping = False
+                    entity.rect.y = collide[collide.index("top")-1].rect.y + collide[collide.index("top")-1].rect.height
+                    continue
+                     
+
                 if entity.rect.y <= entity.jump_point :
                     entity.rect.y = entity.jump_point
                     entity.jump_speed = entity.jump_initial_speed

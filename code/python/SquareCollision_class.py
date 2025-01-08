@@ -1,8 +1,25 @@
 from Collision_class import Collision
+from Game_class import Game
 
 class SquareCollision(Collision):
     def __init__(self, entity, collision_exception):
         super().__init__("square", entity, collision_exception)
+
+    def is_colliding_any(self):
+        result = []
+        for other_entity in Game.entities:
+            if not other_entity.is_collidable: continue
+            if self.entity.id != other_entity.id :
+                collide = self.is_colliding(other_entity)
+                if collide:
+                    result.append(other_entity)
+                    result.append(collide)
+                    result.append(other_entity.id)
+#                    result.append({"other_entity": other_entity, "collide": collide})
+        if len(result) > 0:
+            return result
+        return False
+        
 
     def is_colliding(self, other_entity):
         """
@@ -13,12 +30,13 @@ class SquareCollision(Collision):
 
         # Collision avec un autre carré
         if other_entity.shape == "square":
-            return (
+            if (
                 self.entity.rect.x <= other_entity.rect.x + other_entity.rect.width + tolerance and
                 self.entity.rect.x + self.entity.rect.width >= other_entity.rect.x - tolerance and
                 self.entity.rect.y <= other_entity.rect.y + other_entity.rect.height + tolerance and
                 self.entity.rect.y + self.entity.rect.height >= other_entity.rect.y - tolerance
-            )
+            ):
+                return self.get_collision_side(other_entity)
 
         # Collision avec un cercle
         elif other_entity.shape == "circle":
@@ -38,16 +56,12 @@ class SquareCollision(Collision):
             distance_squared = distance_x ** 2 + distance_y ** 2
 
             # Vérifier si la distance est inférieure ou égale au rayon du cercle au carré
-            return distance_squared <= (circle_radius + tolerance) ** 2
+            if (distance_squared <= (circle_radius + tolerance) ** 2) :
+                return self.get_collision_side(other_entity)
 
         return False  # Pas de collision si le type est inconnu
 
     def get_collision_side(self, other_entity):
-        """
-        Détermine le côté de la collision entre deux entités si elles sont en collision.
-        """
-        if not self.is_colliding(other_entity):
-            return False  # Pas de collision
 
         # Calcul des distances entre les centres
         dx = self.entity.rect.centerx - other_entity.rect.centerx
