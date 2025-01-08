@@ -45,8 +45,7 @@ class Entity {
 
     +void die()
     +void track(target)
-    +void move(direction)
-    +void jump()
+    +void move(direction, speed)
 }
 
 class Collision {
@@ -66,13 +65,13 @@ class Circle_Collision {
 class Pawn {
     +int max_health
     +int health
+    +void jump()
 }
 
 class Gravity {
 
     +bool is_gravity
     +int gravity_force
-    +int time_for_maximum_falling_speed
 
     +void fall()
     +bool is_falling()

@@ -22,7 +22,7 @@ class Gravity() :
 
                 entity.is_falling = False
                 entity.falling_speed = 0
-                entity.rect.y = collide[collide.index("bottom")-1].rect.y - entity.rect.height
+                entity.rect.y = collide[collide.index("bottom")-1].rect.y - entity.rect.height-1
                 continue
 
             else:

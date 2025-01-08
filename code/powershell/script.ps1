@@ -3,7 +3,7 @@ Param(
 )
 
 # Chemin vers PyInstaller
-$pyinstaller = "C:\Users\anisc\AppData\Roaming\Python\Python312\Scripts\pyinstaller.exe"
+$pyinstaller = "C:\Users\user\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\Scripts\pyinstaller.exe"
 
 # Chemin du script Python à compiler
 $pythonScript = Join-Path -Path $customDistPath -ChildPath "test.py"
