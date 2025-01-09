@@ -110,6 +110,7 @@ class Emitter {
 class Projectile {
     +Emitter Emitter
     +void deal_damage(target)
+    +void handle_projectile()
 }
 
 class movement {

@@ -11,7 +11,7 @@ class Entity(pygame.sprite.Sprite) :
         self.id = id
         self.render = render
         if render:
-            self.image = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/mario.png")
+            self.image = pygame.image.load("./assets/mario.png")
             self.image = pygame.transform.scale(self.image,(width, height))
             self.rect = self.image.get_rect()
             self.rect.x = x
@@ -37,6 +37,13 @@ class Entity(pygame.sprite.Sprite) :
 
     def set_weapon(self):
         self.weapon = Emitter()
+
+    def die(self):
+        try:
+            Game.entities.remove(self)
+        except ValueError:
+            return
+    
 
     def move(self,direction,speed = None):
 

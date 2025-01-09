@@ -87,8 +87,17 @@ namespace Bricks_Interfaces.Models
                     (
                         "press",
                         "keys[pygame.K_*]",
+                        "l'utilisateur reste appuyer sur la touche désignée",
+                        ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m","n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "ESCAPE", "SPACE"],
+                        1,
+                        "string"
+                    ),
+                    new Event
+                    (
+                        "Keydown",
+                        "event.key == pygame.K_*",
                         "l'utilisateur appuie sur la touche désignée",
-                        ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m","n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+                        ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m","n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "ESCAPE", "SPACE"],
                         1,
                         "string"
                     )

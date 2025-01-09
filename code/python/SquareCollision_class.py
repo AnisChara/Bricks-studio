@@ -8,14 +8,16 @@ class SquareCollision(Collision):
     def is_colliding_any(self):
         result = []
         for other_entity in Game.entities:
+
             if not other_entity.is_collidable: continue
-            if self.entity.id != other_entity.id :
-                collide = self.is_colliding(other_entity)
-                if collide:
-                    result.append(other_entity)
-                    result.append(collide)
-                    result.append(other_entity.id)
-#                    result.append({"other_entity": other_entity, "collide": collide})
+            if self.entity.id == other_entity.id :continue
+
+            collide = self.is_colliding(other_entity)
+            if collide:
+                result.append(other_entity)
+                result.append(collide)
+                result.append(other_entity.id)
+                
         if len(result) > 0:
             return result
         return False

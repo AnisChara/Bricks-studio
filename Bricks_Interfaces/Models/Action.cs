@@ -83,7 +83,7 @@ namespace Bricks_Interfaces.Models
                 new Action
                 (
                     "Droite de ",
-                    "player_pos.x += *",
+                    "Player.move('right', *)",
                     "Deplace le joeur de x pixel vers la droite",
                     null,
                     1,
@@ -92,7 +92,7 @@ namespace Bricks_Interfaces.Models
                 new Action
                 (
                     "Gauche de ",
-                    "player_pos.x -= *",
+                    "Player.move('left', *)",
                     "Deplace le joeur de x pixel vers la Gauche",
                     null,
                     1,
@@ -101,7 +101,7 @@ namespace Bricks_Interfaces.Models
                 new Action
                 (
                     "Haut de ",
-                    "player_pos.y -= *",
+                    "Player.move('top', *)",
                     "Deplace le joeur de x pixel vers le Haut",
                     null,
                     1,
@@ -110,7 +110,7 @@ namespace Bricks_Interfaces.Models
                 new Action
                 (
                     "Bas de ",
-                    "player_pos.y += *",
+                    "Player.move('bottom', *)",
                     "Deplace le joeur de x pixel vers le Bas",
                     null,
                     1,

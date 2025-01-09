@@ -10,7 +10,7 @@ class Pawn(Entity) :
         
 
     def take_damage(self, damage):
-        pass#TODO
+        self.health -= damage
 
     def jump(self,jump_height):
         if not (self.is_jumping) and not (self.is_falling):
