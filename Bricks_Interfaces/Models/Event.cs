@@ -26,11 +26,6 @@ namespace Bricks_Interfaces.Models
             this.Function = Function;
             this.Description = Description;
 
-            if (Parameter_type == "string" && Available_parameter_values == null)
-            {
-                throw new ArgumentNullException(nameof(Available_parameter_values));
-            }
-
             this.Available_parameter_values = Available_parameter_values;
             this.Parameter_count = Parameter_count;
             this.Parameter_type = Parameter_type;
@@ -95,9 +90,9 @@ namespace Bricks_Interfaces.Models
                     new Event
                     (
                         "Keydown",
-                        "event.key == pygame.K_*",
+                        "Game.keys.* == True",
                         "l'utilisateur appuie sur la touche désignée",
-                        ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m","n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "ESCAPE", "SPACE"],
+                        ["RETURN","SPACE"],
                         1,
                         "string"
                     )

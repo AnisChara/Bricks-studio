@@ -83,7 +83,10 @@ namespace Bricks_Interfaces.ViewModels
                 return;
             }
 
-            Mecanique.Add(selectedAction);
+            Models.Action copy = new Models.Action(selectedAction.Name, selectedAction.Function, selectedAction.Description, null, selectedAction.Parameter_count, selectedAction.Parameter_type);
+            copy.Parameter_value = selectedAction.Parameter_value;
+
+            Mecanique.Add(copy);
         }
 
         private void ClearMecanique(object parameter)

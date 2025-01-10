@@ -1,1 +1,289 @@
-[]
+[
+  {
+    "Name": "saut",
+    "Mecanique": {
+      "Name": "saut de 300",
+      "Actions": [
+        {
+          "Name": "Sauter de",
+          "Function": "Player.jump(*)",
+          "Description": "Sauter",
+          "Available_parameter_values": null,
+          "Parameter_value": "300",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ]
+    },
+    "Declencheur": {
+      "Name": "space",
+      "Events": [
+        {
+          "Name": "Keydown",
+          "Function": "Game.keys.* == True",
+          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": [
+            "RETURN",
+            "SPACE"
+          ],
+          "Parameter_value": "SPACE",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ]
+    }
+  },
+  {
+    "Name": "droite",
+    "Mecanique": {
+      "Name": "droite de 30",
+      "Actions": [
+        {
+          "Name": "Droite de ",
+          "Function": "Player.move(\u0027right\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers la droite",
+          "Available_parameter_values": null,
+          "Parameter_value": "30",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ]
+    },
+    "Declencheur": {
+      "Name": "d",
+      "Events": [
+        {
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z",
+            "ESCAPE",
+            "SPACE"
+          ],
+          "Parameter_value": "d",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ]
+    }
+  },
+  {
+    "Name": "gauche",
+    "Mecanique": {
+      "Name": "gauhce",
+      "Actions": [
+        {
+          "Name": "Gauche de ",
+          "Function": "Player.move(\u0027left\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers la Gauche",
+          "Available_parameter_values": null,
+          "Parameter_value": "30",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ]
+    },
+    "Declencheur": {
+      "Name": "q",
+      "Events": [
+        {
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z",
+            "ESCAPE",
+            "SPACE"
+          ],
+          "Parameter_value": "q",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ]
+    }
+  },
+  {
+    "Name": "bas",
+    "Mecanique": {
+      "Name": "bas",
+      "Actions": [
+        {
+          "Name": "Bas de ",
+          "Function": "Player.move(\u0027bottom\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers le Bas",
+          "Available_parameter_values": null,
+          "Parameter_value": "30",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ]
+    },
+    "Declencheur": {
+      "Name": "s",
+      "Events": [
+        {
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z",
+            "ESCAPE",
+            "SPACE"
+          ],
+          "Parameter_value": "s",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ]
+    }
+  },
+  {
+    "Name": "din",
+    "Mecanique": {
+      "Name": "haut",
+      "Actions": [
+        {
+          "Name": "Haut de ",
+          "Function": "Player.move(\u0027top\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers le Haut",
+          "Available_parameter_values": null,
+          "Parameter_value": "30",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ]
+    },
+    "Declencheur": {
+      "Name": "din",
+      "Events": [
+        {
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "d",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        },
+        {
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "i",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        },
+        {
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "n",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ]
+    }
+  }
+]

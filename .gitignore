@@ -54,7 +54,7 @@ node_modules/
 ./code/C#/test_compile/bin/
 ./code/C#/test_compile/.vs/
 /code/python/__pycache__/
-/code/python/test.exe
+/code/python/index.exe
 /code/powershell/installer.ps1
 ./Bricks_Interfaces/.vs/
 ./Bricks_Interfaces/bin/

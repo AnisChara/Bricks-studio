@@ -84,7 +84,10 @@ namespace Bricks_Interfaces.ViewModels
                 return;
             }
 
-            Declencheur.Add(selectedEvent);
+            Event copy = new Event(selectedEvent.Name,selectedEvent.Function,selectedEvent.Description,null,selectedEvent.Parameter_count,selectedEvent.Parameter_type);
+            copy.Parameter_value = selectedEvent.Parameter_value; 
+
+            Declencheur.Add(copy);
         }
 
         private void ClearDeclencheur(object parameter)

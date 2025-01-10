@@ -21,3 +21,9 @@ class Game() :
         
         for key in vars(Game.keys):
             setattr(Game.keys, key, False)
+
+    def check_alive():
+
+        for entity in Game.entities:
+            if type(entity).__name__ != "Pawn": continue
+            if entity.health <= 0: entity.die()

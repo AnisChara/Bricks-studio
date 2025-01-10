@@ -25,11 +25,6 @@ namespace Bricks_Interfaces.Models
             this.Function = Function;
             this.Description = Description;
 
-            if (Parameter_type == "string" && Available_parameter_values == null)
-            {
-                throw new ArgumentNullException(nameof(Available_parameter_values));
-            }
-
             this.Available_parameter_values = Available_parameter_values;
             this.Parameter_count = Parameter_count;
             this.Parameter_type = Parameter_type;
@@ -119,11 +114,20 @@ namespace Bricks_Interfaces.Models
                 new Action
                 (
                     "Fermer le jeu",
-                    "running = False",
+                    "Game.running = False",
                     "Ferme le jeu",
                     null,
                     0,
                     null
+                ),
+                new Action
+                (
+                    "Sauter de",
+                    "Player.jump(*)",
+                    "Sauter",
+                    null,
+                    1,
+                    "number"
                 )
 
             ];
