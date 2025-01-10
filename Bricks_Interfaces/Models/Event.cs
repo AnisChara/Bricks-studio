@@ -92,7 +92,7 @@ namespace Bricks_Interfaces.Models
                         "Keydown",
                         "Game.keys.* == True",
                         "l'utilisateur appuie sur la touche désignée",
-                        ["RETURN","SPACE"],
+                        ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "ECHAPE", "ESPACE", "ENTRE"],
                         1,
                         "string"
                     )

@@ -12,6 +12,7 @@ class SquareCollision(Collision):
             if not other_entity.is_collidable: continue
             if self.entity.id == other_entity.id :continue
             if type(other_entity).__name__ == "Projectile" and type(self).__name__ != "Projectile":continue
+            if other_entity in self.collision_exception :continue
 
             collide = self.is_colliding(other_entity)
             if collide:

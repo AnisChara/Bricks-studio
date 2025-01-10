@@ -17,7 +17,6 @@ right_border = Entity("right_border",Game.screen_width+1,-1,2147483646, 21474836
 up_border = Entity("up_border",-1,-2147483646,2147483646, 2147483646,0,True,"square",0,False)
 down_border = Entity("down_border",-1,Game.screen_height+1,2147483646, 2147483646,0,True,"square",0,False)
 Player = Pawn("Player",100,0,100,100,100,10,True, "square",10)
-Player2 = Pawn("Player2",800,0,100,100,100,10,True, "square",10)
 Player.set_weapon()
 
 Game.entities.append(left_border)
@@ -25,7 +24,6 @@ Game.entities.append(right_border)
 Game.entities.append(up_border)
 Game.entities.append(down_border)
 Game.entities.append(Player)
-Game.entities.append(Player2)
 
 while Game.running:
 
@@ -37,18 +35,12 @@ while Game.running:
         if event.type == pygame.QUIT:
             Game.running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                Game.keys.SPACE = True
-            if event.key == pygame.K_RETURN:
-                Game.keys.RETURN = True
+            Game.keydown_handle(event)
             
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]: 
       Game.running = False 
-    if Game.keys.SPACE == True:
-        Player.jump(300)
-        
     if keys[pygame.K_d]:
         Player.move('right', 30)
         
@@ -58,8 +50,13 @@ while Game.running:
     if keys[pygame.K_s]:
         Player.move('bottom', 30)
         
-    if Game.keys.RETURN:
-        Player.weapon.shoot(50,50,50,50,"top",10)
+    if Game.keys.A == True:
+        Player.weapon.shoot(50,50,20,10,None,0)
+        
+    if Game.keys.ESPACE == True:
+        Player.jump(300)
+        
+
     Jump.handle_jump()
     Gravity.fall()
     Projectile.handle_projectile()

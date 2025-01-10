@@ -1,43 +1,5 @@
 [
   {
-    "Name": "saut",
-    "Mecanique": {
-      "Name": "saut de 300",
-      "Actions": [
-        {
-          "Name": "Sauter de",
-          "Function": "Player.jump(*)",
-          "Description": "Sauter",
-          "Available_parameter_values": null,
-          "Parameter_value": "300",
-          "Parameter_count": 1,
-          "Show_list": "Collapsed",
-          "Show_number": "Visible",
-          "Parameter_type": "number"
-        }
-      ]
-    },
-    "Declencheur": {
-      "Name": "space",
-      "Events": [
-        {
-          "Name": "Keydown",
-          "Function": "Game.keys.* == True",
-          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
-          "Available_parameter_values": [
-            "RETURN",
-            "SPACE"
-          ],
-          "Parameter_value": "SPACE",
-          "Parameter_count": 1,
-          "Show_list": "Visible",
-          "Show_number": "Collapsed",
-          "Parameter_type": "string"
-        }
-      ]
-    }
-  },
-  {
     "Name": "droite",
     "Mecanique": {
       "Name": "droite de 30",
@@ -230,16 +192,16 @@
     }
   },
   {
-    "Name": "din",
+    "Name": "tirer",
     "Mecanique": {
-      "Name": "haut",
+      "Name": "shoot",
       "Actions": [
         {
-          "Name": "Haut de ",
-          "Function": "Player.move(\u0027top\u0027, *)",
-          "Description": "Deplace le joeur de x pixel vers le Haut",
+          "Name": "Tirer un projectile",
+          "Function": "Player.weapon.shoot(50,50,*,10,None,0)",
+          "Description": "Tirer un projectile dans la direction du joueur",
           "Available_parameter_values": null,
-          "Parameter_value": "30",
+          "Parameter_value": "20",
           "Parameter_count": 1,
           "Show_list": "Collapsed",
           "Show_number": "Visible",
@@ -248,36 +210,49 @@
       ]
     },
     "Declencheur": {
-      "Name": "din",
+      "Name": "a",
       "Events": [
         {
-          "Name": "press",
-          "Function": "keys[pygame.K_*]",
-          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Name": "Keydown",
+          "Function": "Game.keys.* == True",
+          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
           "Available_parameter_values": null,
-          "Parameter_value": "d",
+          "Parameter_value": "A",
           "Parameter_count": 1,
           "Show_list": "Visible",
           "Show_number": "Collapsed",
           "Parameter_type": "string"
-        },
+        }
+      ]
+    }
+  },
+  {
+    "Name": "saut",
+    "Mecanique": {
+      "Name": "saut",
+      "Actions": [
         {
-          "Name": "press",
-          "Function": "keys[pygame.K_*]",
-          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Name": "Sauter de",
+          "Function": "Player.jump(*)",
+          "Description": "Sauter",
           "Available_parameter_values": null,
-          "Parameter_value": "i",
+          "Parameter_value": "300",
           "Parameter_count": 1,
-          "Show_list": "Visible",
-          "Show_number": "Collapsed",
-          "Parameter_type": "string"
-        },
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ]
+    },
+    "Declencheur": {
+      "Name": "espace",
+      "Events": [
         {
-          "Name": "press",
-          "Function": "keys[pygame.K_*]",
-          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Name": "Keydown",
+          "Function": "Game.keys.* == True",
+          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
           "Available_parameter_values": null,
-          "Parameter_value": "n",
+          "Parameter_value": "ESPACE",
           "Parameter_count": 1,
           "Show_list": "Visible",
           "Show_number": "Collapsed",

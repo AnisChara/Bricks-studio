@@ -1,7 +1,7 @@
 class Keys():
 
-    SPACE = False
-    RETURN = False
+    ESPACE = False
+    ENTREE = False
     BACKSPACE = False
     TAB = False
     CAPSLOCK = False
@@ -15,7 +15,7 @@ class Keys():
     DOWN = False
     LEFT = False
     RIGHT = False
-    ESCAPE = False
+    ECHAPE = False
     F1 = False
     F2 = False
     F3 = False

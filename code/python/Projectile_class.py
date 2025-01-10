@@ -23,6 +23,18 @@ class Projectile(Entity) :
                 entity.rect.y -= entity.speed * 10 * Game.dt
             elif entity.direction == 'bottom':
                 entity.rect.y += entity.speed * 10 * Game.dt
+            elif entity.direction == 'top-right':
+                entity.rect.x += entity.speed * 10 * Game.dt
+                entity.rect.y -= entity.speed * 10 * Game.dt
+            elif entity.direction == 'top-left':
+                entity.rect.x -= entity.speed * 10 * Game.dt
+                entity.rect.y -= entity.speed * 10 * Game.dt
+            elif entity.direction == 'bottom-right':
+                entity.rect.x += entity.speed * 10 * Game.dt
+                entity.rect.y += entity.speed * 10 * Game.dt
+            elif entity.direction == 'bottom-left':
+                entity.rect.x -= entity.speed * 10 * Game.dt
+                entity.rect.y += entity.speed * 10 * Game.dt
 
             collide = entity.collision.is_colliding_any()
             if collide:
@@ -30,8 +42,6 @@ class Projectile(Entity) :
                 for collision in collide:
 
                     if type(collision).__name__ == "str": continue
-
-                    if (collision.id == entity.emitter.shooter.id) : continue
 
                     try:
                         entity.deal_damage(collision)

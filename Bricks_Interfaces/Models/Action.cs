@@ -128,6 +128,15 @@ namespace Bricks_Interfaces.Models
                     null,
                     1,
                     "number"
+                ),
+                new Action
+                (
+                    "Tirer un projectile",
+                    "Player.weapon.shoot(50,50,*,10,None,0)",
+                    "Tirer un projectile dans la direction du joueur",
+                    null,
+                    1,
+                    "number"
                 )
 
             ];
