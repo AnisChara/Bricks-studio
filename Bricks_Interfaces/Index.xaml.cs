@@ -30,13 +30,13 @@ namespace Bricks_Interfaces
             var mainWindow = new MainWindow("path");
 
             // Synchroniser les dimensions et l'état de la fenêtre
-            mainWindow.Width = this.Width;
-            mainWindow.Height = this.Height;
+            mainWindow.Width = 1280;
+            mainWindow.Height = 720;
             mainWindow.WindowState = this.WindowState;
 
             // Synchroniser la position de la fenêtre
-            mainWindow.Left = this.Left;
-            mainWindow.Top = this.Top;
+            mainWindow.Left = 0;
+            mainWindow.Top = 0;
 
             mainWindow.Show();
             this.Close(); // Fermez la fenêtre actuelle si nécessaire
@@ -51,13 +51,13 @@ namespace Bricks_Interfaces
             var mainWindow = new MainWindow("path");
 
             // Synchroniser les dimensions et l'état de la fenêtre
-            mainWindow.Width = this.Width;
-            mainWindow.Height = this.Height;
+            mainWindow.Width = 1280;
+            mainWindow.Height = 720;
             mainWindow.WindowState = this.WindowState;
 
             // Synchroniser la position de la fenêtre
-            mainWindow.Left = this.Left;
-            mainWindow.Top = this.Top;
+            mainWindow.Left = 0;
+            mainWindow.Top = 0;
 
             mainWindow.Show();
             this.Close(); // Fermer la fenêtre d'accueil

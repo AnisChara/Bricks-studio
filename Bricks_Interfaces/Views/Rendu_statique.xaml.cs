@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bricks_Interfaces.ViewModels;
 
 namespace Bricks_Interfaces.Views
 {
@@ -23,6 +24,7 @@ namespace Bricks_Interfaces.Views
         public Rendu_statique()
         {
             InitializeComponent();
+            this.DataContext = new RenduStatiqueViewModel(this.ActualHeight,this.ActualWidth);
         }
     }
 }

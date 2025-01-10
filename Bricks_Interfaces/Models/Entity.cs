@@ -8,8 +8,11 @@ namespace Bricks_Interfaces.Models
 {
     public class Entity
     {
-        public string Coordonnee { get; set; }
-        public double Variable { get; set; }
+        public int x { get; set; }
+        public int y { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+        public string color { get; set; }
     }
 
 }
