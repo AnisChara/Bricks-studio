@@ -15,8 +15,6 @@ namespace Bricks_Interfaces.ViewModels
 {
     public class RenduStatiqueViewModel : BaseNotifyPropertyChanged
     {
-        public double Width;
-        public double Height;
         public ICommand UpdateSizeCommand { get; }
 
         private FileSystemWatcher _fileWatcher;
@@ -33,12 +31,9 @@ namespace Bricks_Interfaces.ViewModels
         }
 
 
-        public RenduStatiqueViewModel(double Height,double Width)
+        public RenduStatiqueViewModel()
         {
-            this.Height = Height;
-            this.Width = Width;
-            MessageBox.Show(Height + " " + Width);
-
+            
             InitializeFileWatcher();
             LoadDataAsync();
         }
@@ -77,7 +72,13 @@ namespace Bricks_Interfaces.ViewModels
                 {
                     string json = await reader.ReadToEndAsync();
                     Entities = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
-
+                    foreach (Entity entity in Entities)
+                    {
+                        entity.x = (int)(entity.x * 0.625);
+                        entity.y = (int)(entity.y * 0.625);
+                        entity.width = (int)(entity.width * 0.625);
+                        entity.height = (int)(entity.height * 0.625);
+                    }
                     //resize
                 }
             }

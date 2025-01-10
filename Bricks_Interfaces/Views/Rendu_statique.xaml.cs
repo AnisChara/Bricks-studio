@@ -24,7 +24,7 @@ namespace Bricks_Interfaces.Views
         public Rendu_statique()
         {
             InitializeComponent();
-            this.DataContext = new RenduStatiqueViewModel(this.ActualHeight,this.ActualWidth);
+            this.DataContext = new RenduStatiqueViewModel();
         }
     }
 }
