@@ -12,13 +12,13 @@ from OffensiveEntity_class import Offensive_Entity
 # pygame setup
 pygame.init()
 
-background = pygame.image.load("C://Users/user/Pictures/wp4470754.webp")
+background = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/Fond.jpg")
 
 left_border = Structure("left_border",-2147483646,-1,2147483646,2147483646,0,True,"square",0,False)
 right_border = Structure("right_border",Game.screen_width+1,-1,2147483646, 2147483646,0,True,"square",0,False)
 up_border = Structure("up_border",-1,-2147483646,2147483646, 2147483646,0,True,"square",0,False)
 down_border = Structure("down_border",-1,Game.screen_height+1,2147483646, 2147483646,0,True,"square",0,False)
-Player = Pawn("Player",100,0,100,100,100,10,True, "square",10, "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/mario.png")
+Player = Pawn("Player",100,0,100,100,100,10,True, "square",10)
 Player.set_weapon()
 
 Game.entities.append(left_border)

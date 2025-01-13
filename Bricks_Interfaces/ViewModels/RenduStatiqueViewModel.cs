@@ -16,6 +16,7 @@ namespace Bricks_Interfaces.ViewModels
 {
     public class RenduStatiqueViewModel : BaseNotifyPropertyChanged
     {
+
         private string background;
         public string Background
         {
@@ -154,6 +155,13 @@ namespace Bricks_Interfaces.ViewModels
             string json = JsonSerializer.Serialize(Entities, new JsonSerializerOptions { WriteIndented = true });
             System.IO.File.WriteAllText("../../../Entity.json", json);
 
+        }
+
+        public void DeleteEntity(Entity entity)
+        {
+            Entities.RemoveAt(Entities.IndexOf(entity));
+            string json = JsonSerializer.Serialize(Entities, new JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText("../../../Entity.json", json);
         }
     }
 }

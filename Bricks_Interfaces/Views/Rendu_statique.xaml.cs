@@ -54,5 +54,18 @@ namespace Bricks_Interfaces.Views
         {
             ((RenduStatiqueViewModel)this.DataContext).StopDrag();
         }
+
+        private void Button_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                // Récupérez l'entité liée via le DataContext
+                var entity = button.DataContext as Entity; // Remplacez YourEntityType par le type réel de vos entités
+                if (entity != null)
+                {
+                    ((RenduStatiqueViewModel)this.DataContext).DeleteEntity(entity);
+                }
+            }
+        }
     }
 }

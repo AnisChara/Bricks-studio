@@ -22,6 +22,7 @@
                     <DataTemplate>
                         <Button PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" CommandParameter="{Binding .}" 
                                 PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp"
+                                MouseRightButtonDown="Button_MouseRightButtonDown"
                                 Width="{Binding width}" Height="{Binding height}" Background="{Binding color}" Margin="{Binding margin}">
                         </Button>
                     </DataTemplate>

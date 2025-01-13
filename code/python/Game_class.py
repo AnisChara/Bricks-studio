@@ -14,7 +14,7 @@ class Game() :
     keys = Keys()
 
     def render():
-        for entity in Game.entities:
+        for entity in reversed(Game.entities):
             if entity.render:
                 Game.screen.blit(entity.image, entity.rect)
         
