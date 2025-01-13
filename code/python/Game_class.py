@@ -1,5 +1,6 @@
 import pygame
 from Keys_class import Keys
+import json
 
 class Game() :
 
@@ -27,6 +28,12 @@ class Game() :
         for entity in Game.entities:
             if type(entity).__name__ != "Pawn": continue
             if entity.health <= 0: entity.die()
+
+    def load_entities():
+        with open('C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/Entity.json', 'r') as file:
+            entities = json.load(file)  
+        return entities
+
 
     def keydown_handle(event):
         if event.key == pygame.K_BACKSPACE:

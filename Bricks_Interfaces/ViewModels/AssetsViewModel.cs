@@ -67,19 +67,19 @@ namespace Bricks_Interfaces.ViewModels
             ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
 
             var newEntity = new Entity(
-                type: "offensive structure",
+                type: "offensive_structure",
                 id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
-                width: 50,
-                height: 50,
+                width: 100,
+                height: 100,
                 speed: 5,
                 is_collidable: true,
                 shape: "square",
                 weight: 0,
                 render: true,
                 has_weapon: false,
-                color : "green"
+                color : "orange"
 
             );
             newEntity.x *= 0.625;
@@ -103,7 +103,7 @@ namespace Bricks_Interfaces.ViewModels
             ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
 
             var newEntity = new Entity(
-                type: "offensive entity",
+                type: "offensive_entity",
                 id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
@@ -115,8 +115,7 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 10,
                 render: true,
                 has_weapon: false,
-                max_health: 100,
-                color: "green"
+                color: "red"
 
             );
             newEntity.x *= 0.625;
@@ -152,7 +151,7 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 10,
                 render: true,
                 has_weapon: false,
-                color: "green"
+                color: "yellow"
 
             );
             newEntity.x *= 0.625;

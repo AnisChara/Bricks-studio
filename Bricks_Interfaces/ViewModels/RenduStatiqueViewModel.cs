@@ -141,8 +141,8 @@ namespace Bricks_Interfaces.ViewModels
             if (direction == "bottom" && e.Y > selectedEntity.y)can_move_y = false;
             if (direction == "top" && e.Y < entity_collided.y+entity_collided.height)can_move_y = false;
 
-            if (!(e.X-selectedEntity.width/2 < 0 || e.X >= 750-selectedEntity.width/2) && can_move_x) selectedEntity.x = e.X;
-            if (!(e.Y-selectedEntity.height/2 < 0 || e.Y >= 365-selectedEntity.height/2) && can_move_y) selectedEntity.y = e.Y;// A rendre modulable
+            if (!(e.X < 0 || e.X >= 750-selectedEntity.width) && can_move_x) selectedEntity.x = e.X;
+            if (!(e.Y < 0 || e.Y >= 365-selectedEntity.height) && can_move_y) selectedEntity.y = e.Y;// A rendre modulable
 
             selectedEntity.margin = new Thickness(selectedEntity.x, selectedEntity.y, 0, 0);
         }

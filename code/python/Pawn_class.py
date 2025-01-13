@@ -3,8 +3,8 @@ from Jump_class import Jump
 
 class Pawn(Entity) :
 
-    def __init__(self,id, x, y, width, height, health = 10, speed = 1, is_collidable = False, shape = "square", weight = 10 ) : #ajouter arg pour image
-        super().__init__(id,x, y, width, height,  speed, is_collidable, shape, weight)
+    def __init__(self,id, x, y, width, height, health = 10, speed = 1, is_collidable = False, shape = "square", weight = 10,image ="C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/mario.png" ) : #ajouter arg pour image
+        super().__init__(id,image,x, y, width, height,  speed, is_collidable, shape, weight)
         self.max_health = health
         self.health = health
         

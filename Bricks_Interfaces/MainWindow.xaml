@@ -57,8 +57,6 @@
                     <UserControls:Onglets x:Name="onglets"/>
                 </Border>
 
-                <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" Background="White"
-              ResizeBehavior="PreviousAndNext" ResizeDirection="Columns" />
 
                 <Grid Grid.Column="2" Margin="0 8 8 8">
                     <Grid.RowDefinitions>
@@ -71,8 +69,6 @@
                         <UserControls:Rendu_statique x:Name="visuel"/>
                     </Border>
 
-                    <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Background="white"
-                  ResizeBehavior="PreviousAndNext" ResizeDirection="Rows" />
 
                     <Border Grid.Row="2" Background="Azure">
                         <UserControls:Assets x:Name="assets"/>
