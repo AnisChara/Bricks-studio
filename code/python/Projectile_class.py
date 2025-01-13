@@ -3,8 +3,8 @@ from Game_class import Game
 
 class Projectile(Entity) :
 
-    def __init__(self,id,x, y, width, height,  speed, is_collidable, shape, weight, emitter,direction,damage) : #ajouter arg pour image
-        super().__init__(id,x, y, width, height,  speed, is_collidable, shape, weight)
+    def __init__(self,id,x, y, width, height,  speed, is_collidable, shape, weight, emitter,direction,damage,image = "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/fireball.png") : #ajouter arg pour image
+        super().__init__(id,image,x, y, width, height,  speed, is_collidable, shape, weight)
         self.emitter = emitter
         self.direction = direction
         self.damage = damage
