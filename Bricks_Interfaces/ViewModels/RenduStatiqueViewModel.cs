@@ -16,6 +16,18 @@ namespace Bricks_Interfaces.ViewModels
 {
     public class RenduStatiqueViewModel : BaseNotifyPropertyChanged
     {
+        private string background;
+        public string Background
+        {
+
+            get => background;
+            set
+            {
+                background = value;
+                OnPropertyChanged(nameof(Background));
+            }
+        }
+
 
         public bool dragging = false;
 
@@ -58,6 +70,8 @@ namespace Bricks_Interfaces.ViewModels
 
         public RenduStatiqueViewModel()
         {
+            Background = "C:\\Users\\user\\Pictures\\Fond.jpg";
+
             InitializeFileWatcher();
             LoadData();
         }
@@ -98,15 +112,7 @@ namespace Bricks_Interfaces.ViewModels
                     {
                         string json = reader.ReadToEnd(); // Lecture synchrone
                         Entities = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
-                        foreach (Entity entity in Entities)
-                        {
-                            entity.x *= 0.625;
-                            entity.y *= 0.625;
-                            entity.width *= 0.625;
-                            entity.height *= 0.625;
-
-                            entity.margin = new Thickness(entity.x, entity.y, 0, 0);
-                        }
+                        
                     }
                 }
             }
@@ -123,10 +129,20 @@ namespace Bricks_Interfaces.ViewModels
 
         public void ActualiseDrag(Point e)
         {
+            bool can_move_x = true;
+            bool can_move_y = true;
+
             if (!dragging) return;
 
-            if (!(e.X < 0 || e.X >= 750-selectedEntity.width) ) selectedEntity.x = e.X;
-            if (!(e.Y < 0 || e.Y >= 365-selectedEntity.height) ) selectedEntity.y = e.Y;// A rendre modulable
+            var (direction,entity_collided) = selectedEntity.CheckAllCollision(Entities);
+
+            if (direction == "right" && e.X > selectedEntity.x)can_move_x = false;
+            if (direction == "left" && e.X < entity_collided.x + entity_collided.width)can_move_x = false;
+            if (direction == "bottom" && e.Y > selectedEntity.y)can_move_y = false;
+            if (direction == "top" && e.Y < entity_collided.y+entity_collided.height)can_move_y = false;
+
+            if (!(e.X-selectedEntity.width/2 < 0 || e.X >= 750-selectedEntity.width/2) && can_move_x) selectedEntity.x = e.X;
+            if (!(e.Y-selectedEntity.height/2 < 0 || e.Y >= 365-selectedEntity.height/2) && can_move_y) selectedEntity.y = e.Y;// A rendre modulable
 
             selectedEntity.margin = new Thickness(selectedEntity.x, selectedEntity.y, 0, 0);
         }
@@ -135,19 +151,9 @@ namespace Bricks_Interfaces.ViewModels
         {
             dragging = false;
 
-
-            foreach (Entity entity in Entities)
-            {
-                entity.x /= 0.625;
-                entity.y /= 0.625;
-                entity.width /= 0.625;
-                entity.height /= 0.625;
-
-                entity.margin = new Thickness(entity.x, entity.y, 0, 0);
-            }
-
             string json = JsonSerializer.Serialize(Entities, new JsonSerializerOptions { WriteIndented = true });
             System.IO.File.WriteAllText("../../../Entity.json", json);
+
         }
     }
 }

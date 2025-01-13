@@ -1,6 +1,7 @@
 using Bricks_Interfaces.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -241,6 +242,75 @@ namespace Bricks_Interfaces.Models
             this.color = color;
         }
 
+        public enum CollisionDirection
+        {
+            None,
+            Top,
+            Bottom,
+            Left,
+            Right
+        }
+        public (bool isColliding, string direction) CheckCollision( Entity entity2)
+        {
+            // Vérifie si les deux entités sont marquées comme "collidables"
+            if (!this.is_collidable || !entity2.is_collidable)
+            {
+                return (false, "none");
+            }
+
+            // Vérifie les collisions en utilisant les coordonnées et les dimensions
+            bool isColliding = this.x < entity2.x + entity2.width &&
+                               this.x + this.width > entity2.x &&
+                               this.y < entity2.y + entity2.height &&
+                               this.y + this.height > entity2.y;
+
+            if (!isColliding)
+            {
+                return (false, "none");
+            }
+
+            // Détermine la direction de la collision
+            string direction ="none";
+
+            double overlapLeft = this.x + this.width - entity2.x;
+            double overlapRight = entity2.x + entity2.width - this.x;
+            double overlapTop = this.y + this.height - entity2.y;
+            double overlapBottom = entity2.y + entity2.height - this.y;
+
+            double minOverlap = Math.Min(Math.Min(overlapLeft, overlapRight), Math.Min(overlapTop, overlapBottom));
+
+            if (minOverlap == overlapLeft)
+            {
+                direction = "right";
+            }
+            else if (minOverlap == overlapRight)
+            {
+                direction = "left";
+            }
+            else if (minOverlap == overlapTop)
+            {
+                direction = "bottom";
+            }
+            else if (minOverlap == overlapBottom)
+            {
+                direction = "top";
+            }
+
+            return (true, direction);
+        }
+
+
+        public (string,Entity) CheckAllCollision(ObservableCollection<Entity> Entities)
+        {
+            foreach (Entity entity in Entities)
+            {
+                if (entity == this) continue;
+                var (result,direction) = this.CheckCollision(entity);
+                if (result) return (direction,entity);
+                else continue;
+            }
+            return ("none",null);
+        }
 
     }
 

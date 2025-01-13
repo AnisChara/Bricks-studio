@@ -7,8 +7,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Background="DarkBlue" PreviewMouseMove="Button_PreviewMouseMove" Width="800" Height="450">
-            <!-- Grille de fond -->
+    <Grid PreviewMouseMove="Button_PreviewMouseMove" Width="800" Height="450">
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding Background}" />
+        </Grid.Background>
+        <!-- Grille de fond -->
             <ItemsControl ItemsSource="{Binding Entities}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

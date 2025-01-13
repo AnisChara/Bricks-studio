@@ -32,21 +32,27 @@ namespace Bricks_Interfaces.ViewModels
             string json = System.IO.File.ReadAllText("../../../Entity.json");
             ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
 
-                var newEntity = new Entity(
-                    type: "structure",
-                    id: Guid.NewGuid().ToString(),
-                    x: 100,
-                    y: 200,
-                    width: 50,
-                    height: 50,
-                    speed: 5,
-                    is_collidable: true,
-                    shape: "square",
-                    weight: 10,
-                    render: true,
-                    has_weapon: false,
-                    color : "green"
-    );
+            var newEntity = new Entity(
+                type: "structure",
+                id: Guid.NewGuid().ToString(),
+                x: 100,
+                y: 200,
+                width: 50,
+                height: 50,
+                speed: 5,
+                is_collidable: true,
+                shape: "square",
+                weight: 0,
+                render: true,
+                has_weapon: false,
+                color : "green"
+            );
+            newEntity.x *= 0.625;
+            newEntity.y *= 0.625;
+            newEntity.width *= 0.625;
+            newEntity.height *= 0.625;
+
+            newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
             Entités.Add(newEntity);
 
@@ -70,13 +76,18 @@ namespace Bricks_Interfaces.ViewModels
                 speed: 5,
                 is_collidable: true,
                 shape: "square",
-                weight: 10,
-                render: false,
+                weight: 0,
+                render: true,
                 has_weapon: false,
-                max_health: 100,
                 color : "green"
 
-);
+            );
+            newEntity.x *= 0.625;
+            newEntity.y *= 0.625;
+            newEntity.width *= 0.625;
+            newEntity.height *= 0.625;
+
+            newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
             Entités.Add(newEntity);
 
@@ -102,12 +113,18 @@ namespace Bricks_Interfaces.ViewModels
                 is_collidable: true,
                 shape: "square",
                 weight: 10,
-                render: false,
+                render: true,
                 has_weapon: false,
                 max_health: 100,
                 color: "green"
 
-);
+            );
+            newEntity.x *= 0.625;
+            newEntity.y *= 0.625;
+            newEntity.width *= 0.625;
+            newEntity.height *= 0.625;
+
+            newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
             Entités.Add(newEntity);
 
@@ -130,15 +147,20 @@ namespace Bricks_Interfaces.ViewModels
                 width: 50,
                 height: 50,
                 speed: 5,
-                is_collidable: true,
+                is_collidable: false,
                 shape: "square",
                 weight: 10,
-                render: false,
+                render: true,
                 has_weapon: false,
-                max_health: 100,
                 color: "green"
 
-);
+            );
+            newEntity.x *= 0.625;
+            newEntity.y *= 0.625;
+            newEntity.width *= 0.625;
+            newEntity.height *= 0.625;
+
+            newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
             Entités.Add(newEntity);
 
