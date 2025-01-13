@@ -159,6 +159,8 @@ namespace Bricks_Interfaces.ViewModels
 
         public void DeleteEntity(Entity entity)
         {
+            if (entity == null) return;
+            if (entity.id == "Player") return;
             Entities.RemoveAt(Entities.IndexOf(entity));
             string json = JsonSerializer.Serialize(Entities, new JsonSerializerOptions { WriteIndented = true });
             System.IO.File.WriteAllText("../../../Entity.json", json);

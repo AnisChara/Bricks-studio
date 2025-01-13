@@ -18,26 +18,36 @@ left_border = Structure("left_border",-2147483646,-1,2147483646,2147483646,0,Tru
 right_border = Structure("right_border",Game.screen_width+1,-1,2147483646, 2147483646,0,True,"square",0,False)
 up_border = Structure("up_border",-1,-2147483646,2147483646, 2147483646,0,True,"square",0,False)
 down_border = Structure("down_border",-1,Game.screen_height+1,2147483646, 2147483646,0,True,"square",0,False)
-Player = Pawn("Player",100,0,100,100,100,10,True, "square",10)
-Player.set_weapon()
 
 Game.entities.append(left_border)
 Game.entities.append(right_border)
 Game.entities.append(up_border)
 Game.entities.append(down_border)
-Game.entities.append(Player)
 entities = Game.load_entities()
 
 for entity in entities:
+
     if entity['type'] == 'structure':
-        Game.entities.append(Structure(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render']))
-    if entity['type'] == 'offensive_structure':
-        Game.entities.append(Offensive_Structure(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render']))
-    if entity['type'] == 'offensive_entity':
-        Game.entities.append(Offensive_Entity(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity["max_health"],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render']))
-    if entity['type'] == 'zone':
-        Game.entities.append(Structure(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render']))
- 
+        instance = Structure(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'])
+        Game.entities.append(instance)
+    elif entity['type'] == 'offensive_structure':
+        instance = Offensive_Structure(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'])
+        Game.entities.append(instance)
+    elif entity['type'] == 'offensive_entity':
+        instance = Offensive_Entity(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity["max_health"],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'])
+        Game.entities.append(instance)
+    elif entity['type'] == 'zone':
+        instance = Structure(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'])
+        Game.entities.append(instance)
+    elif entity['type'] == 'Player':
+        Player = Pawn(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['max_health'],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'])
+        Game.entities.append(Player)
+        Player.set_weapon()
+    if entity["has_weapon"]:
+        try:
+            instance.set_weapon()
+        except NameError: pass
+
 while Game.running:
 
     Game.screen.blit(background, (0,0))
