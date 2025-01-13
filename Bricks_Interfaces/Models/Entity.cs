@@ -1,4 +1,4 @@
-﻿using Bricks_Interfaces.ViewModels;
+using Bricks_Interfaces.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -223,7 +223,7 @@ namespace Bricks_Interfaces.Models
         public Entity () { } // pour le json
 
 
-        public Entity(string type, string id, int x, int y, int width, int height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon, int? max_health = null)
+        public Entity(string type, string id, int x, int y, int width, int height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon,string color, int? max_health = null)
         {
             this.type = type;
             this.id = id;
@@ -238,6 +238,7 @@ namespace Bricks_Interfaces.Models
             this.render = render;
             this.has_weapon = has_weapon;
             this.max_health = max_health;
+            this.color = color;
         }
 
 

@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Bricks_Interfaces.Models;
+using Bricks_Interfaces.Views.AllOnglets;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -25,21 +29,123 @@ namespace Bricks_Interfaces.ViewModels
         
         private void Add_structure(object parameter) 
         {
-            MessageBox.Show("Structure ajoutée");
+            string json = System.IO.File.ReadAllText("../../../Entity.json");
+            ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+
+                var newEntity = new Entity(
+                    type: "structure",
+                    id: Guid.NewGuid().ToString(),
+                    x: 100,
+                    y: 200,
+                    width: 50,
+                    height: 50,
+                    speed: 5,
+                    is_collidable: true,
+                    shape: "square",
+                    weight: 10,
+                    render: true,
+                    has_weapon: false,
+                    color : "green"
+    );
+
+            Entités.Add(newEntity);
+
+
+            json = JsonSerializer.Serialize(Entités, new JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText("../../../Entity.json", json);
+
         }
         private void Add_obstacle(object parameter) 
         {
-            MessageBox.Show("Obstacle ajouté");
+            string json = System.IO.File.ReadAllText("../../../Entity.json");
+            ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+
+            var newEntity = new Entity(
+                type: "offensive structure",
+                id: Guid.NewGuid().ToString(),
+                x: 100,
+                y: 200,
+                width: 50,
+                height: 50,
+                speed: 5,
+                is_collidable: true,
+                shape: "square",
+                weight: 10,
+                render: false,
+                has_weapon: false,
+                max_health: 100,
+                color : "green"
+
+);
+
+            Entités.Add(newEntity);
+
+
+            json = JsonSerializer.Serialize(Entités, new JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText("../../../Entity.json", json);
+
         }
 
         private void Add_Ennemy(object parameter)
         {
-            MessageBox.Show("Ennemy ajouté");
+            string json = System.IO.File.ReadAllText("../../../Entity.json");
+            ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+
+            var newEntity = new Entity(
+                type: "offensive entity",
+                id: Guid.NewGuid().ToString(),
+                x: 100,
+                y: 200,
+                width: 50,
+                height: 50,
+                speed: 5,
+                is_collidable: true,
+                shape: "square",
+                weight: 10,
+                render: false,
+                has_weapon: false,
+                max_health: 100,
+                color: "green"
+
+);
+
+            Entités.Add(newEntity);
+
+
+            json = JsonSerializer.Serialize(Entités, new JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText("../../../Entity.json", json);
+
         }
 
         private void Add_Zone(object parameter)
         {
-            MessageBox.Show("Zone ajoutée");
+            string json = System.IO.File.ReadAllText("../../../Entity.json");
+            ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+
+            var newEntity = new Entity(
+                type: "zone",
+                id: Guid.NewGuid().ToString(),
+                x: 100,
+                y: 200,
+                width: 50,
+                height: 50,
+                speed: 5,
+                is_collidable: true,
+                shape: "square",
+                weight: 10,
+                render: false,
+                has_weapon: false,
+                max_health: 100,
+                color: "green"
+
+);
+
+            Entités.Add(newEntity);
+
+
+            json = JsonSerializer.Serialize(Entités, new JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText("../../../Entity.json", json);
+
         }
     }
 }

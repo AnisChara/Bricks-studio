@@ -1,16 +1,90 @@
 [
   {
-    "x": 50,
-    "y": 50,
+    "type": "obstacle",
+    "x": 644.5866666666667,
+    "y": 268.3306666666666,
     "width": 50,
     "height": 50,
-    "color": "red"
+    "color": "green",
+    "id": "d91aae2f-6efa-4d10-a066-cff305edf203",
+    "margin": {
+      "Left": 644.5866666666667,
+      "Top": 268.3306666666666,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "speed": 5,
+    "is_collidable": true,
+    "shape": "square",
+    "render": false,
+    "has_weapon": false,
+    "max_health": 100,
+    "weight": 10
   },
   {
-    "x": 300,
-    "y": 50,
+    "type": "structure",
+    "x": 390.7199999999999,
+    "y": 323.7973333333333,
     "width": 50,
     "height": 50,
-    "color": "green"
+    "color": "green",
+    "id": "e12a450b-0fb4-426e-8e3b-2542b8998e7b",
+    "margin": {
+      "Left": 390.7199999999999,
+      "Top": 323.7973333333333,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "speed": 5,
+    "is_collidable": true,
+    "shape": "square",
+    "render": true,
+    "has_weapon": false,
+    "max_health": null,
+    "weight": 10
+  },
+  {
+    "type": "obstacle",
+    "x": 428.0533333333333,
+    "y": 205.39733333333328,
+    "width": 50,
+    "height": 50,
+    "color": "green",
+    "id": "8ac39aa0-6c45-44bb-a00a-1c29d41f603c",
+    "margin": {
+      "Left": 428.0533333333333,
+      "Top": 205.39733333333328,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "speed": 5,
+    "is_collidable": true,
+    "shape": "square",
+    "render": false,
+    "has_weapon": false,
+    "max_health": 100,
+    "weight": 10
+  },
+  {
+    "type": "ennemy",
+    "x": 100,
+    "y": 200,
+    "width": 50,
+    "height": 50,
+    "color": "green",
+    "id": "0a63bcef-389e-47fa-adce-d3414e9862c0",
+    "margin": {
+      "Left": 0,
+      "Top": 0,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "speed": 5,
+    "is_collidable": true,
+    "shape": "square",
+    "render": false,
+    "has_weapon": false,
+    "max_health": 100,
+    "weight": 10
   }
 ]
