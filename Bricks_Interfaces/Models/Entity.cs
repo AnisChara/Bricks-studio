@@ -1,43 +1,197 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using Bricks_Interfaces.ViewModels;
 
 namespace Bricks_Interfaces.Models
 {
-    public class Entity
+    public class Entity : BaseNotifyPropertyChanged
     {
-    public string type { get; set; }
+        private string _type;
+        public string type
+        {
+            get => _type;
+            set
+            {
+                if (_type != value)
+                {
+                    _type = value;
+                    OnPropertyChanged(nameof(type));
+                }
+            }
+        }
 
-    public string Id { get; set; }
+        private string _id;
+        public string id
+        {
+            get => _id;
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    OnPropertyChanged(nameof(id));
+                }
+            }
+        }
 
-    public int x { get; set; }
+        private int _x;
+        public int x
+        {
+            get => _x;
+            set
+            {
+                if (_x != value)
+                {
+                    _x = value;
+                    OnPropertyChanged(nameof(x));
+                }
+            }
+        }
 
-     public int y { get; set; }
+        private int _y;
+        public int y
+        {
+            get => _y;
+            set
+            {
+                if (_y != value)
+                {
+                    _y = value;
+                    OnPropertyChanged(nameof(y));
+                }
+            }
+        }
 
-    public int width { get; set; }
+        private int _width;
+        public int width
+        {
+            get => _width;
+            set
+            {
+                if (_width != value)
+                {
+                    _width = value;
+                    OnPropertyChanged(nameof(width));
+                }
+            }
+        }
 
-    public int height { get; set; }
+        private int _height;
+        public int height
+        {
+            get => _height;
+            set
+            {
+                if (_height != value)
+                {
+                    _height = value;
+                    OnPropertyChanged(nameof(height));
+                }
+            }
+        }
 
-    public int speed { get; set; }
+        private int _speed;
+        public int speed
+        {
+            get => _speed;
+            set
+            {
+                if (_speed != value)
+                {
+                    _speed = value;
+                    OnPropertyChanged(nameof(speed));
+                }
+            }
+        }
 
-    public bool is_collidable { get; set; }
+        private bool _isCollidable;
+        public bool is_collidable
+        {
+            get => _isCollidable;
+            set
+            {
+                if (_isCollidable != value)
+                {
+                    _isCollidable = value;
+                    OnPropertyChanged(nameof(is_collidable));
+                }
+            }
+        }
 
-     public string shape {  get; set; }
+        private string _shape;
+        public string shape
+        {
+            get => _shape;
+            set
+            {
+                if (_shape != value)
+                {
+                    _shape = value;
+                    OnPropertyChanged(nameof(shape));
+                }
+            }
+        }
 
-    public int  weight {  get; set; } 
+        private int _weight;
+        public int weight
+        {
+            get => _weight;
+            set
+            {
+                if (_weight != value)
+                {
+                    _weight = value;
+                    OnPropertyChanged(nameof(weight));
+                }
+            }
+        }
 
-    public bool render {  get; set; }
+        private bool _render;
+        public bool render
+        {
+            get => _render;
+            set
+            {
+                if (_render != value)
+                {
+                    _render = value;
+                    OnPropertyChanged(nameof(render));
+                }
+            }
+        }
 
-    public bool has_weapon {  get; set; }
+        private bool _hasWeapon;
+        public bool has_weapon
+        {
+            get => _hasWeapon;
+            set
+            {
+                if (_hasWeapon != value)
+                {
+                    _hasWeapon = value;
+                    OnPropertyChanged(nameof(has_weapon));
+                }
+            }
+        }
 
-    public int? max_health { get; set; }
+        private int? _maxHealth;
+        public int? max_health
+        {
+            get => _maxHealth;
+            set
+            {
+                if (_maxHealth != value)
+                {
+                    _maxHealth = value;
+                    OnPropertyChanged(nameof(max_health));
+                }
+            }
+        }
 
-        public Entity (string type, string Id, int x, int y, int width,  int height, int speed, bool is_collidable,  string shape, int weight, bool render, bool has_weapon, int? max_health)
+        public Entity(string type, string id, int x, int y, int width, int height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon, int? max_health = null)
         {
             this.type = type;
-            this.Id = Id;
+            this.id = id;
             this.x = x;
             this.y = y;
             this.width = width;
@@ -50,8 +204,6 @@ namespace Bricks_Interfaces.Models
             this.has_weapon = has_weapon;
             this.max_health = max_health;
         }
+
     }
-
-    
-
 }

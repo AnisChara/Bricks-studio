@@ -34,7 +34,7 @@ namespace Bricks_Interfaces.ViewModels
 
                 var newEntity = new Entity(
                     type: "structure",
-                    Id: Guid.NewGuid().ToString(),
+                    id: Guid.NewGuid().ToString(),
                     x: 100,
                     y: 200,
                     width: 50,
@@ -43,9 +43,8 @@ namespace Bricks_Interfaces.ViewModels
                     is_collidable: true,
                     shape: "square",
                     weight: 10,
-                    render: false,
-                    has_weapon: false,
-                    max_health: 100
+                    render: true,
+                    has_weapon: false
     );
 
             Entités.Add(newEntity);
@@ -63,7 +62,7 @@ namespace Bricks_Interfaces.ViewModels
 
             var newEntity = new Entity(
                 type: "obstacle",
-                Id: Guid.NewGuid().ToString(),
+                id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
                 width: 50,
@@ -93,7 +92,7 @@ namespace Bricks_Interfaces.ViewModels
 
             var newEntity = new Entity(
                 type: "ennemy",
-                Id: Guid.NewGuid().ToString(),
+                id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
                 width: 50,
@@ -123,7 +122,7 @@ namespace Bricks_Interfaces.ViewModels
 
             var newEntity = new Entity(
                 type: "zone",
-                Id: Guid.NewGuid().ToString(),
+                id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
                 width: 50,
