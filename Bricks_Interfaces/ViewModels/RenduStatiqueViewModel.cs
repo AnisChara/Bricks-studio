@@ -18,6 +18,42 @@ namespace Bricks_Interfaces.ViewModels
     {
         public static DoubleClick entityMenu = null;
 
+        public static int CurrentLevel = 0;
+        private int _currentLevel = 0;
+        public int currentLevel
+        {
+            get => _currentLevel;
+            set
+            {
+                _currentLevel = value;
+                CurrentLevel = value;
+                Entities = Entity.GetEntities(CurrentLevel);
+                OnPropertyChanged(nameof(currentLevel));
+            }
+        }
+
+        private int _NbLevel;
+        public int NbLevel
+        {
+            get => _NbLevel;
+            set
+            {
+                _NbLevel = value;
+                OnPropertyChanged(nameof(_NbLevel));
+            }
+        }
+
+        private ObservableCollection<int> listLevel {  get; set; }
+        public ObservableCollection<int> ListLevel
+        {
+
+            get => listLevel;
+            set
+            {
+                listLevel = value;
+                OnPropertyChanged(nameof(ListLevel));
+            }
+        }
         private string background;
         public string Background
         {
@@ -73,9 +109,15 @@ namespace Bricks_Interfaces.ViewModels
         public RenduStatiqueViewModel()
         {
             Background = "C:\\Users\\user\\Pictures\\Fond.jpg";
+            NbLevel = Entity.GetAllEntities().Count;
+            ListLevel = new ObservableCollection<int>();
+            for (int i = 0; i < NbLevel; i++)
+            {
+                ListLevel.Add(i);
+            }
 
             InitializeFileWatcher();
-            LoadData();
+            Entities = Entity.GetEntities(CurrentLevel);
         }
 
         private void InitializeFileWatcher()
@@ -94,31 +136,42 @@ namespace Bricks_Interfaces.ViewModels
             _fileWatcher.Changed += (sender, e) =>
             {
                 // Lorsque le fichier JSON est modifié, rechargez les données
-                LoadData();
+                Entities = Entity.GetEntities(CurrentLevel);
+                NbLevel = Entity.GetAllEntities().Count;
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    ListLevel.Clear();
+                    for (int i = 0; i < NbLevel; i++)
+                    {
+                        ListLevel.Add(i);
+                    }
+                });
+                
             };
             _fileWatcher.Renamed += (sender, e) =>
-                LoadData();
+                Entities = Entity.GetEntities(CurrentLevel);
+                NbLevel = Entity.GetAllEntities().Count;
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    ListLevel.Clear();
+                    for (int i = 0; i < NbLevel; i++)
+                    {
+                        ListLevel.Add(i);
+                    }
+                });
             _fileWatcher.Created += (sender, e) =>
-                LoadData();
+                Entities = Entity.GetEntities(CurrentLevel);
+                NbLevel = Entity.GetAllEntities().Count;
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    ListLevel.Clear();
+                    for (int i = 0; i < NbLevel; i++)
+                    {
+                        ListLevel.Add(i);
+                    }
+                });
 
             _fileWatcher.EnableRaisingEvents = true; // Active la surveillance
-        }
-
-        private void LoadData()
-        {
-            try
-            {
-                using (FileStream fileStream = new FileStream("../../../Entity.json", FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    using (StreamReader reader = new StreamReader(fileStream))
-                    {
-                        string json = reader.ReadToEnd(); // Lecture synchrone
-                        Entities = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
-                        
-                    }
-                }
-            }
-            catch { }
         }
 
 
@@ -162,9 +215,7 @@ namespace Bricks_Interfaces.ViewModels
         {
             dragging = false;
 
-            string json = JsonSerializer.Serialize(Entities, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
-
+            Entity.SaveEntities(Entities, RenduStatiqueViewModel.CurrentLevel);
         }
 
         public void OpenEntityMenu(Entity entity)

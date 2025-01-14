@@ -33,15 +33,15 @@ namespace Bricks_Interfaces.ViewModels
 
         public void SaveEntity()
         {
-            string json = System.IO.File.ReadAllText("../../../Entity.json");
-            ObservableCollection<Entity>  Entities = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+            ObservableCollection<Entity> Entities = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
+
 
             int index = Entities.IndexOf(Entities.Where(e => e.id == Entity.id).FirstOrDefault());
 
             Entities[index] = Entity;
 
-            json = JsonSerializer.Serialize(Entities, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
+            Entity.SaveEntities(Entities, RenduStatiqueViewModel.CurrentLevel);
+
             RenduStatiqueViewModel.entityMenu = null;
 
         }
@@ -51,8 +51,8 @@ namespace Bricks_Interfaces.ViewModels
             if (Entity == null) return;
             if (Entity.id == "Player") return;
 
-            string json = System.IO.File.ReadAllText("../../../Entity.json");
-            ObservableCollection<Entity> Entities = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+            ObservableCollection<Entity> Entities = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
+
 
             int index = Entities.IndexOf(Entities.Where(e => e.id == Entity.id).FirstOrDefault());
 
@@ -60,18 +60,18 @@ namespace Bricks_Interfaces.ViewModels
 
             Entities.RemoveAt(index);
 
-            json = JsonSerializer.Serialize(Entities, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
+            Entity.SaveEntities(Entities, RenduStatiqueViewModel.CurrentLevel);
+
 
             RenduStatiqueViewModel.entityMenu = null;
         }
         public void CancelChange() {
 
-            string json = System.IO.File.ReadAllText("../../../Entity.json");
-            ObservableCollection<Entity> Entities = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+            ObservableCollection<Entity> Entities = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
 
-            json = JsonSerializer.Serialize(Entities, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
+
+            Entity.SaveEntities(Entities, RenduStatiqueViewModel.CurrentLevel);
+
             RenduStatiqueViewModel.entityMenu = null;
 
         }

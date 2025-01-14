@@ -2,8 +2,10 @@ using Bricks_Interfaces.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -250,7 +252,7 @@ namespace Bricks_Interfaces.Models
         public Entity () { } // pour le json
 
 
-        public Entity(string type, string id, int x, int y, int width, int height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon, int? max_health = null, int? damage = null, string image = null)
+        public Entity(string type, string id, double x, double y, double width, double height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon, int? max_health = null, int? damage = null, string image = null)
         {
             this.type = type;
             this.id = id;
@@ -338,6 +340,68 @@ namespace Bricks_Interfaces.Models
                 else continue;
             }
             return ("none",null);
+        }
+
+        public static ObservableCollection<Entity> GetEntities(int level)
+        {
+            ObservableCollection<Entity> Entities = [];
+            string json;
+            ObservableCollection<ObservableCollection<Entity>> listOfLists;
+            bool succes = false;
+
+            while (!succes)
+            {
+                try
+                {
+                    json = System.IO.File.ReadAllText("../../../Entity.json");
+                    listOfLists = JsonSerializer.Deserialize<ObservableCollection<ObservableCollection<Entity>>>(json);
+                    if (listOfLists != null && listOfLists.Count > 0)
+                    {
+                        Entities = new ObservableCollection<Entity>(listOfLists[level]);
+                    }
+                    succes = true;
+
+                }
+                catch (Exception e) { }
+            }
+            
+            return Entities;
+        }
+
+        public static ObservableCollection<ObservableCollection<Entity>> GetAllEntities() {
+            string json;
+            ObservableCollection<ObservableCollection<Entity>> listOfLists = [];
+            bool succes = false;
+
+            while (!succes)
+            {
+                try
+                {
+                    json = System.IO.File.ReadAllText("../../../Entity.json");
+                    listOfLists = JsonSerializer.Deserialize<ObservableCollection<ObservableCollection<Entity>>>(json);
+                    succes = true;
+
+                }
+                catch (Exception e) { }
+            }
+
+            return listOfLists;
+        }
+
+        public static void SaveEntities(ObservableCollection<Entity> Entities, int Level)
+        {
+            var listOfLists = GetAllEntities();
+
+            listOfLists[Level] = Entities;
+
+            string json = JsonSerializer.Serialize(listOfLists, new JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText("../../../Entity.json", json);
+        }
+
+        public static void SaveAllEntities(ObservableCollection<ObservableCollection<Entity>> listOfLists)
+        {
+            string json = JsonSerializer.Serialize(listOfLists, new JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText("../../../Entity.json", json);
         }
 
     }

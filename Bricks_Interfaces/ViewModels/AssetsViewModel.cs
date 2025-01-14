@@ -18,6 +18,7 @@ namespace Bricks_Interfaces.ViewModels
         public ICommand AddObstacle {  get; set; }
         public ICommand AddEnnemy { get; set; }
         public ICommand AddZone { get; set; }
+        public ICommand AddLevelCommand { get; set; }
 
         public AssetsViewModel() 
         {
@@ -25,12 +26,15 @@ namespace Bricks_Interfaces.ViewModels
             AddObstacle = new RelayCommand(Add_obstacle);
             AddEnnemy = new RelayCommand(Add_Ennemy);
             AddZone = new RelayCommand(Add_Zone);
+            AddLevelCommand = new RelayCommand(AddLevel);
+
         }
         
         private void Add_structure(object parameter) 
         {
-            string json = System.IO.File.ReadAllText("../../../Entity.json");
-            ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+
+            ObservableCollection<Entity> Entités = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
+
 
             var newEntity = new Entity(
                 type: "structure",
@@ -57,14 +61,13 @@ namespace Bricks_Interfaces.ViewModels
             Entités.Add(newEntity);
 
 
-            json = JsonSerializer.Serialize(Entités, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
+            Entity.SaveEntities(Entités, RenduStatiqueViewModel.CurrentLevel);
 
         }
         private void Add_obstacle(object parameter) 
         {
-            string json = System.IO.File.ReadAllText("../../../Entity.json");
-            ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+            ObservableCollection<Entity> Entités = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
+
 
             var newEntity = new Entity(
                 type: "offensive_structure",
@@ -93,15 +96,14 @@ namespace Bricks_Interfaces.ViewModels
             Entités.Add(newEntity);
 
 
-            json = JsonSerializer.Serialize(Entités, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
+            Entity.SaveEntities(Entités, RenduStatiqueViewModel.CurrentLevel);
+
 
         }
 
         private void Add_Ennemy(object parameter)
         {
-            string json = System.IO.File.ReadAllText("../../../Entity.json");
-            ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+            ObservableCollection<Entity> Entités = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
 
             var newEntity = new Entity(
                 type: "offensive_entity",
@@ -129,17 +131,13 @@ namespace Bricks_Interfaces.ViewModels
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
             Entités.Add(newEntity);
-
-
-            json = JsonSerializer.Serialize(Entités, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
+            Entity.SaveEntities(Entités, RenduStatiqueViewModel.CurrentLevel);
 
         }
 
         private void Add_Zone(object parameter)
         {
-            string json = System.IO.File.ReadAllText("../../../Entity.json");
-            ObservableCollection<Entity> Entités = new ObservableCollection<Entity>(JsonSerializer.Deserialize<List<Entity>>(json));
+            ObservableCollection<Entity> Entités = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
 
             var newEntity = new Entity(
                 type: "zone",
@@ -167,9 +165,35 @@ namespace Bricks_Interfaces.ViewModels
             Entités.Add(newEntity);
 
 
-            json = JsonSerializer.Serialize(Entités, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
+            Entity.SaveEntities(Entités, RenduStatiqueViewModel.CurrentLevel);
 
+        }
+
+        private void AddLevel(object parameter)
+        {
+            var levels = Entity.GetAllEntities();
+            Entity Player = new Entity(
+                
+                type: "Player",
+                x: 1.533333333333303,
+                y: 0.37333333333332774,
+                width: 62.5,
+                height: 62.5,
+                id: "Player",
+                speed: 10,
+                is_collidable: true,
+                shape: "square",
+                render: true,
+                has_weapon: true,
+                max_health: 100,
+                weight: 10,
+                damage: null,
+                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
+                
+            );
+            levels.Add([Player]);
+            Entity.SaveAllEntities(levels);
+            RenduStatiqueViewModel.CurrentLevel++;
         }
     }
 }

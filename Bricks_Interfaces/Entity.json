@@ -2,14 +2,14 @@
   [
     {
       "type": "Player",
-      "x": 0.19999999999998863,
+      "x": 1.533333333333303,
       "y": 0.37333333333332774,
       "width": 62.5,
       "height": 62.5,
       "color": null,
       "id": "Player",
       "margin": {
-        "Left": 0.19999999999998863,
+        "Left": 1.533333333333303,
         "Top": 0.37333333333332774,
         "Right": 0,
         "Bottom": 0
@@ -23,6 +23,30 @@
       "weight": 10,
       "damage": null,
       "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
+    },
+    {
+      "type": "structure",
+      "x": 58.4,
+      "y": 103,
+      "width": 29.2,
+      "height": 25.75,
+      "color": null,
+      "id": "b1c761b0-6f6f-4016-86ae-c3369d402b06",
+      "margin": {
+        "Left": 58.4,
+        "Top": 103,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "speed": 5,
+      "is_collidable": true,
+      "shape": "square",
+      "render": true,
+      "has_weapon": false,
+      "max_health": null,
+      "weight": 0,
+      "damage": null,
+      "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\t\u00E9l\u00E9chargement.jpg"
     }
   ],
   [
@@ -49,6 +73,30 @@
       "weight": 10,
       "damage": null,
       "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
+    },
+    {
+      "type": "structure",
+      "x": 353.5333333333333,
+      "y": 117.70666666666665,
+      "width": 29.2,
+      "height": 25.75,
+      "color": null,
+      "id": "94caaff4-7de9-4f1f-877f-4dac6ed4f1e8",
+      "margin": {
+        "Left": 353.5333333333333,
+        "Top": 117.70666666666665,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "speed": 5,
+      "is_collidable": true,
+      "shape": "square",
+      "render": true,
+      "has_weapon": false,
+      "max_health": null,
+      "weight": 0,
+      "damage": null,
+      "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\t\u00E9l\u00E9chargement.jpg"
     }
   ]
 ]
