@@ -1,0 +1,28 @@
+﻿<Window x:Class="Bricks_Interfaces.DoubleClick"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bricks_Interfaces"
+        mc:Ignorable="d"
+        Title="DoubleClick" Height="300" Width="150">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Hauteur :" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
+        <TextBox x:Name="HeightTextBox" Grid.Row="0" Grid.Column="1" Width="100"/>
+        <TextBlock Text="Largeur :" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,10,0"/>
+        <TextBox x:Name="WidthTextBox" Grid.Row="1" Grid.Column="1" Width="100"/>
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" >
+            <Button Content="Sauver" Width="50" Margin="5,0,5,0" Click="SaveButton_Click"/>
+            <Button Content="Suppr" Width="50" Margin="5,0,5,0" Click="DeleteButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
