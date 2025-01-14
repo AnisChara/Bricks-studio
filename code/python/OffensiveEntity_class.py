@@ -3,8 +3,8 @@ from Game_class import Game
 
 class Offensive_Entity(Pawn) :
 
-    def __init__(self,id,x, y, width, height, health,speed = 1, is_collidable = False, shape = "square", weight = 10, render = True ,damage = 100) : #ajouter arg pour image
-        super().__init__(id, x, y, width, height, health, speed, is_collidable, shape , weight, image =  "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/monster.png")
+    def __init__(self,id,x, y, width, height, health,speed = 1, is_collidable = False, shape = "square", weight = 10, render = True ,damage = 100, image =  "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/monster.png") : #ajouter arg pour image
+        super().__init__(id, x, y, width, height, health, speed, is_collidable, shape , weight, image)
         self.damage = damage
 
     def deal_damage(self, target):

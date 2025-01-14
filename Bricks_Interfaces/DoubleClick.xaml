@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bricks_Interfaces"
         mc:Ignorable="d"
-        Title="DoubleClick" Height="300" Width="150">
-    <Grid Margin="10">
+        Title="DoubleClick" Height="300" Width="150"
+        WindowStyle="None">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -16,13 +20,29 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Hauteur :" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
-        <TextBox x:Name="HeightTextBox" Grid.Row="0" Grid.Column="1" Width="100"/>
-        <TextBlock Text="Largeur :" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,10,0"/>
-        <TextBox x:Name="WidthTextBox" Grid.Row="1" Grid.Column="1" Width="100"/>
-        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" >
-            <Button Content="Sauver" Width="50" Margin="5,0,5,0" Click="SaveButton_Click"/>
-            <Button Content="Suppr" Width="50" Margin="5,0,5,0" Click="DeleteButton_Click"/>
+
+        <!-- Champ Width -->
+        <TextBlock Text="Width:" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox Grid.Column="1" Margin="5" Text="{Binding Entity.width, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Champ Height -->
+        <TextBlock Text="Height:" Grid.Row="1" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding Entity.height, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Text="Poids:" Grid.Row="2" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Text="{Binding Entity.weight, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Text="Dégats:" Grid.Row="3" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Text="{Binding Entity.damage, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Text="Image:" Grid.Row="4" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding Entity.image, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Boutons -->
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+            <Button Content="Sauvegarder" Width="100" Margin="5" Click="SaveButton_Click"/>
+            <Button Content="Supprimer" Width="100" Margin="5" Click="DeleteButton_Click"/>
+            <Button Content="Annuler" Width="100" Margin="5" Click="CancelButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

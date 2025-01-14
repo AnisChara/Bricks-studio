@@ -13,6 +13,7 @@ from OffensiveEntity_class import Offensive_Entity
 pygame.init()
 
 background = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/Fond.jpg")
+background = pygame.transform.scale(background,(1280,720))
 
 left_border = Structure("left_border",-2147483646,-1,2147483646,2147483646,0,True,"square",0,False)
 right_border = Structure("right_border",Game.screen_width+1,-1,2147483646, 2147483646,0,True,"square",0,False)
@@ -25,28 +26,32 @@ Game.entities.append(up_border)
 Game.entities.append(down_border)
 entities = Game.load_entities()
 
-for entity in entities:
+def instance_entities():
+    for entity in entities:
 
-    if entity['type'] == 'structure':
-        instance = Structure(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'])
-        Game.entities.append(instance)
-    elif entity['type'] == 'offensive_structure':
-        instance = Offensive_Structure(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'])
-        Game.entities.append(instance)
-    elif entity['type'] == 'offensive_entity':
-        instance = Offensive_Entity(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity["max_health"],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'])
-        Game.entities.append(instance)
-    elif entity['type'] == 'zone':
-        instance = Structure(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'])
-        Game.entities.append(instance)
-    elif entity['type'] == 'Player':
-        Player = Pawn(entity['id'], entity['x']/0.625, entity['y']/0.625, entity['width']/0.625, entity['height']/0.625,entity['max_health'],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'])
-        Game.entities.append(Player)
-        Player.set_weapon()
-    if entity["has_weapon"]:
-        try:
-            instance.set_weapon()
-        except NameError: pass
+        if entity['type'] == 'structure':
+            instance = Structure(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['image'] )
+            Game.entities.append(instance)
+        elif entity['type'] == 'offensive_structure':
+            instance = Offensive_Structure(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['damage'],entity['image'])
+            Game.entities.append(instance)
+        elif entity['type'] == 'offensive_entity':
+            instance = Offensive_Entity(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity["max_health"],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['damage'],entity['image'])
+            Game.entities.append(instance)
+        elif entity['type'] == 'zone':
+            instance = Structure(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['image'])
+            Game.entities.append(instance)
+        elif entity['type'] == 'Player':
+            Player = Pawn(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity['max_health'],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'],entity['image'])
+            Game.entities.append(Player)
+            Player.set_weapon()
+        if entity["has_weapon"]:
+            try:
+                instance.set_weapon()
+            except NameError: pass
+    return Player
+
+Player = instance_entities()
 
 while Game.running:
 
@@ -79,6 +84,10 @@ while Game.running:
     if Game.keys.ESPACE == True:
         Player.jump(300)
         
+    if Game.keys.Y == True:
+        Player.weapon.shoot(50,50,5,10,None,0)
+        Player.weapon.shoot(50,50,35,10,None,0)
+        
 
     Jump.handle_jump()
     Gravity.fall()
@@ -87,6 +96,12 @@ while Game.running:
     Offensive_Structure.handle_offensive_structures()
     Offensive_Entity.handle_offensive_entities()
 
+    try:
+        if Player.health <= 0:
+            Game.clean_entities()
+            Player = instance_entities()
+    except AttributeError:
+        pass
 
     # flip() the display to put your work on screen
     pygame.display.flip()

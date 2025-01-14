@@ -16,6 +16,7 @@ namespace Bricks_Interfaces.ViewModels
 {
     public class RenduStatiqueViewModel : BaseNotifyPropertyChanged
     {
+        public static DoubleClick entityMenu = null;
 
         private string background;
         public string Background
@@ -128,22 +129,31 @@ namespace Bricks_Interfaces.ViewModels
             dragging = true;
         }
 
-        public void ActualiseDrag(Point e)
+        public void ActualiseDrag(Point e, double width, double height)
         {
-            bool can_move_x = true;
-            bool can_move_y = true;
-
             if (!dragging) return;
+
+            bool can_move_left = true;
+            bool can_move_right = true;
+            bool can_move_top = true;
+            bool can_move_bottom = true;
 
             var (direction,entity_collided) = selectedEntity.CheckAllCollision(Entities);
 
-            if (direction == "right" && e.X > selectedEntity.x)can_move_x = false;
-            if (direction == "left" && e.X < entity_collided.x + entity_collided.width)can_move_x = false;
-            if (direction == "bottom" && e.Y > selectedEntity.y)can_move_y = false;
-            if (direction == "top" && e.Y < entity_collided.y+entity_collided.height)can_move_y = false;
+            if (direction == "right" && e.X >= selectedEntity.x)can_move_right = false;
+            if (direction == "left" && e.X < entity_collided.x +entity_collided.width )can_move_left = false;
+            if (direction == "bottom" && e.Y > selectedEntity.y)can_move_bottom = false;
+            if (direction == "top" && e.Y < entity_collided.y+entity_collided.height)can_move_top = false;
+            if (e.X < 0) can_move_left = false;
+            if (e.X >= width - selectedEntity.width) can_move_right = false;
+            if (e.Y < 0) can_move_top = false;
+            if (e.Y >= height - selectedEntity.height) can_move_bottom = false;
 
-            if (!(e.X < 0 || e.X >= 750-selectedEntity.width) && can_move_x) selectedEntity.x = e.X;
-            if (!(e.Y < 0 || e.Y >= 365-selectedEntity.height) && can_move_y) selectedEntity.y = e.Y;// A rendre modulable
+            if (e.X > selectedEntity.x && can_move_right) selectedEntity.x = e.X;
+            if (e.X < selectedEntity.x && can_move_left) selectedEntity.x = e.X;
+            if (e.Y < selectedEntity.y && can_move_top) selectedEntity.y = e.Y;
+            if (e.Y > selectedEntity.y && can_move_bottom) selectedEntity.y = e.Y;
+
 
             selectedEntity.margin = new Thickness(selectedEntity.x, selectedEntity.y, 0, 0);
         }
@@ -157,13 +167,26 @@ namespace Bricks_Interfaces.ViewModels
 
         }
 
-        public void DeleteEntity(Entity entity)
+        public void OpenEntityMenu(Entity entity)
         {
-            if (entity == null) return;
-            if (entity.id == "Player") return;
-            Entities.RemoveAt(Entities.IndexOf(entity));
-            string json = JsonSerializer.Serialize(Entities, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
+            if (entityMenu != null)
+            {
+                MessageBox.Show("Un menu d'entité est deja ouvert veuillez d'abord sauvegarder ou annuler vos changements.");
+                return;
+            }
+
+            entityMenu = new DoubleClick(entity);
+
+            // Synchroniser les dimensions et l'état de la fenêtre
+            entityMenu.Width = 200;
+            entityMenu.Height = 300;
+
+            // Synchroniser la position de la fenêtre
+            entityMenu.Left = 700;
+            entityMenu.Top = 200;
+
+            entityMenu.Show();
         }
+
     }
 }

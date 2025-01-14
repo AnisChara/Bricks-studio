@@ -45,12 +45,12 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 0,
                 render: true,
                 has_weapon: false,
-                color : "green"
+                image : "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\téléchargement.jpg"
             );
-            newEntity.x *= 0.625;
-            newEntity.y *= 0.625;
-            newEntity.width *= 0.625;
-            newEntity.height *= 0.625;
+            newEntity.x *= 0.584;
+            newEntity.y *= 0.515;
+            newEntity.width *= 0.584;
+            newEntity.height *= 0.515;
 
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
@@ -79,13 +79,14 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 0,
                 render: true,
                 has_weapon: false,
-                color : "orange"
+                damage:100,
+                image : "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\images.png"
 
             );
-            newEntity.x *= 0.625;
-            newEntity.y *= 0.625;
-            newEntity.width *= 0.625;
-            newEntity.height *= 0.625;
+            newEntity.x *= 0.584;
+            newEntity.y *= 0.515;
+            newEntity.width *= 0.584;
+            newEntity.height *= 0.515;
 
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
@@ -115,13 +116,15 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 10,
                 render: true,
                 has_weapon: false,
-                color: "red"
+                max_health:100,
+                damage:100,
+                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\monster.png"
 
             );
-            newEntity.x *= 0.625;
-            newEntity.y *= 0.625;
-            newEntity.width *= 0.625;
-            newEntity.height *= 0.625;
+            newEntity.x *= 0.584;
+            newEntity.y *= 0.515;
+            newEntity.width *= 0.584;
+            newEntity.height *= 0.515;
 
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
@@ -151,13 +154,13 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 10,
                 render: true,
                 has_weapon: false,
-                color: "yellow"
+                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\téléchargement.jpg"
 
             );
-            newEntity.x *= 0.625;
-            newEntity.y *= 0.625;
-            newEntity.width *= 0.625;
-            newEntity.height *= 0.625;
+            newEntity.x *= 0.584;
+            newEntity.y *= 0.515;
+            newEntity.width *= 0.584;
+            newEntity.height *= 0.515;
 
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 

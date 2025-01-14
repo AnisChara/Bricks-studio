@@ -26,13 +26,15 @@ class Game() :
     def check_alive():
 
         for entity in Game.entities:
-            if type(entity).__name__ != "Pawn": continue
+            if type(entity).__name__ != "Pawn" and type(entity).__name__ != "Offensive_Entity": continue
             if entity.health <= 0: entity.die()
 
     def load_entities():
         with open('C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/Entity.json', 'r') as file:
             entities = json.load(file)  
         return entities
+    def clean_entities():
+        Game.entities[4:] = []# remove a partir du 4eme element pour garder les border
 
 
     def keydown_handle(event):

@@ -23,10 +23,14 @@
                         <Button PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" CommandParameter="{Binding .}" 
                                 PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp"
                                 MouseRightButtonDown="Button_MouseRightButtonDown"
-                                Width="{Binding width}" Height="{Binding height}" Background="{Binding color}" Margin="{Binding margin}">
+                                Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding image}" />
+                            </Button.Background>
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
     </Grid>
 </UserControl>

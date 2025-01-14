@@ -5,7 +5,7 @@
     "y": 0.37333333333332774,
     "width": 62.5,
     "height": 62.5,
-    "color": "Cyan",
+    "color": null,
     "id": "Player",
     "margin": {
       "Left": 0.19999999999998863,
@@ -19,6 +19,8 @@
     "render": true,
     "has_weapon": true,
     "max_health": 100,
-    "weight": 10
+    "weight": 10,
+    "damage": null,
+    "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
   }
 ]

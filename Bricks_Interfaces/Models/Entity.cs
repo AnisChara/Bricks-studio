@@ -207,8 +207,8 @@ namespace Bricks_Interfaces.Models
             }
         }
 
-        private int _weight;
-        public int weight
+        private double _weight;
+        public double weight
         {
             get => _weight;
             set
@@ -220,11 +220,37 @@ namespace Bricks_Interfaces.Models
                 }
             }
         }
+        private int? _damage;
+        public int? damage
+        {
+            get => _damage;
+            set
+            {
+                if (_damage != value)
+                {
+                    _damage = value;
+                    OnPropertyChanged(nameof(damage));
+                }
+            }
+        }
 
+        private string? _image;
+        public string? image
+        {
+            get => _image;
+            set
+            {
+                if (_image != value)
+                {
+                    _image = value;
+                    OnPropertyChanged(nameof(image));
+                }
+            }
+        }
         public Entity () { } // pour le json
 
 
-        public Entity(string type, string id, int x, int y, int width, int height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon,string color, int? max_health = null)
+        public Entity(string type, string id, int x, int y, int width, int height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon, int? max_health = null, int? damage = null, string image = null)
         {
             this.type = type;
             this.id = id;
@@ -239,7 +265,9 @@ namespace Bricks_Interfaces.Models
             this.render = render;
             this.has_weapon = has_weapon;
             this.max_health = max_health;
+            this.damage = damage;
             this.color = color;
+            this.image = image;
         }
 
         public enum CollisionDirection
