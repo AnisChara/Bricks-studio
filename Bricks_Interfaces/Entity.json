@@ -1,26 +1,54 @@
 [
-  {
-    "type": "Player",
-    "x": 0.19999999999998863,
-    "y": 0.37333333333332774,
-    "width": 62.5,
-    "height": 62.5,
-    "color": null,
-    "id": "Player",
-    "margin": {
-      "Left": 0.19999999999998863,
-      "Top": 0.37333333333332774,
-      "Right": 0,
-      "Bottom": 0
-    },
-    "speed": 10,
-    "is_collidable": true,
-    "shape": "square",
-    "render": true,
-    "has_weapon": true,
-    "max_health": 100,
-    "weight": 10,
-    "damage": null,
-    "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
-  }
+  [
+    {
+      "type": "Player",
+      "x": 0.19999999999998863,
+      "y": 0.37333333333332774,
+      "width": 62.5,
+      "height": 62.5,
+      "color": null,
+      "id": "Player",
+      "margin": {
+        "Left": 0.19999999999998863,
+        "Top": 0.37333333333332774,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "speed": 10,
+      "is_collidable": true,
+      "shape": "square",
+      "render": true,
+      "has_weapon": true,
+      "max_health": 100,
+      "weight": 10,
+      "damage": null,
+      "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
+    }
+  ],
+  [
+    {
+      "type": "Player",
+      "x": 0.19999999999998863,
+      "y": 0.37333333333332774,
+      "width": 62.5,
+      "height": 62.5,
+      "color": null,
+      "id": "Player",
+      "margin": {
+        "Left": 0.19999999999998863,
+        "Top": 0.37333333333332774,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "speed": 10,
+      "is_collidable": true,
+      "shape": "square",
+      "render": true,
+      "has_weapon": true,
+      "max_health": 100,
+      "weight": 10,
+      "damage": null,
+      "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
+    }
+  ]
 ]
