@@ -128,6 +128,7 @@ namespace Bricks_Interfaces.ViewModels
             _fileWatcher.Changed += (sender, e) =>
             {
                 // Lorsque le fichier JSON est modifié, rechargez les données
+                CurrentLevel_name = Level.CurrentLevel;
                 Entities = CurrentLevel.Entities;
                 ListLevel = null;
             };

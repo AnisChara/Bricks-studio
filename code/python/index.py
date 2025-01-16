@@ -15,6 +15,11 @@ pygame.init()
 
 level = 0
 
+def next_level(Player,level):
+    level = (level + 1) % level_max
+    Game.clean_entities()
+    Player = instance_entities(entities, level)
+    return Player,level
 
 background = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/Fond.jpg")
 background = pygame.transform.scale(background,(1280,720))
@@ -29,7 +34,7 @@ Game.entities.append(right_border)
 Game.entities.append(up_border)
 Game.entities.append(down_border)
 entities = Game.load_entities()
-level_max = len(entities)-1
+level_max = len(entities)
 
 Player = instance_entities(entities,level)
 
@@ -60,19 +65,12 @@ while Game.running:
         
     if Game.keys.A == True:
         Player.weapon.shoot(50,50,20,10,None,0)
-
-    if Game.keys.B == True:
-        level = (level + 1) % level_max
-        Game.clean_entities()
-        Player = instance_entities(entities, level)        
         
     if Game.keys.ESPACE == True:
         Player.jump(300)
         
-    if Game.keys.Y == True:
-        Player.weapon.shoot(50,50,5,10,None,0)
-        Player.weapon.shoot(50,50,35,10,None,0)
-        
+    if Player.finish() == True:
+        Player,level = next_level(Player,level)
 
     Jump.handle_jump()
     Gravity.fall()

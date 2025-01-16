@@ -27,30 +27,6 @@
         "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
       },
       {
-        "type": "offensive_entity",
-        "x": 101.5333333333333,
-        "y": 213.70666666666662,
-        "width": 29.2,
-        "height": 25.75,
-        "color": null,
-        "id": "c1717ab0-93fa-4d7c-a34f-103d3037ed06",
-        "margin": {
-          "Left": 101.5333333333333,
-          "Top": 213.70666666666662,
-          "Right": 0,
-          "Bottom": 0
-        },
-        "speed": 5,
-        "is_collidable": true,
-        "shape": "square",
-        "render": true,
-        "has_weapon": false,
-        "max_health": 100,
-        "weight": 10,
-        "damage": 100,
-        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\monster.png"
-      },
-      {
         "type": "offensive_structure",
         "x": 474.8666666666667,
         "y": 29.706666666666656,
@@ -75,28 +51,28 @@
         "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\images.png"
       },
       {
-        "type": "offensive_entity",
-        "x": 58.4,
-        "y": 103,
+        "type": "zone",
+        "x": 265.5333333333333,
+        "y": 285.04,
         "width": 29.2,
         "height": 25.75,
         "color": null,
-        "id": "9492ae82-24ca-4456-9d87-243a4505605c",
+        "id": "77c61cc5-5782-42fa-a362-54dda15c5833",
         "margin": {
-          "Left": 58.4,
-          "Top": 103,
+          "Left": 265.5333333333333,
+          "Top": 285.04,
           "Right": 0,
           "Bottom": 0
         },
         "speed": 5,
-        "is_collidable": true,
+        "is_collidable": false,
         "shape": "square",
         "render": true,
         "has_weapon": false,
-        "max_health": 100,
+        "max_health": null,
         "weight": 10,
-        "damage": 100,
-        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\monster.png"
+        "damage": null,
+        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\t\u00E9l\u00E9chargement.jpg"
       }
     ],
     "Background": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\Fond.jpg"

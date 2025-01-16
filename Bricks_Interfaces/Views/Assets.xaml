@@ -14,8 +14,9 @@
                 <!-- Obstacle = Structure offensive -->
                 <Button x:Name="btn_obstacle" Content="Ajouter obstacle" Margin="0 0 25 0" Command="{Binding AddObstacle}"/>
                 <Button x:Name="btn_ennemie" Content="Ajouter ennemie" Margin="0 0 25 0" Command="{Binding AddEnnemy}"/>
-                <Button x:Name="btn_zone" Content="Ajouter zone" Command="{Binding AddZone}" />
-                <Button Content="Ajouter niveau" Margin="0 0 25 0" Command="{Binding AddLevelCommand}" />
+                <Button x:Name="btn_zone" Content="Ajouter ligne d'arrivée" Command="{Binding AddZone}" Margin="0 0 25 0"/>
+                <Button Content="Ajouter niveau" Margin="0 0 0 0" Command="{Binding AddLevelCommand}" />
+                <TextBox  Margin="0 0 25 0" Text="{Binding LevelName}" Width="30"/>
                 <Button Content="Supprimer niveau" Margin="0 0 25 0" Command="{Binding DeleteLevelCommand}" />
             </WrapPanel>
         </StackPanel>

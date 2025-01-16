@@ -21,6 +21,17 @@ namespace Bricks_Interfaces.ViewModels
         public ICommand AddLevelCommand { get; set; }
         public ICommand DeleteLevelCommand { get; set; }
 
+        private string levelname {  get; set; }
+        public string LevelName
+        {
+            get => levelname;
+            set
+            {
+                levelname = value;
+                OnPropertyChanged(nameof(LevelName));
+            }
+        }
+
         public AssetsViewModel() 
         {
             AddStructure = new RelayCommand(Add_structure);
@@ -173,6 +184,16 @@ namespace Bricks_Interfaces.ViewModels
 
         private void AddLevel(object parameter)
         {
+            if (LevelName == null)
+            {
+                MessageBox.Show("Veuillez entrez un nom pour votre niveau");
+                return;
+            }
+            if (Entity.GetLevel(LevelName) != null)
+            {
+                MessageBox.Show("Ce niveau existe deja");
+                return;
+            }
             var levels = Entity.GetAllLevels();
             Entity Player = new Entity(
                 
@@ -196,12 +217,12 @@ namespace Bricks_Interfaces.ViewModels
 
             ObservableCollection<Entity> Entitylevel = new ObservableCollection<Entity>();
             Entitylevel.Add(Player);
-            string name = "Niveau " + levels.Count().ToString();
-            var level = new Level(name, Entitylevel);
+            var level = new Level(LevelName, Entitylevel);
 
             levels.Add(level);
             Entity.SaveAllLevels(levels);
-            Level.CurrentLevel = name;
+            Level.CurrentLevel = LevelName;
+            LevelName = "";
         }
 
         private void DeleteLevel(object parameter)

@@ -1,5 +1,7 @@
 from Entity_class import Entity
 from Jump_class import Jump
+from Game_class import Game
+import pygame
 
 class Pawn(Entity) :
 
@@ -20,4 +22,9 @@ class Pawn(Entity) :
             self.jump_speed = self.jump_initial_speed
             self.is_jumping = True
             self.jump_point = self.rect.y - jump_height
-        
+
+    def finish(self):
+        for entity in Game.entities:
+            if hasattr(entity,'zone') and entity.zone == True:
+                return pygame.Rect.colliderect(self.rect, entity.rect)
+        return False

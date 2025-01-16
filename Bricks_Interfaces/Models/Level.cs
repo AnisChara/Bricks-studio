@@ -11,7 +11,7 @@ namespace Bricks_Interfaces.Models
     {
         public string Name { get; set; }
         public ObservableCollection<Entity> Entities { get; set; }
-        public string Background {  get; set; }
+        public string Background { get; set; }
 
         public static string FirstLevel = "Niveau 0";
 

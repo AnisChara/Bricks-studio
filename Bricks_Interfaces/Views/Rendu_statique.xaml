@@ -31,7 +31,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-        <ComboBox Width="30" FontSize="20" Height="20"
+        <ComboBox Width="80" FontSize="11" Height="20" VerticalAlignment="Top"
           SelectedItem="{Binding CurrentLevel_name}"
           ItemsSource="{Binding ListLevel}" >
         </ComboBox>
