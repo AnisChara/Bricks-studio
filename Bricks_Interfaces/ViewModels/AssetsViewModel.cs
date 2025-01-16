@@ -19,6 +19,7 @@ namespace Bricks_Interfaces.ViewModels
         public ICommand AddEnnemy { get; set; }
         public ICommand AddZone { get; set; }
         public ICommand AddLevelCommand { get; set; }
+        public ICommand DeleteLevelCommand { get; set; }
 
         public AssetsViewModel() 
         {
@@ -27,13 +28,14 @@ namespace Bricks_Interfaces.ViewModels
             AddEnnemy = new RelayCommand(Add_Ennemy);
             AddZone = new RelayCommand(Add_Zone);
             AddLevelCommand = new RelayCommand(AddLevel);
+            DeleteLevelCommand = new RelayCommand(DeleteLevel);
 
         }
         
         private void Add_structure(object parameter) 
         {
 
-            ObservableCollection<Entity> Entités = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
+            ObservableCollection<Entity> Entités = Entity.GetEntities(Level.CurrentLevel);
 
 
             var newEntity = new Entity(
@@ -61,12 +63,12 @@ namespace Bricks_Interfaces.ViewModels
             Entités.Add(newEntity);
 
 
-            Entity.SaveEntities(Entités, RenduStatiqueViewModel.CurrentLevel);
+            Entity.SaveEntities(Entités, Level.CurrentLevel);
 
         }
         private void Add_obstacle(object parameter) 
         {
-            ObservableCollection<Entity> Entités = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
+            ObservableCollection<Entity> Entités = Entity.GetEntities(Level.CurrentLevel);
 
 
             var newEntity = new Entity(
@@ -96,14 +98,14 @@ namespace Bricks_Interfaces.ViewModels
             Entités.Add(newEntity);
 
 
-            Entity.SaveEntities(Entités, RenduStatiqueViewModel.CurrentLevel);
+            Entity.SaveEntities(Entités, Level.CurrentLevel);
 
 
         }
 
         private void Add_Ennemy(object parameter)
         {
-            ObservableCollection<Entity> Entités = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
+            ObservableCollection<Entity> Entités = Entity.GetEntities(Level.CurrentLevel);
 
             var newEntity = new Entity(
                 type: "offensive_entity",
@@ -131,13 +133,13 @@ namespace Bricks_Interfaces.ViewModels
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
             Entités.Add(newEntity);
-            Entity.SaveEntities(Entités, RenduStatiqueViewModel.CurrentLevel);
+            Entity.SaveEntities(Entités, Level.CurrentLevel);
 
         }
 
         private void Add_Zone(object parameter)
         {
-            ObservableCollection<Entity> Entités = Entity.GetEntities(RenduStatiqueViewModel.CurrentLevel);
+            ObservableCollection<Entity> Entités = Entity.GetEntities(Level.CurrentLevel);
 
             var newEntity = new Entity(
                 type: "zone",
@@ -165,13 +167,13 @@ namespace Bricks_Interfaces.ViewModels
             Entités.Add(newEntity);
 
 
-            Entity.SaveEntities(Entités, RenduStatiqueViewModel.CurrentLevel);
+            Entity.SaveEntities(Entités, Level.CurrentLevel);
 
         }
 
         private void AddLevel(object parameter)
         {
-            var levels = Entity.GetAllEntities();
+            var levels = Entity.GetAllLevels();
             Entity Player = new Entity(
                 
                 type: "Player",
@@ -191,9 +193,27 @@ namespace Bricks_Interfaces.ViewModels
                 image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
                 
             );
-            levels.Add([Player]);
-            Entity.SaveAllEntities(levels);
-            RenduStatiqueViewModel.CurrentLevel++;
+
+            ObservableCollection<Entity> Entitylevel = new ObservableCollection<Entity>();
+            Entitylevel.Add(Player);
+            string name = "Niveau " + levels.Count().ToString();
+            var level = new Level(name, Entitylevel);
+
+            levels.Add(level);
+            Entity.SaveAllLevels(levels);
+            Level.CurrentLevel = name;
+        }
+
+        private void DeleteLevel(object parameter)
+        {
+            var levels = Entity.GetAllLevels();
+            if (levels.Count == 1) return;
+            if (Level.CurrentLevel == Level.FirstLevel) return;
+            int index = levels.IndexOf(levels.FirstOrDefault(l => l.Name == Level.CurrentLevel));
+            levels.RemoveAt(index);
+            Level.CurrentLevel = Level.FirstLevel;
+            Entity.SaveAllLevels(levels);
+
         }
     }
 }

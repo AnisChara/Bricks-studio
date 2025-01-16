@@ -9,7 +9,7 @@
 
     <Grid PreviewMouseMove="Button_PreviewMouseMove" Width="800" Height="450">
         <Grid.Background>
-            <ImageBrush ImageSource="{Binding Background}" />
+            <ImageBrush ImageSource="{Binding CurrentLevel.Background}" />
         </Grid.Background>
         <!-- Grille de fond -->
             <ItemsControl ItemsSource="{Binding Entities}">
@@ -32,7 +32,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         <ComboBox Width="30" FontSize="20" Height="20"
-          SelectedItem="{Binding currentLevel}"
+          SelectedItem="{Binding CurrentLevel_name}"
           ItemsSource="{Binding ListLevel}" >
         </ComboBox>
 

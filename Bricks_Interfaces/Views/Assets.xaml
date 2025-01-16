@@ -15,7 +15,8 @@
                 <Button x:Name="btn_obstacle" Content="Ajouter obstacle" Margin="0 0 25 0" Command="{Binding AddObstacle}"/>
                 <Button x:Name="btn_ennemie" Content="Ajouter ennemie" Margin="0 0 25 0" Command="{Binding AddEnnemy}"/>
                 <Button x:Name="btn_zone" Content="Ajouter zone" Command="{Binding AddZone}" />
-                <Button Content="Ajouter zone" Command="{Binding AddLevelCommand}" />
+                <Button Content="Ajouter niveau" Margin="0 0 25 0" Command="{Binding AddLevelCommand}" />
+                <Button Content="Supprimer niveau" Margin="0 0 25 0" Command="{Binding DeleteLevelCommand}" />
             </WrapPanel>
         </StackPanel>
     </Grid>

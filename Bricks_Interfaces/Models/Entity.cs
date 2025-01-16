@@ -342,11 +342,17 @@ namespace Bricks_Interfaces.Models
             return ("none",null);
         }
 
-        public static ObservableCollection<Entity> GetEntities(int level)
+        public static Level GetLevel(string level_name)
         {
-            ObservableCollection<Entity> Entities = [];
+            ObservableCollection<Level> Levels = GetAllLevels();
+            return Levels.FirstOrDefault(l => l.Name.Trim().Equals(level_name.Trim(), StringComparison.OrdinalIgnoreCase));
+        }
+
+        public static ObservableCollection<Entity> GetEntities(string level)
+        {
+            ObservableCollection<Entity> Entities = new ObservableCollection<Entity>();
             string json;
-            ObservableCollection<ObservableCollection<Entity>> listOfLists;
+            ObservableCollection<Level> Levels;
             bool succes = false;
 
             while (!succes)
@@ -354,10 +360,12 @@ namespace Bricks_Interfaces.Models
                 try
                 {
                     json = System.IO.File.ReadAllText("../../../Entity.json");
-                    listOfLists = JsonSerializer.Deserialize<ObservableCollection<ObservableCollection<Entity>>>(json);
-                    if (listOfLists != null && listOfLists.Count > 0)
+                    Levels = JsonSerializer.Deserialize<ObservableCollection<Level>>(json);
+                    if (Levels != null && Levels.Count > 0)
                     {
-                        Entities = new ObservableCollection<Entity>(listOfLists[level]);
+                        Entities = new ObservableCollection<Entity>(
+                            Levels.FirstOrDefault(l => l.Name == level).Entities
+                        );
                     }
                     succes = true;
 
@@ -368,9 +376,9 @@ namespace Bricks_Interfaces.Models
             return Entities;
         }
 
-        public static ObservableCollection<ObservableCollection<Entity>> GetAllEntities() {
+        public static ObservableCollection<Level> GetAllLevels() {
             string json;
-            ObservableCollection<ObservableCollection<Entity>> listOfLists = [];
+            ObservableCollection<Level> listofLevels = new ObservableCollection<Level>();
             bool succes = false;
 
             while (!succes)
@@ -378,32 +386,60 @@ namespace Bricks_Interfaces.Models
                 try
                 {
                     json = System.IO.File.ReadAllText("../../../Entity.json");
-                    listOfLists = JsonSerializer.Deserialize<ObservableCollection<ObservableCollection<Entity>>>(json);
+                    listofLevels = JsonSerializer.Deserialize<ObservableCollection<Level>>(json);
+                    succes = true;
+                }
+                catch (Exception e) { }
+            }
+
+            return listofLevels;
+        }
+
+        public static void SaveLevel(Level Level, string level_name)
+        {
+            var Levels = GetAllLevels();
+            int index = Levels.IndexOf(Levels.FirstOrDefault(l => l.Name == level_name));
+            Levels[index] = Level;
+
+            bool succes = false;
+
+            while (!succes)
+            {
+                try
+                {
+                    string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
+                    System.IO.File.WriteAllText("../../../Entity.json", json);
                     succes = true;
 
                 }
                 catch (Exception e) { }
             }
-
-            return listOfLists;
         }
 
-        public static void SaveEntities(ObservableCollection<Entity> Entities, int Level)
+        public static void SaveEntities(ObservableCollection<Entity> Entities , string level_name)
         {
-            var listOfLists = GetAllEntities();
+            var Levels = GetAllLevels();
+            int index = Levels.IndexOf(GetLevel(level_name));
+            Levels[index].Entities = Entities;
 
-            listOfLists[Level] = Entities;
-
-            string json = JsonSerializer.Serialize(listOfLists, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
+            SaveAllLevels(Levels);
         }
 
-        public static void SaveAllEntities(ObservableCollection<ObservableCollection<Entity>> listOfLists)
+        public static void SaveAllLevels(ObservableCollection<Level> Levels)
         {
-            string json = JsonSerializer.Serialize(listOfLists, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText("../../../Entity.json", json);
-        }
+            bool succes = false;
 
+            while (!succes)
+            {
+                try
+                {
+                    string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
+                    System.IO.File.WriteAllText("../../../Entity.json", json);
+                    succes = true;
+
+                }
+                catch (Exception e) {  }
+            }
+        }
     }
-
 }

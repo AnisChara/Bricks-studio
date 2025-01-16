@@ -18,54 +18,52 @@ namespace Bricks_Interfaces.ViewModels
     {
         public static DoubleClick entityMenu = null;
 
-        public static int CurrentLevel = 0;
-        private int _currentLevel = 0;
-        public int currentLevel
-        {
-            get => _currentLevel;
-            set
-            {
-                _currentLevel = value;
-                CurrentLevel = value;
-                Entities = Entity.GetEntities(CurrentLevel);
-                OnPropertyChanged(nameof(currentLevel));
-            }
-        }
-
-        private int _NbLevel;
-        public int NbLevel
-        {
-            get => _NbLevel;
-            set
-            {
-                _NbLevel = value;
-                OnPropertyChanged(nameof(_NbLevel));
-            }
-        }
-
-        private ObservableCollection<int> listLevel {  get; set; }
-        public ObservableCollection<int> ListLevel
+        private ObservableCollection<string> listLevel { get; set; }
+        public ObservableCollection<string> ListLevel
         {
 
             get => listLevel;
             set
             {
-                listLevel = value;
+                var list = new ObservableCollection<string>();
+                var levels = Entity.GetAllLevels();
+                foreach (var level in levels)
+                {
+                    list.Add(level.Name);
+                }
+                listLevel = list;
                 OnPropertyChanged(nameof(ListLevel));
             }
-        }
-        private string background;
-        public string Background
-        {
 
-            get => background;
+        }
+
+        private string _currentLevel_name;
+        public string CurrentLevel_name
+        {
+            get
+            {
+                return Models.Level.CurrentLevel;
+            }
             set
             {
-                background = value;
-                OnPropertyChanged(nameof(Background));
+                if (value != null)
+                    Models.Level.CurrentLevel = value;
+                else Level.CurrentLevel = Level.FirstLevel;
+                Entities = CurrentLevel.Entities;
+                OnPropertyChanged(nameof(CurrentLevel_name));
             }
         }
 
+        private Level _currentLevel;
+        public Level CurrentLevel
+        {
+            get
+            {
+                return Entity.GetLevel(CurrentLevel_name);
+            }
+        }
+
+        
 
         public bool dragging = false;
 
@@ -94,6 +92,7 @@ namespace Bricks_Interfaces.ViewModels
             }
         }
 
+
         private ObservableCollection<Entity> entities { get; set; }
         public ObservableCollection<Entity> Entities
         {
@@ -108,16 +107,9 @@ namespace Bricks_Interfaces.ViewModels
 
         public RenduStatiqueViewModel()
         {
-            Background = "C:\\Users\\user\\Pictures\\Fond.jpg";
-            NbLevel = Entity.GetAllEntities().Count;
-            ListLevel = new ObservableCollection<int>();
-            for (int i = 0; i < NbLevel; i++)
-            {
-                ListLevel.Add(i);
-            }
-
             InitializeFileWatcher();
-            Entities = Entity.GetEntities(CurrentLevel);
+            Entities = CurrentLevel.Entities;
+            ListLevel = null;
         }
 
         private void InitializeFileWatcher()
@@ -136,41 +128,10 @@ namespace Bricks_Interfaces.ViewModels
             _fileWatcher.Changed += (sender, e) =>
             {
                 // Lorsque le fichier JSON est modifié, rechargez les données
-                Entities = Entity.GetEntities(CurrentLevel);
-                NbLevel = Entity.GetAllEntities().Count;
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    ListLevel.Clear();
-                    for (int i = 0; i < NbLevel; i++)
-                    {
-                        ListLevel.Add(i);
-                    }
-                });
-                
+                Entities = CurrentLevel.Entities;
+                ListLevel = null;
             };
-            _fileWatcher.Renamed += (sender, e) =>
-                Entities = Entity.GetEntities(CurrentLevel);
-                NbLevel = Entity.GetAllEntities().Count;
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    ListLevel.Clear();
-                    for (int i = 0; i < NbLevel; i++)
-                    {
-                        ListLevel.Add(i);
-                    }
-                });
-            _fileWatcher.Created += (sender, e) =>
-                Entities = Entity.GetEntities(CurrentLevel);
-                NbLevel = Entity.GetAllEntities().Count;
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    ListLevel.Clear();
-                    for (int i = 0; i < NbLevel; i++)
-                    {
-                        ListLevel.Add(i);
-                    }
-                });
-
+            
             _fileWatcher.EnableRaisingEvents = true; // Active la surveillance
         }
 
@@ -215,7 +176,7 @@ namespace Bricks_Interfaces.ViewModels
         {
             dragging = false;
 
-            Entity.SaveEntities(Entities, RenduStatiqueViewModel.CurrentLevel);
+            Entity.SaveEntities(Entities, CurrentLevel_name);
         }
 
         public void OpenEntityMenu(Entity entity)
