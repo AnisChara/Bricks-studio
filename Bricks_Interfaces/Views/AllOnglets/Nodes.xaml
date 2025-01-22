@@ -19,7 +19,7 @@
             </WrapPanel>
         </StackPanel>
         <StackPanel Background="Bisque" Grid.Column="1">
-            <TextBlock Text="Onglet Nodes" FontSize="20" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="Onglet Briques" FontSize="20" HorizontalAlignment="Center"></TextBlock>
             <DataGrid ItemsSource="{Binding Nodes}" Height="auto" Width="auto" AutoGenerateColumns="False" IsReadOnly="True" BorderThickness="0" BorderBrush="Transparent" >
                 
                 <DataGrid.Columns>
@@ -41,7 +41,7 @@
 
             <TextBox Text="{Binding Node_name}" Width="100" Height="20" Margin="5" />
 
-                <Button Content="Add node" Width="auto" Height="auto" Command="{Binding DataContext.AddNodeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"></Button>
+                <Button Content="Créer une brique" Width="auto" Height="auto" Command="{Binding DataContext.AddNodeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

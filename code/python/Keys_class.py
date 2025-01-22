@@ -1,7 +1,7 @@
 class Keys():
 
     ESPACE = False
-    ENTREE = False
+    ENTRE = False
     BACKSPACE = False
     TAB = False
     CAPSLOCK = False

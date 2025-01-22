@@ -54,8 +54,8 @@ namespace Bricks_Interfaces.ViewModels
                 id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
-                width: 50,
-                height: 50,
+                width: 100,
+                height: 100,
                 speed: 5,
                 is_collidable: true,
                 shape: "square",
@@ -123,8 +123,8 @@ namespace Bricks_Interfaces.ViewModels
                 id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
-                width: 50,
-                height: 50,
+                width: 100,
+                height: 100,
                 speed: 5,
                 is_collidable: true,
                 shape: "square",
@@ -157,15 +157,15 @@ namespace Bricks_Interfaces.ViewModels
                 id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
-                width: 50,
-                height: 50,
+                width: 100,
+                height: 100,
                 speed: 5,
                 is_collidable: false,
                 shape: "square",
                 weight: 10,
                 render: true,
                 has_weapon: false,
-                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\téléchargement.jpg"
+                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\soleil.png"
 
             );
             newEntity.x *= 0.584;

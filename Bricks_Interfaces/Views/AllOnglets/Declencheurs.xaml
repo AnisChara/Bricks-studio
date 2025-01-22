@@ -23,13 +23,13 @@
                                 CommandParameter="{Binding}" 
                                 Width="70" 
                                 Height="30"
-                                FontSize="15">
+                                FontSize="12">
                                 <Button.ToolTip>
                                     <ToolTip Content="{Binding Description}" />
                                 </Button.ToolTip>
                             </Button>
 
-                            <ComboBox Width="30" FontSize="20" Height="auto"
+                            <ComboBox Width="30" FontSize="12" Height="auto"
                                  SelectedItem="{Binding Parameter_value}"
                                  ItemsSource="{Binding Available_parameter_values}" 
                                  Visibility="{Binding Show_list}">

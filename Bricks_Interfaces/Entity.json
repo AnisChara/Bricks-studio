@@ -4,6 +4,108 @@
     "Entities": [
       {
         "type": "Player",
+        "x": 0.19999999999998863,
+        "y": 0.37333333333332774,
+        "width": 62.5,
+        "height": 62.5,
+        "color": null,
+        "id": "Player",
+        "margin": {
+          "Left": 0.19999999999998863,
+          "Top": 0.37333333333332774,
+          "Right": 0,
+          "Bottom": 0
+        },
+        "speed": 10,
+        "is_collidable": true,
+        "shape": "square",
+        "render": true,
+        "has_weapon": true,
+        "max_health": 100,
+        "weight": 10,
+        "damage": null,
+        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
+      },
+      {
+        "type": "structure",
+        "x": 105.00000000000011,
+        "y": 207.04,
+        "width": 58.4,
+        "height": 51.5,
+        "color": null,
+        "id": "690a000c-fce8-44e7-b02c-1518477ccfce",
+        "margin": {
+          "Left": 105.00000000000011,
+          "Top": 207.04,
+          "Right": 0,
+          "Bottom": 0
+        },
+        "speed": 5,
+        "is_collidable": true,
+        "shape": "square",
+        "render": true,
+        "has_weapon": false,
+        "max_health": null,
+        "weight": 0,
+        "damage": null,
+        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\t\u00E9l\u00E9chargement.jpg"
+      },
+      {
+        "type": "offensive_structure",
+        "x": 205.66666666666674,
+        "y": 304.37333333333333,
+        "width": 58.4,
+        "height": 51.5,
+        "color": null,
+        "id": "7a0a30c4-321a-4221-b2b7-1482c1ef1201",
+        "margin": {
+          "Left": 205.66666666666674,
+          "Top": 304.37333333333333,
+          "Right": 0,
+          "Bottom": 0
+        },
+        "speed": 5,
+        "is_collidable": true,
+        "shape": "square",
+        "render": true,
+        "has_weapon": false,
+        "max_health": null,
+        "weight": 0,
+        "damage": 100,
+        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\images.png"
+      },
+      {
+        "type": "zone",
+        "x": 639.6666666666666,
+        "y": 303.70666666666665,
+        "width": 58.4,
+        "height": 51.5,
+        "color": null,
+        "id": "fb1e0eda-5016-4deb-bff4-9e6f0a4b439d",
+        "margin": {
+          "Left": 639.6666666666666,
+          "Top": 303.70666666666665,
+          "Right": 0,
+          "Bottom": 0
+        },
+        "speed": 5,
+        "is_collidable": false,
+        "shape": "square",
+        "render": true,
+        "has_weapon": false,
+        "max_health": null,
+        "weight": 10,
+        "damage": null,
+        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\soleil.png"
+      }
+    ],
+    "Background": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\Fond.jpg"
+  },
+  {
+    "Name": "niveau 1",
+    "Entities": [
+      {
+        "type": "Player",
         "x": 1.533333333333303,
         "y": 0.37333333333332774,
         "width": 62.5,
@@ -27,16 +129,16 @@
         "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
       },
       {
-        "type": "offensive_structure",
-        "x": 474.8666666666667,
-        "y": 29.706666666666656,
-        "width": 58.4,
-        "height": 341,
+        "type": "offensive_entity",
+        "x": 323.0000000000001,
+        "y": 65.03999999999999,
+        "width": 200,
+        "height": 200,
         "color": null,
-        "id": "1af7f90e-8aff-477b-b045-c0abf927d615",
+        "id": "e547e9cc-9ab8-4777-812b-7b80bf54dc9a",
         "margin": {
-          "Left": 474.8666666666667,
-          "Top": 29.706666666666656,
+          "Left": 323.0000000000001,
+          "Top": 65.03999999999999,
           "Right": 0,
           "Bottom": 0
         },
@@ -45,22 +147,22 @@
         "shape": "square",
         "render": true,
         "has_weapon": false,
-        "max_health": null,
-        "weight": 0,
+        "max_health": 100,
+        "weight": 10,
         "damage": 100,
-        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\images.png"
+        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\monster.png"
       },
       {
         "type": "zone",
-        "x": 265.5333333333333,
-        "y": 285.04,
-        "width": 29.2,
-        "height": 25.75,
+        "x": 664.3333333333334,
+        "y": 301.70666666666665,
+        "width": 58.4,
+        "height": 51.5,
         "color": null,
-        "id": "77c61cc5-5782-42fa-a362-54dda15c5833",
+        "id": "14b18f2d-a3a0-4d11-b539-8cd7d6f7dcba",
         "margin": {
-          "Left": 265.5333333333333,
-          "Top": 285.04,
+          "Left": 664.3333333333334,
+          "Top": 301.70666666666665,
           "Right": 0,
           "Bottom": 0
         },
@@ -72,7 +174,7 @@
         "max_health": null,
         "weight": 10,
         "damage": null,
-        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\t\u00E9l\u00E9chargement.jpg"
+        "image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\soleil.png"
       }
     ],
     "Background": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\Fond.jpg"

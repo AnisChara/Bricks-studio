@@ -43,7 +43,7 @@ class Game() :
         if event.key == pygame.K_TAB:
             Game.keys.TAB = True
         if event.key == pygame.K_RETURN:
-            Game.keys.ENTREE = True
+            Game.keys.ENTRE = True
         if event.key == pygame.K_PAUSE:
             Game.keys.PAUSE = True
         if event.key == pygame.K_ESCAPE:
