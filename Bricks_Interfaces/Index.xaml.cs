@@ -32,7 +32,7 @@ namespace Bricks_Interfaces
             // Synchroniser les dimensions et l'état de la fenêtre
             mainWindow.Width = 1280;
             mainWindow.Height = 720;
-            mainWindow.WindowState = this.WindowState;
+            mainWindow.WindowState = WindowState.Maximized;
 
             // Synchroniser la position de la fenêtre
             mainWindow.Left = 0;
@@ -53,7 +53,7 @@ namespace Bricks_Interfaces
             // Synchroniser les dimensions et l'état de la fenêtre
             mainWindow.Width = 1280;
             mainWindow.Height = 720;
-            mainWindow.WindowState = this.WindowState;
+            mainWindow.WindowState = WindowState.Maximized;
 
             // Synchroniser la position de la fenêtre
             mainWindow.Left = 0;

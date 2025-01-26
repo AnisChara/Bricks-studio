@@ -47,7 +47,7 @@ namespace Bricks_Interfaces.Models
 
         public Node(Mecanique mecanique, Declencheur declencheur, string name, double x = 0, double y = 0, double width = 70, double height = 35) : base(   name,  x,  y,  width,  height) { 
             
-            Image = "A:\\Code\\bricks-studio\\assets\\lego_jaune.png";
+            Image = "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png";
             this.Mecanique = mecanique;
             this.Declencheur = declencheur;
         }

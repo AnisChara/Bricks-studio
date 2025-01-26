@@ -33,7 +33,7 @@ namespace Bricks_Interfaces.Models
         public Declencheur(List<Event> events, string name, double x = 0, double y = 0, double width = 70, double height = 35) : base( name, x, y, width, height)
         {
             this.Events = events;
-            Image = "A:\\Code\\bricks-studio\\assets\\lego_bleu.png";
+            Image = "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png";
             this.x = x;
             this.y = y;
             width = 70;

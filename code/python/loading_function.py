@@ -12,19 +12,19 @@ def instance_entities(levels,level):
     for entity in levels[level]["Entities"]:
 
         if entity['type'] == 'structure':
-            instance = Structure(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['image'] )
+            instance = Structure(entity['id'], entity['x']*1.71, entity['y']*2.07, entity['width']*1.71, entity['height']*2.07,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['image'] )
             Game.entities.append(instance)
         elif entity['type'] == 'offensive_structure':
-            instance = Offensive_Structure(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['damage'],entity['image'])
+            instance = Offensive_Structure(entity['id'], entity['x']*1.71, entity['y']*2.07, entity['width']*1.71, entity['height']*2.07,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['damage'],entity['image'])
             Game.entities.append(instance)
         elif entity['type'] == 'offensive_entity':
-            instance = Offensive_Entity(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity["max_health"],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['damage'],entity['image'])
+            instance = Offensive_Entity(entity['id'], entity['x']*1.71, entity['y']*2.07, entity['width']*1.71, entity['height']*2.07,entity["max_health"],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['damage'],entity['image'])
             Game.entities.append(instance)
         elif entity['type'] == 'zone':
-            instance = Structure(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['image'],True)
+            instance = Structure(entity['id'], entity['x']*1.71, entity['y']*2.07, entity['width']*1.71, entity['height']*2.07,entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'], entity['render'],entity['image'],True)
             Game.entities.append(instance)
         elif entity['type'] == 'Player':
-            Player = Pawn(entity['id'], entity['x']/0.584, entity['y']/0.515, entity['width']/0.584, entity['height']/0.515,entity['max_health'],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'],entity['image'])
+            Player = Pawn(entity['id'], entity['x']*1.71, entity['y']*2.07, entity['width']*1.71, entity['height']*2.07,entity['max_health'],entity['speed'],entity['is_collidable'] , entity['shape'],entity['weight'],entity['image'])
             Game.entities.append(Player)
             Player.set_weapon()
         if entity["has_weapon"]:
