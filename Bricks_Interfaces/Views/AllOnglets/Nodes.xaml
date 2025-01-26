@@ -7,41 +7,74 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
-        <StackPanel Background="AliceBlue" Grid.Column="0">
-            <WrapPanel Name="ListNode">
 
-            </WrapPanel>
-        </StackPanel>
-        <StackPanel Background="Bisque" Grid.Column="1">
-            <TextBlock Text="Onglet Briques" FontSize="20" HorizontalAlignment="Center"></TextBlock>
-            <DataGrid ItemsSource="{Binding Nodes}" Height="auto" Width="auto" AutoGenerateColumns="False" IsReadOnly="True" BorderThickness="0" BorderBrush="Transparent" >
-                
-                <DataGrid.Columns>
-                    <!-- Affiche la propriété Name -->
-                    <DataGridTemplateColumn Width="220">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Name}" Width="65" Background="LightPink" FontSize="15"></TextBlock>
-                                    <TextBlock Text="{Binding Declencheur.Name}" Width="65" Background="LightBlue" FontSize="15"></TextBlock>
-                                    <TextBlock Text="{Binding Mecanique.Name}" Width="65" Background="LightSalmon" FontSize="15"></TextBlock>
-                                    <Button Content="X" Background="Red" Width="25" Height="auto" Command="{Binding DataContext.DeleteNodeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Name}"></Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+    <Grid Width="auto" Height="auto" PreviewMouseMove="Button_PreviewMouseMove">
+            <!-- Grille de fond -->
+            <ItemsControl ItemsSource="{Binding Nodes}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
+                                PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" Content="{Binding Name}">
+                        <Button.Background>
+                                <ImageBrush ImageSource="{Binding Image}" />
+                            </Button.Background>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        <ItemsControl ItemsSource="{Binding Declencheurs}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
+        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" Content="{Binding Name}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="{Binding Image}" />
+                        </Button.Background>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <ItemsControl ItemsSource="{Binding Mecaniques}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
+        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" Content="{Binding Name}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="{Binding Image}" />
+                        </Button.Background>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
-            <TextBox Text="{Binding Node_name}" Width="100" Height="20" Margin="5" />
-
-                <Button Content="Créer une brique" Width="auto" Height="auto" Command="{Binding DataContext.AddNodeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"></Button>
-        </StackPanel>
     </Grid>
 </UserControl>
