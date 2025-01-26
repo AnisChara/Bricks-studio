@@ -101,27 +101,14 @@ namespace Bricks_Interfaces.ViewModels
 
             if (!string.IsNullOrEmpty(name) && Mecanique.Count() > 0)
             {
-                string json = System.IO.File.ReadAllText("../../../Nodes.json");
-                ObservableCollection<Node> Nodes = new ObservableCollection<Node>(JsonSerializer.Deserialize<List<Node>>(json));
 
-                if (Nodes.Count <= 0)
-                {
-                    MessageBox.Show("Veuillez d'abord créer un noeud");
-                    return;
-                }
-
-                if (Nodes[Nodes.Count - 1].Mecanique != null)
-                {
-                    MessageBox.Show("Une mecanique est deja dans le dernier noeud");
-                    return;
-                }
+                ObservableCollection<Models.Mecanique> Mecaniques = Models.Mecanique.GetMecaniques();
 
                 Final_mecanique = new Models.Mecanique(Mecanique.ToList(), name);
                 ClearMecanique(parameter);
-                Nodes[Nodes.Count - 1].Mecanique = Final_mecanique;
+                Mecaniques.Add(Final_mecanique);
 
-                json = JsonSerializer.Serialize(Nodes, new JsonSerializerOptions { WriteIndented = true });
-                System.IO.File.WriteAllText("../../../Nodes.json", json);
+                Models.Mecanique.SaveMecaniques(Mecaniques);
 
             }
             else
