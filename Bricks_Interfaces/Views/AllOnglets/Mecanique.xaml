@@ -48,13 +48,34 @@
         <StackPanel Background="Beige" Grid.Column="1" Name="board">
             <TextBlock Text="Onglet Mécanique" FontSize="20" HorizontalAlignment="Center"/>
             <Grid>
-                <DataGrid ItemsSource="{Binding Mecanique}" Height="auto" Width="auto" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid ItemsSource="{Binding Mecanique}" Height="Auto" Width="Auto" AutoGenerateColumns="False" IsReadOnly="True" 
+          GridLinesVisibility="None" HorizontalGridLinesBrush="Transparent" VerticalGridLinesBrush="Transparent"
+          Background="#f4f4f4" BorderBrush="#cccccc" BorderThickness="1" Padding="10" Margin="10" 
+          AlternatingRowBackground="#f9f9f9" SelectionMode="Single" SelectionUnit="FullRow"
+          RowBackground="White">
                     <DataGrid.Columns>
-                        <!-- Affiche la propriété Name -->
-                        <DataGridTextColumn Binding="{Binding Name}" Header="Action"/>
-                        <DataGridTextColumn Binding="{Binding Parameter_value}" Header="valeur"/>
+                        <!-- Colonne pour la propriété 'Name' -->
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Action" FontWeight="Bold" Foreground="#333333" 
+                             Width="Auto"/>
+                        <!-- Colonne pour la propriété 'Parameter_value' -->
+                        <DataGridTextColumn Binding="{Binding Parameter_value}" Header="Valeur" FontWeight="Bold" Foreground="#333333" 
+                            Width="Auto"/>
                     </DataGrid.Columns>
+
+                    <!-- Style pour l'en-tête -->
+                    <DataGrid.Resources>
+                        <Style x:Key="DataGridHeaderStyle" TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#2f4f7f"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Padding" Value="10,5"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGrid.Resources>
                 </DataGrid>
+
             </Grid>
             <TextBox Text="{Binding MecaniqueName}" Width="100" Height="20" Margin="5" />
             <Button Content="Confirmer" Width="100" Height="30" Margin="5" Command="{Binding ConfirmCommand}" CommandParameter="{Binding MecaniqueName}" />
