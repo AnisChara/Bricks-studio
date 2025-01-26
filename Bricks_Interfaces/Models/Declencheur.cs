@@ -12,34 +12,9 @@ using System.Text.Json;
 
 namespace Bricks_Interfaces.Models
 {
-    public class Declencheur: BaseNotifyPropertyChanged
+    public class Declencheur: Brick
     {
-        private string _image;
-        public string Image
-        {
-            get => _image;
-            set
-            {
-                if (_image != value)
-                {
-                    _image = value;
-                    OnPropertyChanged(nameof(Image));
-                }
-            }
-        }
-        private string _name;
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
-            }
-        }
+
 
         private List<Event> _events;
         public List<Event> Events
@@ -55,102 +30,15 @@ namespace Bricks_Interfaces.Models
             }
         }
 
-        private string _id;
-        public string id
+        public Declencheur(List<Event> events, string name, double x = 0, double y = 0, double width = 70, double height = 35) : base( name, x, y, width, height)
         {
-            get => _id;
-            set
-            {
-                if (_id != value)
-                {
-                    _id = value;
-                    OnPropertyChanged(nameof(id));
-                }
-            }
-        }
-
-        private Thickness _margin;
-        public Thickness margin
-        {
-            get => _margin;
-            set
-            {
-                if (_margin != value)
-                {
-                    _margin = value;
-                    OnPropertyChanged(nameof(margin)); // Notification de changement
-                }
-            }
-        }
-
-        private double _x;
-        public double x
-        {
-            get => _x;
-            set
-            {
-                if (_x != value)
-                {
-                    _x = value;
-                    OnPropertyChanged(nameof(x));
-                }
-            }
-        }
-
-        private double _y;
-        public double y
-        {
-            get => _y;
-            set
-            {
-                if (_y != value)
-                {
-                    _y = value;
-                    OnPropertyChanged(nameof(y));
-                }
-            }
-        }
-
-        private double _width;
-        public double width
-        {
-            get => _width;
-            set
-            {
-                if (_width != value)
-                {
-                    _width = value;
-                    OnPropertyChanged(nameof(width));
-                }
-            }
-        }
-
-        private double _height;
-        public double height
-        {
-            get => _height;
-            set
-            {
-                if (_height != value)
-                {
-                    _height = value;
-                    OnPropertyChanged(nameof(height));
-                }
-            }
-        }
-
-        public Declencheur(List<Event> events, string Name) {
-               
             this.Events = events;
-            this.Name = Name;
-            this.id = Guid.NewGuid().ToString();
-            Image = "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png";
+            Image = "A:\\Code\\bricks-studio\\assets\\lego_bleu.png";
             this.x = x;
             this.y = y;
             width = 70;
             height = 35;
             this.margin = new Thickness(x, y, 0, 0);
-
         }
         public static ObservableCollection<Declencheur> GetDeclencheurs()
         {
@@ -185,11 +73,9 @@ namespace Bricks_Interfaces.Models
             };
 
 
-            _fileWatcher.InternalBufferSize = 65536; // Taille du buffer en octets (64 Ko)
 
             _fileWatcher.Changed += (sender, e) =>
             {
-                // Lorsque le fichier JSON est modifié, rechargez les données
                 Nodes = Declencheur.GetDeclencheurs();
             };
             _fileWatcher.Renamed += (sender, e) =>
@@ -199,6 +85,23 @@ namespace Bricks_Interfaces.Models
 
             _fileWatcher.EnableRaisingEvents = true; // Active la surveillance
 
+        }
+
+        public static void SaveDeclencheurs(ObservableCollection<Declencheur> Levels)
+        {
+            bool succes = false;
+
+            while (!succes)
+            {
+                try
+                {
+                    string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
+                    System.IO.File.WriteAllText("../../../Declencheurs.json", json);
+                    succes = true;
+
+                }
+                catch (Exception e) { }
+            }
         }
     }
 

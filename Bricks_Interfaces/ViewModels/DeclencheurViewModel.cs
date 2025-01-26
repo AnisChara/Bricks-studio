@@ -102,31 +102,19 @@ namespace Bricks_Interfaces.ViewModels
 
             if (!string.IsNullOrEmpty(name) && Declencheur.Count() > 0)
             {
-                string json = System.IO.File.ReadAllText("../../../Nodes.json");
-                ObservableCollection<Node> Nodes = new ObservableCollection<Node>(JsonSerializer.Deserialize<List<Node>>(json));
 
-                if (Nodes.Count <= 0)
-                {
-                    MessageBox.Show("Veuillez d'abord créer un noeud");
-                    return;
-                }
+                ObservableCollection<Models.Declencheur> Declencheurs = Models.Declencheur.GetDeclencheurs();
 
-                if (Nodes[Nodes.Count - 1].Declencheur != null)// le dernier node a deja un declencheur
-                {
-                    MessageBox.Show("Un Declencheur est deja dans le dernier noeud");
-                    return;
-                }
-
-                Final_declencheur = new Declencheur(Declencheur.ToList(), name);
+                Final_declencheur = new Models.Declencheur(Declencheur.ToList(), name);
                 ClearDeclencheur(parameter);
-                Nodes[Nodes.Count - 1].Declencheur = Final_declencheur;
+                Declencheurs.Add(Final_declencheur);
 
-                json = JsonSerializer.Serialize(Nodes, new JsonSerializerOptions { WriteIndented = true });
-                System.IO.File.WriteAllText("../../../Nodes.json", json);
+                Models.Declencheur.SaveDeclencheurs(Declencheurs);
+
             }
             else
             {
-                MessageBox.Show("Veuillez rentrez un nom et/ou un declencheur valide");
+                MessageBox.Show("Veuillez rentrez un nom et/ou une mecanique valide");
             }
         }
     }

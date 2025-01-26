@@ -11,34 +11,9 @@ using System.Windows;
 
 namespace Bricks_Interfaces.Models
 {
-    public class Mecanique : BaseNotifyPropertyChanged
+    public class Mecanique : Brick
     {
-        private string _image;
-        public string Image
-        {
-            get => _image;
-            set
-            {
-                if (_image != value)
-                {
-                    _image = value;
-                    OnPropertyChanged(nameof(Image));
-                }
-            }
-        }
-        private string _name;
-        public string Name
-        { 
-            get=> _name;
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
-            }
-        }
+
         private List<Action> _actions;
         public List<Action> Actions
         {
@@ -53,98 +28,12 @@ namespace Bricks_Interfaces.Models
             }
         }
 
-        private string _id;
-        public string id
+        public Mecanique(List<Action> actions, string name, double x = 0, double y = 0, double width = 70, double height= 35) : base(name, x, y, width, height)
         {
-            get => _id;
-            set
-            {
-                if (_id != value)
-                {
-                    _id = value;
-                    OnPropertyChanged(nameof(id));
-                }
-            }
-        }
-
-        private Thickness _margin;
-        public Thickness margin
-        {
-            get => _margin;
-            set
-            {
-                if (_margin != value)
-                {
-                    _margin = value;
-                    OnPropertyChanged(nameof(margin)); // Notification de changement
-                }
-            }
-        }
-
-        private double _x;
-        public double x
-        {
-            get => _x;
-            set
-            {
-                if (_x != value)
-                {
-                    _x = value;
-                    OnPropertyChanged(nameof(x));
-                }
-            }
-        }
-
-        private double _y;
-        public double y
-        {
-            get => _y;
-            set
-            {
-                if (_y != value)
-                {
-                    _y = value;
-                    OnPropertyChanged(nameof(y));
-                }
-            }
-        }
-
-        private double _width;
-        public double width
-        {
-            get => _width;
-            set
-            {
-                if (_width != value)
-                {
-                    _width = value;
-                    OnPropertyChanged(nameof(width));
-                }
-            }
-        }
-
-        private double _height;
-        public double height
-        {
-            get => _height;
-            set
-            {
-                if (_height != value)
-                {
-                    _height = value;
-                    OnPropertyChanged(nameof(height));
-                }
-            }
-        }
-
-        public Mecanique(List<Action> Actions , string name) { 
-            
-            this.Actions = Actions;
-            this.Name = name;
-            this.id = Guid.NewGuid().ToString();
+            this.Actions = actions;
+            Image = "A:\\Code\\bricks-studio\\assets\\lego_rouge.png";
             this.x = x;
             this.y = y;
-            Image = "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png";
             width = 70;
             height = 35;
             this.margin = new Thickness(x, y, 0, 0);
@@ -171,9 +60,9 @@ namespace Bricks_Interfaces.Models
             return Nodes;
         }
 
-        public static void InitializeFileWatcher(ObservableCollection<Mecanique> Nodes)
+        public static void InitializeFileWatcher(ObservableCollection<Mecanique> Mecaniques, FileSystemWatcher _fileWatcher )
         {
-            FileSystemWatcher _fileWatcher;
+            
 
             _fileWatcher = new FileSystemWatcher
             {
@@ -183,20 +72,31 @@ namespace Bricks_Interfaces.Models
             };
 
 
-            _fileWatcher.InternalBufferSize = 65536; // Taille du buffer en octets (64 Ko)
 
             _fileWatcher.Changed += (sender, e) =>
             {
-                // Lorsque le fichier JSON est modifié, rechargez les données
-                Nodes = Mecanique.GetMecaniques();
+                 Mecaniques = Models.Mecanique.GetMecaniques();  
             };
-            _fileWatcher.Renamed += (sender, e) =>
-                Nodes = Mecanique.GetMecaniques();
-            _fileWatcher.Created += (sender, e) =>
-                Nodes = Mecanique.GetMecaniques();
 
             _fileWatcher.EnableRaisingEvents = true; // Active la surveillance
 
+        }
+
+        public static void SaveMecaniques(ObservableCollection<Models.Mecanique> Levels)
+        {
+            bool succes = false;
+
+            while (!succes)
+            {
+                try
+                {
+                    string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
+                    System.IO.File.WriteAllText("../../../Mecaniques.json", json);
+                    succes = true;
+
+                }
+                catch (Exception e) { }
+            }
         }
     }
 

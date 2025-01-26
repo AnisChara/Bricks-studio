@@ -33,11 +33,21 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
-                                PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" Content="{Binding Name}">
-                        <Button.Background>
-                                <ImageBrush ImageSource="{Binding Image}" />
-                            </Button.Background>
-                        </Button>
+                                PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp">
+                        <Button.Content>
+                            <Grid>
+                                <Image Source="{Binding Image}" Stretch="Fill" />
+
+
+                                <Rectangle Fill="#5000FF00" Visibility="Hidden"/>
+
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                                <Grid.Background>
+                                    <SolidColorBrush Color="White"></SolidColorBrush>
+                                </Grid.Background>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -50,10 +60,20 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
-        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" Content="{Binding Name}">
-                        <Button.Background>
-                            <ImageBrush ImageSource="{Binding Image}" />
-                        </Button.Background>
+        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp">
+                        <Button.Content>
+                            <Grid>
+                                <Image Source="{Binding Image}" Stretch="Fill" />
+
+
+                                <Rectangle Fill="#5000FF00" Visibility="Collapsed"/>
+
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                                <Grid.Background>
+                                    <SolidColorBrush Color="White"></SolidColorBrush>
+                                </Grid.Background>
+                            </Grid>
+                        </Button.Content>
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -67,10 +87,20 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
-        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" Content="{Binding Name}">
-                        <Button.Background>
-                            <ImageBrush ImageSource="{Binding Image}" />
-                        </Button.Background>
+        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" >
+                        <Button.Content>
+                            <Grid>
+                                <Image Source="{Binding Image}" Stretch="Fill" />
+
+
+                                <Rectangle Fill="#5000FF00" Visibility="Hidden"/>
+
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                                <Grid.Background>
+                                    <SolidColorBrush Color="White"></SolidColorBrush>
+                                </Grid.Background>
+                            </Grid>
+                        </Button.Content>
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

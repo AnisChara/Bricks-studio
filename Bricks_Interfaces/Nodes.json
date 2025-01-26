@@ -1,78 +1,6 @@
 [
   {
-    "Name": "droite",
     "Mecanique": {
-      "Name": "droite 40",
-      "Actions": [
-        {
-          "Name": "Droite de ",
-          "Function": "Player.move(\u0027right\u0027, *)",
-          "Description": "Deplace le joeur de x pixel vers la droite",
-          "Available_parameter_values": null,
-          "Parameter_value": "40",
-          "Parameter_count": 1,
-          "Show_list": "Collapsed",
-          "Show_number": "Visible",
-          "Parameter_type": "number"
-        }
-      ]
-    },
-    "Declencheur": {
-      "Name": "d",
-      "Events": [
-        {
-          "Name": "press",
-          "Function": "keys[pygame.K_*]",
-          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
-          "Available_parameter_values": null,
-          "Parameter_value": "d",
-          "Parameter_count": 1,
-          "Show_list": "Visible",
-          "Show_number": "Collapsed",
-          "Parameter_type": "string"
-        }
-      ]
-    }
-  },
-  {
-    "Name": "gauche",
-    "Mecanique": {
-      "Name": "gauche 40",
-      "Actions": [
-        {
-          "Name": "Gauche de ",
-          "Function": "Player.move(\u0027left\u0027, *)",
-          "Description": "Deplace le joeur de x pixel vers la Gauche",
-          "Available_parameter_values": null,
-          "Parameter_value": "40",
-          "Parameter_count": 1,
-          "Show_list": "Collapsed",
-          "Show_number": "Visible",
-          "Parameter_type": "number"
-        }
-      ]
-    },
-    "Declencheur": {
-      "Name": "q",
-      "Events": [
-        {
-          "Name": "press",
-          "Function": "keys[pygame.K_*]",
-          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
-          "Available_parameter_values": null,
-          "Parameter_value": "q",
-          "Parameter_count": 1,
-          "Show_list": "Visible",
-          "Show_number": "Collapsed",
-          "Parameter_type": "string"
-        }
-      ]
-    }
-  },
-  {
-    "Name": "saut",
-    "Mecanique": {
-      "Name": "sauter 400",
       "Actions": [
         {
           "Name": "Sauter de",
@@ -85,10 +13,22 @@
           "Show_number": "Visible",
           "Parameter_type": "number"
         }
-      ]
+      ],
+      "Image": "A:\\Code\\bricks-studio\\assets\\lego_rouge.png",
+      "Name": "sauter 400",
+      "id": "213d6f60-8303-4f23-92fb-07addb4f4487",
+      "margin": {
+        "Left": 329,
+        "Top": 59.08,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 329,
+      "y": 59.08,
+      "width": 70,
+      "height": 35
     },
     "Declencheur": {
-      "Name": "espace",
       "Events": [
         {
           "Name": "Keydown",
@@ -101,42 +41,104 @@
           "Show_number": "Collapsed",
           "Parameter_type": "string"
         }
-      ]
-    }
+      ],
+      "Image": "A:\\Code\\bricks-studio\\assets\\lego_bleu.png",
+      "Name": "espace",
+      "id": "91d1deb1-a70c-476f-9514-a6dcf2ac112e",
+      "margin": {
+        "Left": 331,
+        "Top": 93.08,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 331,
+      "y": 93.08,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "A:\\Code\\bricks-studio\\assets\\lego_jaune.png",
+    "Name": "sauter 400",
+    "id": "d57ee721-3949-425a-bbce-2ce6663f2ea3",
+    "margin": {
+      "Left": 268,
+      "Top": 237.07999999999998,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 268,
+    "y": 237.07999999999998,
+    "width": 70,
+    "height": 35
   },
   {
-    "Name": "tir",
     "Mecanique": {
-      "Name": "tir 70",
       "Actions": [
         {
-          "Name": "Tirer un projectile",
-          "Function": "Player.weapon.shoot(50,50,*,10,None,0)",
-          "Description": "Tirer un projectile dans la direction du joueur",
+          "Name": "Fermer le jeu",
+          "Function": "Game.running = False",
+          "Description": "Ferme le jeu",
           "Available_parameter_values": null,
-          "Parameter_value": "70",
-          "Parameter_count": 1,
+          "Parameter_value": null,
+          "Parameter_count": 0,
           "Show_list": "Collapsed",
-          "Show_number": "Visible",
-          "Parameter_type": "number"
+          "Show_number": "Collapsed",
+          "Parameter_type": null
         }
-      ]
+      ],
+      "Image": "A:\\Code\\bricks-studio\\assets\\lego_rouge.png",
+      "Name": "fds",
+      "id": "997c5857-9d37-4bb7-ae03-4b0be8008c4f",
+      "margin": {
+        "Left": 172,
+        "Top": 327.08,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 172,
+      "y": 327.08,
+      "width": 70,
+      "height": 35
     },
     "Declencheur": {
-      "Name": "a",
       "Events": [
         {
           "Name": "Keydown",
           "Function": "Game.keys.* == True",
           "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
           "Available_parameter_values": null,
-          "Parameter_value": "A",
+          "Parameter_value": "ESPACE",
           "Parameter_count": 1,
           "Show_list": "Visible",
           "Show_number": "Collapsed",
           "Parameter_type": "string"
         }
-      ]
-    }
+      ],
+      "Image": "A:\\Code\\bricks-studio\\assets\\lego_bleu.png",
+      "Name": "espace",
+      "id": "91d1deb1-a70c-476f-9514-a6dcf2ac112e",
+      "margin": {
+        "Left": 169,
+        "Top": 361.08,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 169,
+      "y": 361.08,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "A:\\Code\\bricks-studio\\assets\\lego_jaune.png",
+    "Name": "fds",
+    "id": "6873012e-7497-4b9e-be24-f746a7ec344a",
+    "margin": {
+      "Left": 150,
+      "Top": 296.08,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 150,
+    "y": 296.08,
+    "width": 70,
+    "height": 35
   }
 ]

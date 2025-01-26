@@ -32,38 +32,38 @@ namespace Bricks_Interfaces.Views.AllOnglets
         {
             if (sender is Button button)
             {
-                var node = button.DataContext as Node; 
-                if (node != null)
+                var grid = button.Content as Grid;
+                // Récupérez l'entité liée via le DataContext
+                var entity = button.DataContext as Brick; // Remplacez YourEntityType par le type réel de vos entités
+                if (entity != null)
                 {
-                    ((NodeViewModel)this.DataContext).StartDrag(node);
-                    return;
-                }
-                var meca = button.DataContext as Mecanique;
-                if (meca != null)
-                {
-                    ((NodeViewModel)this.DataContext).StartDrag(meca);
-                    return;
-                }
-                var decl = button.DataContext as Declencheur;
-                if (decl != null)
-                {
-                    ((NodeViewModel)this.DataContext).StartDrag(decl);
-                    return;
+                    ((NodeViewModel)this.DataContext).StartDrag(entity,button,grid.Children.OfType<Rectangle>().FirstOrDefault());
                 }
             }
         }
 
         private void Button_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            Grid sen = (Grid)sender;
             Point _startPoint = e.GetPosition(sender as Grid);
 
-            ((NodeViewModel)this.DataContext).ActualiseDrag(_startPoint, sen.ActualWidth, sen.ActualHeight);
+            ((NodeViewModel)this.DataContext).ActualiseDrag(_startPoint, this.ActualWidth, this.ActualHeight);
         }
 
         private void Button_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             ((NodeViewModel)this.DataContext).StopDrag();
+        }
+        private void Button_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                // Récupérez l'entité liée via le DataContext
+                var entity = button.DataContext as Brick; // Remplacez YourEntityType par le type réel de vos entités
+                if (entity != null)
+                {
+                    ((NodeViewModel)this.DataContext).DeleteNode(entity);
+                }
+            }
         }
     }
 }
