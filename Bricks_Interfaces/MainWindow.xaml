@@ -41,6 +41,7 @@
                 <StackPanel Grid.Column="1">
                     <WrapPanel>
                         <Button Content="Lancer le jeu" Margin="2" Width="80" HorizontalAlignment="Left" Command="{Binding CompileCommand}"/>
+                        <CheckBox Content="Gravité" IsChecked="{Binding Gravity}" Margin="5"></CheckBox>
                     </WrapPanel>
                 </StackPanel>
             </Grid>

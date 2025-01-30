@@ -249,10 +249,24 @@ namespace Bricks_Interfaces.Models
                 }
             }
         }
+
+        private bool _track;
+        public bool Track
+        {
+            get => _track;
+            set
+            {
+                if (_track != value)
+                {
+                    _track = value;
+                    OnPropertyChanged(nameof(Track));
+                }
+            }
+        }
         public Entity () { } // pour le json
 
 
-        public Entity(string type, string id, double x, double y, double width, double height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon, int? max_health = null, int? damage = null, string image = null)
+        public Entity(string type, string id, double x, double y, double width, double height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon, int? max_health = null, int? damage = null, string image = null, bool Track = false)
         {
             this.type = type;
             this.id = id;

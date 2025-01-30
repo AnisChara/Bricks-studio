@@ -1,0 +1,78 @@
+﻿<Window x:Class="Bricks_Interfaces.Views.MenuBrick"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bricks_Interfaces.Views"
+        mc:Ignorable="d"
+        Height="350" Width="250"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border Background="White" CornerRadius="10" Padding="10" BorderBrush="#2f4f7f" BorderThickness="2" Effect="{DynamicResource ShadowEffect}">
+        <Grid Margin="10">
+            <StackPanel>
+
+                <!-- DataGrid Actions -->
+                <DataGrid ItemsSource="{Binding Actions}" Height="Auto" Width="Auto" AutoGenerateColumns="False" IsReadOnly="True" 
+                          GridLinesVisibility="None" HorizontalGridLinesBrush="Transparent" VerticalGridLinesBrush="Transparent"
+                          Background="White" BorderBrush="#cccccc" BorderThickness="1" Padding="10" Margin="5"
+                          AlternatingRowBackground="#f9f9f9" SelectionMode="Single" SelectionUnit="FullRow"
+                          RowBackground="White" Visibility="{Binding ActionVisibility}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Action" FontWeight="Bold" Foreground="#2f4f7f" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Parameter_value}" Header="Valeur" FontWeight="Bold" Foreground="#333333" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- DataGrid Events -->
+                <DataGrid ItemsSource="{Binding Events}" Height="Auto" Width="Auto" AutoGenerateColumns="False" IsReadOnly="True" 
+                          GridLinesVisibility="None" HorizontalGridLinesBrush="Transparent" VerticalGridLinesBrush="Transparent"
+                          Background="White" BorderBrush="#cccccc" BorderThickness="1" Padding="10" Margin="5"
+                          AlternatingRowBackground="#f9f9f9" SelectionMode="Single" SelectionUnit="FullRow"
+                          RowBackground="White" Visibility="{Binding EventVisibility}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Événement" FontWeight="Bold" Foreground="#2f4f7f" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Parameter_value}" Header="Valeur" FontWeight="Bold" Foreground="#333333" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Boutons stylisés -->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+                    <Button Content="Supprimer" Width="120" Margin="5" Click="DeleteButton_Click"/>
+                    <Button Content="Séparer" Width="120" Margin="5" Click="SplitButton_Click" Visibility="{Binding SplitVisibility}" />
+                    <Button Content="Annuler" Width="120" Margin="5" Click="CancelButton_Click" />
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+
+    <Window.Resources>
+        <!-- Effet d'ombre -->
+        <DropShadowEffect x:Key="ShadowEffect" BlurRadius="10" Color="Black" Opacity="0.3" ShadowDepth="5"/>
+
+        <!-- Style des boutons -->
+        <Style x:Key="StyledButton" TargetType="Button">
+            <Setter Property="Background" Value="#2f4f7f"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Effect" Value="{StaticResource ShadowEffect}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+</Window>

@@ -124,7 +124,7 @@ namespace Bricks_Interfaces.Models
                 (
                     "Sauter de",
                     "Player.jump(*)",
-                    "Sauter",
+                    "Sauter de x pixel",
                     null,
                     1,
                     "number"
@@ -132,8 +132,44 @@ namespace Bricks_Interfaces.Models
                 new Action
                 (
                     "Tirer un projectile",
-                    "Player.weapon.shoot(50,50,*,10,None,0)",
-                    "Tirer un projectile dans la direction du joueur",
+                    "Player.weapon.shoot(50,50,70,*,None,0)",
+                    "Tirer un projectile de x dégats dans la direction du joueur",
+                    null,
+                    1,
+                    "number"
+                ),
+                new Action
+                (
+                    "Tirer en haut",
+                    "Player.weapon.shoot(50,50,70,*,'top',0)",
+                    "Tirer un projectile de x dégats vers le haut",
+                    null,
+                    1,
+                    "number"
+                ),
+                new Action
+                (
+                    "Tirer en bas",
+                    "Player.weapon.shoot(50,50,70,*,'bottom,0)",
+                    "Tirer un projectile de x dégats vers le bas",
+                    null,
+                    1,
+                    "number"
+                ),
+                new Action
+                (
+                    "Tirer à gauche",
+                    "Player.weapon.shoot(50,50,70,*,'left',0)",
+                    "Tirer un projectile de x dégats vers la gauche",
+                    null,
+                    1,
+                    "number"
+                ),
+                new Action
+                (
+                    "Tirer à droite",
+                    "Player.weapon.shoot(50,50,70,*,'right',0)",
+                    "Tirer un projectile de x dégats vers la droite",
                     null,
                     1,
                     "number"

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace Bricks_Interfaces.ViewModels
@@ -62,7 +63,8 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 0,
                 render: true,
                 has_weapon: false,
-                image : "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\téléchargement.jpg"
+                image : "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\téléchargement.jpg",
+                Track : false
             );
             newEntity.x *= 0.584;
             newEntity.y *= 0.515;
@@ -96,7 +98,8 @@ namespace Bricks_Interfaces.ViewModels
                 render: true,
                 has_weapon: false,
                 damage:100,
-                image : "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\images.png"
+                image : "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\images.png",
+                Track: false
 
             );
             newEntity.x *= 0.584;
@@ -133,7 +136,8 @@ namespace Bricks_Interfaces.ViewModels
                 has_weapon: false,
                 max_health:100,
                 damage:100,
-                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\monster.png"
+                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\monster.png",
+                Track: false
 
             );
             newEntity.x *= 0.584;
@@ -165,7 +169,8 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 10,
                 render: true,
                 has_weapon: false,
-                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\soleil.png"
+                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\flag.png",
+                Track: false
 
             );
             newEntity.x *= 0.584;
@@ -211,8 +216,9 @@ namespace Bricks_Interfaces.ViewModels
                 max_health: 100,
                 weight: 10,
                 damage: null,
-                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png"
-                
+                image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\mario.png",
+                Track: false
+
             );
 
             ObservableCollection<Entity> Entitylevel = new ObservableCollection<Entity>();

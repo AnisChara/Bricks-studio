@@ -32,6 +32,7 @@ class Entity(pygame.sprite.Sprite) :
         self.is_jumping = False
         self.is_falling = False
         self.falling_speed = 0
+        self.sens = "right"
 
 
 
@@ -47,7 +48,7 @@ class Entity(pygame.sprite.Sprite) :
 
     def move(self,direction,speed = None):
 
-        if speed is None: speed = self.speed
+        if speed is None: speed = self.speed*10
         else: speed *= 10
 
         collide = self.collision.is_colliding_any()
@@ -55,13 +56,21 @@ class Entity(pygame.sprite.Sprite) :
         if direction == "left":
             if not (collide and direction in collide):
                 self.rect.x -= speed * Game.dt
-                self.direction = direction
+                if not self.direction == direction:
+                    self.direction = direction
+                    if self.sens == 'right' : 
+                        self.image = pygame.transform.flip(self.image, True, False)
+                        self.sens = 'left'
             else: 
                 self.rect.x = collide[collide.index(direction)-1].rect.x + collide[collide.index(direction)-1].rect.width+1
         if direction == "right":
             if not (collide and direction in collide):
                 self.rect.x += speed * Game.dt
-                self.direction = direction
+                if not self.direction == direction:
+                    self.direction = direction
+                    if self.sens == 'left' :
+                        self.image = pygame.transform.flip(self.image, True, False)
+                        self.sens = 'right'
             else:
                 self.rect.x = collide[collide.index(direction)-1].rect.x-1 - self.rect.width
         if direction == "top":

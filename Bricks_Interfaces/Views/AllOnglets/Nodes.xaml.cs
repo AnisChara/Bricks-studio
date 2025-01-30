@@ -61,7 +61,8 @@ namespace Bricks_Interfaces.Views.AllOnglets
                 var entity = button.DataContext as Brick; // Remplacez YourEntityType par le type réel de vos entités
                 if (entity != null)
                 {
-                    ((NodeViewModel)this.DataContext).DeleteNode(entity);
+                    bool FullVisibility = entity is Node;
+                    ((NodeViewModel)this.DataContext).OpenBrickMenu(entity);
                 }
             }
         }
