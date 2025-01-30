@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="DoubleClick" Height="300" Width="150"
         WindowStyle="None">
-    <Grid Margin="20">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -22,24 +25,33 @@
         </Grid.ColumnDefinitions>
 
         <!-- Champ Width -->
-        <TextBlock Text="Width:" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBlock Text="Largeur:" VerticalAlignment="Center" Margin="0,5"/>
         <TextBox Grid.Column="1" Margin="5" Text="{Binding Entity.width, UpdateSourceTrigger=PropertyChanged}"/>
 
         <!-- Champ Height -->
-        <TextBlock Text="Height:" Grid.Row="1" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBlock Text="Hauteur:" Grid.Row="1" VerticalAlignment="Center" Margin="0,5"/>
         <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding Entity.height, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Poids:" Grid.Row="2" VerticalAlignment="Center" Margin="0,5"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Text="{Binding Entity.weight, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Text="Dégats:" Grid.Row="3" VerticalAlignment="Center" Margin="0,5"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Text="{Binding Entity.damage, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Dégats:" Grid.Row="3" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding DamageVisibility}" />
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Text="{Binding Entity.damage, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding DamageVisibility}"/>
+        
+        <TextBlock Text="Vitesse:" Grid.Row="4" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding SpeedVisibility}" />
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding Entity.speed, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding SpeedVisibility}"/>
 
-        <TextBlock Text="Image:" Grid.Row="4" VerticalAlignment="Center" Margin="0,5"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding Entity.image, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Track :" Grid.Row="5" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding TrackVisibility}" />
+        <CheckBox IsChecked="{Binding Entity.Track}" Grid.Column="1" Grid.Row="5" Margin="5"  Visibility="{Binding TrackVisibility}"/>
+
+        <TextBlock Text="Vie :" Grid.Row="6" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding HealthVisibility}" />
+        <TextBox Grid.Column="1" Grid.Row="6" Margin="5" Text="{Binding Entity.max_health, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding HealthVisibility}"/>
+
+        <TextBlock Text="Image:" Grid.Row="7" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox Grid.Column="1" Grid.Row="7" Margin="5" Text="{Binding Entity.image, UpdateSourceTrigger=PropertyChanged}"/>
 
         <!-- Boutons -->
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+        <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
             <Button Content="Sauvegarder" Width="100" Margin="5" Click="SaveButton_Click"/>
             <Button Content="Supprimer" Width="100" Margin="5" Click="DeleteButton_Click"/>
             <Button Content="Annuler" Width="100" Margin="5" Click="CancelButton_Click"/>

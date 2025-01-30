@@ -32,16 +32,20 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
-                                PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp">
+                        <Button  Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
+                                PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" CommandParameter="{Binding .}">
                         <Button.Content>
                             <Grid>
-                                <Image Source="{Binding Image}" Stretch="Fill" />
-
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <Image Source="C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png" 
+                                   Stretch="Fill" Width="70" Height="35" Margin="0 0 0 -78"/>
+                                    <Image Source="C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png" 
+                                   Stretch="Fill" Width="70" Height="35"/>
+                                </StackPanel>
 
                                 <Rectangle Fill="#5000FF00" Visibility="Hidden"/>
 
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Margin="0 30 0 0"/>
                                 <Grid.Background>
                                     <SolidColorBrush Color="White"></SolidColorBrush>
                                 </Grid.Background>
@@ -60,7 +64,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
-        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp">
+        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" CommandParameter="{Binding .}">
                         <Button.Content>
                             <Grid>
                                 <Image Source="{Binding Image}" Stretch="Fill" />
@@ -68,7 +72,7 @@
 
                                 <Rectangle Fill="#5000FF00" Visibility="Collapsed"/>
 
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
                                 <Grid.Background>
                                     <SolidColorBrush Color="White"></SolidColorBrush>
                                 </Grid.Background>
@@ -87,7 +91,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
-        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" >
+        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" CommandParameter="{Binding .}">
                         <Button.Content>
                             <Grid>
                                 <Image Source="{Binding Image}" Stretch="Fill" />
@@ -95,7 +99,7 @@
 
                                 <Rectangle Fill="#5000FF00" Visibility="Hidden"/>
 
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
                                 <Grid.Background>
                                     <SolidColorBrush Color="White"></SolidColorBrush>
                                 </Grid.Background>

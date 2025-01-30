@@ -19,7 +19,7 @@ namespace Bricks_Interfaces.ViewModels
 {
     public class NodeViewModel : BaseNotifyPropertyChanged
     {
-        public ICommand DeleteNodeCommand { get; set; }
+        public static MenuBrick BrickMenu = null;
 
         public Brick selectedBrick;
         public bool dragging = false;
@@ -28,6 +28,7 @@ namespace Bricks_Interfaces.ViewModels
         public Declencheur DeclencheurToFuse;
         private FileSystemWatcher MecaWatcher;
         private FileSystemWatcher DeclWatcher;
+        private FileSystemWatcher NodeWatcher;
 
 
         private Button selectedButton;
@@ -82,8 +83,6 @@ namespace Bricks_Interfaces.ViewModels
 
 
         public NodeViewModel() {
-
-            DeleteNodeCommand = new RelayCommand(DeleteNode);
 
             InitializeFileWatcher("Mecaniques");
             InitializeFileWatcher("Declencheurs");
@@ -163,21 +162,27 @@ namespace Bricks_Interfaces.ViewModels
             }
         }
 
-        public void DeleteNode(object parameter)
+
+
+        public void OpenBrickMenu(Brick brick)
         {
-            if (parameter is Node) {
-                Nodes.Remove(parameter as Node);
-                Node.SaveNodes(Nodes);
+            if (BrickMenu != null)
+            {
+                MessageBox.Show("Un menu Brick est deja ouvert veuillez d'abord la fermer.");
+                return;
             }
-            if (parameter is Mecanique) {
-                Mecaniques.Remove(parameter as Mecanique);
-                Mecanique.SaveMecaniques(Mecaniques);
-            }
-            if (parameter is Declencheur) {
-                Declencheurs.Remove(parameter as Declencheur);
-                Declencheur.SaveDeclencheurs(Declencheurs);
-            }
-            
+
+            BrickMenu = new MenuBrick(brick);
+
+            // Synchroniser les dimensions et l'état de la fenêtre
+            BrickMenu.Width = 200;
+            BrickMenu.Height = 300;
+
+            // Synchroniser la position de la fenêtre
+            BrickMenu.Left = 700;
+            BrickMenu.Top = 200;
+
+            BrickMenu.Show();
         }
 
         private void Fuse(Declencheur Declencheur, Mecanique Mecanique)
@@ -190,45 +195,57 @@ namespace Bricks_Interfaces.ViewModels
 
         private void InitializeFileWatcher(string target)
         {
-            if (target == "Mecaniques")
+            MecaWatcher = new FileSystemWatcher
             {
-                MecaWatcher = new FileSystemWatcher
-                {
-                    Path = "../../../",
-                    Filter = "Mecaniques.json",
-                    NotifyFilter = NotifyFilters.LastWrite
-                };
+                Path = "../../../",
+                Filter = "Mecaniques.json",
+                NotifyFilter = NotifyFilters.LastWrite
+            };
 
 
-                MecaWatcher.InternalBufferSize = 65536; // Taille du buffer en octets (64 Ko)
+            MecaWatcher.InternalBufferSize = 65536; // Taille du buffer en octets (64 Ko)
 
-                MecaWatcher.Changed += (sender, e) =>
-                {
-                    Mecaniques = Models.Mecanique.GetMecaniques();
-                };
-
-                MecaWatcher.EnableRaisingEvents = true; // Active la surveillance
-            }
-            else if (target == "Declencheurs")
+            MecaWatcher.Changed += (sender, e) =>
             {
-                DeclWatcher = new FileSystemWatcher
+                Mecaniques = Models.Mecanique.GetMecaniques();
+            };
+
+            MecaWatcher.EnableRaisingEvents = true; // Active la surveillance
+
+            DeclWatcher = new FileSystemWatcher
+            {
+                Path = "../../../",
+                Filter = "Declencheurs.json",
+                NotifyFilter = NotifyFilters.LastWrite
+            };
+
+
+            DeclWatcher.InternalBufferSize = 65536; // Taille du buffer en octets (64 Ko)
+
+            DeclWatcher.Changed += (sender, e) =>
+            {
+                Declencheurs = Declencheur.GetDeclencheurs();
+            };
+
+            DeclWatcher.EnableRaisingEvents = true; // Active la surveillance
+
+            NodeWatcher = new FileSystemWatcher
+            {
+                Path = "../../../",
+                Filter = "Nodes.json",
+                NotifyFilter = NotifyFilters.LastWrite
+            };
+
+
+            NodeWatcher.InternalBufferSize = 65536; // Taille du buffer en octets (64 Ko)
+
+            NodeWatcher.Changed += (sender, e) =>
                 {
-                    Path = "../../../",
-                    Filter = "Declencheurs.json",
-                    NotifyFilter = NotifyFilters.LastWrite
+                    Nodes = Node.GetNodes();
                 };
 
-
-                DeclWatcher.InternalBufferSize = 65536; // Taille du buffer en octets (64 Ko)
-
-                DeclWatcher.Changed += (sender, e) =>
-                {
-                    Declencheurs = Declencheur.GetDeclencheurs();
-                };
-
-                DeclWatcher.EnableRaisingEvents = true; // Active la surveillance
-            }
-            
+            NodeWatcher.EnableRaisingEvents = true; // Active la surveillance
         }
+
     }
 }

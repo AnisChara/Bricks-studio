@@ -1,1 +1,357 @@
-[]
+[
+  {
+    "Mecanique": {
+      "Actions": [
+        {
+          "Name": "Gauche de ",
+          "Function": "Player.move(\u0027left\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers la Gauche",
+          "Available_parameter_values": null,
+          "Parameter_value": "40",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
+      "Name": "gauche",
+      "id": "f795c724-ab95-474e-b54f-9b3ed29aaf57",
+      "margin": {
+        "Left": 79,
+        "Top": 144.07999999999998,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 79,
+      "y": 144.07999999999998,
+      "width": 70,
+      "height": 35
+    },
+    "Declencheur": {
+      "Events": [
+        {
+          "Name": "Presser ",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuy\u00E9 sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "q",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png",
+      "Name": "q",
+      "id": "69959414-d574-4581-ab73-5dce8317461f",
+      "margin": {
+        "Left": 86.33333333333333,
+        "Top": 176.07999999999998,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 86.33333333333333,
+      "y": 176.07999999999998,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png",
+    "Name": "gauche",
+    "id": "8750135f-f547-4959-8b6d-46f660fa4b2f",
+    "margin": {
+      "Left": 172.33333333333331,
+      "Top": 217.4133333333333,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 172.33333333333331,
+    "y": 217.4133333333333,
+    "width": 70,
+    "height": 55
+  },
+  {
+    "Mecanique": {
+      "Actions": [
+        {
+          "Name": "Droite de ",
+          "Function": "Player.move(\u0027right\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers la droite",
+          "Available_parameter_values": null,
+          "Parameter_value": "40",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
+      "Name": "droite",
+      "id": "2a105b3f-b071-4fed-83dc-31096340bcd6",
+      "margin": {
+        "Left": 307.66666666666663,
+        "Top": 133.4133333333333,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 307.66666666666663,
+      "y": 133.4133333333333,
+      "width": 70,
+      "height": 35
+    },
+    "Declencheur": {
+      "Events": [
+        {
+          "Name": "press",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "d",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png",
+      "Name": "d",
+      "id": "88a39fd5-2f39-40fe-94ca-728e222f0332",
+      "margin": {
+        "Left": 325,
+        "Top": 168.07999999999998,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 325,
+      "y": 168.07999999999998,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png",
+    "Name": "droite",
+    "id": "60796d98-979a-4590-b9b7-aacf5c251d2e",
+    "margin": {
+      "Left": 307.66666666666663,
+      "Top": 133.4133333333333,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 307.66666666666663,
+    "y": 133.4133333333333,
+    "width": 70,
+    "height": 55
+  },
+  {
+    "Mecanique": {
+      "Actions": [
+        {
+          "Name": "Haut de ",
+          "Function": "Player.move(\u0027top\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers le Haut",
+          "Available_parameter_values": null,
+          "Parameter_value": "40",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
+      "Name": "haut",
+      "id": "9d18ba5f-ccb0-46bc-b6e3-25fa9ce38511",
+      "margin": {
+        "Left": 209,
+        "Top": 142.07999999999998,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 209,
+      "y": 142.07999999999998,
+      "width": 70,
+      "height": 35
+    },
+    "Declencheur": {
+      "Events": [
+        {
+          "Name": "Presser ",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuy\u00E9 sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "z",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png",
+      "Name": "z",
+      "id": "94e49c0c-3ec3-484f-9380-10693d1c66e6",
+      "margin": {
+        "Left": 210.33333333333331,
+        "Top": 108.08,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 210.33333333333331,
+      "y": 108.08,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png",
+    "Name": "haut",
+    "id": "457a5d2a-cf99-410c-b2bd-c0b118d8cbbb",
+    "margin": {
+      "Left": 209,
+      "Top": 142.07999999999998,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 209,
+    "y": 142.07999999999998,
+    "width": 70,
+    "height": 55
+  },
+  {
+    "Mecanique": {
+      "Actions": [
+        {
+          "Name": "Bas de ",
+          "Function": "Player.move(\u0027bottom\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers le Bas",
+          "Available_parameter_values": null,
+          "Parameter_value": "40",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
+      "Name": "bas",
+      "id": "fb7f0410-86e5-44c4-8249-d8dfa7131289",
+      "margin": {
+        "Left": 54.33333333333333,
+        "Top": 151.4133333333333,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 54.33333333333333,
+      "y": 151.4133333333333,
+      "width": 70,
+      "height": 35
+    },
+    "Declencheur": {
+      "Events": [
+        {
+          "Name": "Presser ",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuy\u00E9 sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "s",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png",
+      "Name": "s",
+      "id": "3a2b60bc-aaa4-48b0-845c-9e79bf00da7a",
+      "margin": {
+        "Left": 97.66666666666666,
+        "Top": 119.41333333333331,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 97.66666666666666,
+      "y": 119.41333333333331,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png",
+    "Name": "bas",
+    "id": "5795b626-728f-4b8d-94e9-0a3527275dd2",
+    "margin": {
+      "Left": 54.33333333333333,
+      "Top": 151.4133333333333,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 54.33333333333333,
+    "y": 151.4133333333333,
+    "width": 70,
+    "height": 55
+  },
+  {
+    "Mecanique": {
+      "Actions": [
+        {
+          "Name": "Tirer un projectile",
+          "Function": "Player.weapon.shoot(50,50,70,*,None,0)",
+          "Description": "Tirer un projectile de x d\u00E9gats dans la direction du joueur",
+          "Available_parameter_values": null,
+          "Parameter_value": "50",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
+      "Name": "Tir",
+      "id": "fb21c3e0-0da7-47b6-8231-da1fcb2ba205",
+      "margin": {
+        "Left": 357,
+        "Top": 265.4133333333333,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 357,
+      "y": 265.4133333333333,
+      "width": 70,
+      "height": 35
+    },
+    "Declencheur": {
+      "Events": [
+        {
+          "Name": "Presser ",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuy\u00E9 sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "a",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ],
+      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png",
+      "Name": "a",
+      "id": "df4b93b5-1089-43bd-a67b-c4f588f6d5c2",
+      "margin": {
+        "Left": 375.66666666666663,
+        "Top": 231.4133333333333,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 375.66666666666663,
+      "y": 231.4133333333333,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png",
+    "Name": "Tir",
+    "id": "7b1b7b86-f0e8-40fd-b1e0-c89d53744b4f",
+    "margin": {
+      "Left": 357,
+      "Top": 265.4133333333333,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 357,
+    "y": 265.4133333333333,
+    "width": 70,
+    "height": 55
+  }
+]

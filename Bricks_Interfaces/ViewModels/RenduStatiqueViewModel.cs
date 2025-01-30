@@ -192,7 +192,7 @@ namespace Bricks_Interfaces.ViewModels
 
             // Synchroniser les dimensions et l'état de la fenêtre
             entityMenu.Width = 200;
-            entityMenu.Height = 300;
+            entityMenu.Height = 350;
 
             // Synchroniser la position de la fenêtre
             entityMenu.Left = 700;

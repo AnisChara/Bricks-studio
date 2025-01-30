@@ -35,6 +35,7 @@ Game.entities.append(up_border)
 Game.entities.append(down_border)
 entities = Game.load_entities()
 level_max = len(entities)
+Gravity.is_gravity = False
 
 Player = instance_entities(entities,level)
 
@@ -54,11 +55,20 @@ while Game.running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]: 
       Game.running = False 
-    if Game.keys.E == True:
-        Game.running = False
+    if keys[pygame.K_q]:
+        Player.move('left', 40)
+        
+    if keys[pygame.K_d]:
+        Player.move('right', 40)
+        
+    if keys[pygame.K_z]:
+        Player.move('top', 40)
+        
+    if keys[pygame.K_s]:
+        Player.move('bottom', 40)
         
     if keys[pygame.K_a]:
-        Player.jump(400)
+        Player.weapon.shoot(50,50,70,50,None,0)
         
     if Player.finish() == True:
         Player,level = next_level(Player,level)
@@ -69,6 +79,7 @@ while Game.running:
     Game.check_alive()
     Offensive_Structure.handle_offensive_structures()
     Offensive_Entity.handle_offensive_entities()
+    Offensive_Entity.HandleTrackPlayer(Player)
 
     try:
         if Player.health <= 0:
