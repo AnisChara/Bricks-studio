@@ -6,21 +6,81 @@
         xmlns:local="clr-namespace:Bricks_Interfaces"
         mc:Ignorable="d"
         Title="Index" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="C:\Users\ASUS\Downloads\Bricks Studio Presentation.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid>
-        <TextBlock Text="Bienvenue sur Bricks Studio !" 
-                   FontSize="24" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Top" 
-                   Margin="0,20,0,0" />
+        <TextBlock Text="Bienvenue sur Bricks Studio !" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Foreground="White">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="#FF000000" Direction="320" ShadowDepth="10" BlurRadius="10" Opacity="0.8"/>
+            </TextBlock.Effect>
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0.8" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+        </TextBlock>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Content="Nouveau Projet" 
-                    Width="150" 
-                    Margin="10" 
-                    Click="OnNewProjectClick"/>
+                    Width="300" 
+                    Height="40" 
+                    Margin="10"
+                    Click="OnNewProjectClick"
+                    FontSize="20"
+                    FontWeight="Bold">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FFFFFF00"/>
+                        <Setter Property="BorderBrush" Value="#FFFF0000"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
             <Button Content="Ouvrir Projet" 
-                    Width="150" 
-                    Margin="10" 
-                    Click="OnOpenProjectClick"/>
+                    Width="300" 
+                    Height="40" 
+                    Margin="10"
+                    Click="OnOpenProjectClick"
+                    FontSize="20"
+                    FontWeight="Bold">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FFFF0000"/>
+                        <Setter Property="BorderBrush" Value="#FFFFFF00"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>
