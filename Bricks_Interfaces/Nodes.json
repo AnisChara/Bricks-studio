@@ -60,13 +60,13 @@
     "Name": "droite",
     "id": "80645d2e-8cc2-4a1e-a8d7-747a5092fcd0",
     "margin": {
-      "Left": 154.33333333333331,
-      "Top": 148.66666666666666,
+      "Left": 291.66666666666663,
+      "Top": 162.66666666666666,
       "Right": 0,
       "Bottom": 0
     },
-    "x": 154.33333333333331,
-    "y": 148.66666666666666,
+    "x": 291.66666666666663,
+    "y": 162.66666666666666,
     "width": 70,
     "height": 55
   },
@@ -202,13 +202,84 @@
     "Name": "bas",
     "id": "a2eb209d-46f0-4c93-aee4-608bb337f076",
     "margin": {
-      "Left": 342.3333333333333,
-      "Top": 128,
+      "Left": 232.33333333333331,
+      "Top": 307.3333333333333,
       "Right": 0,
       "Bottom": 0
     },
-    "x": 342.3333333333333,
-    "y": 128,
+    "x": 232.33333333333331,
+    "y": 307.3333333333333,
+    "width": 70,
+    "height": 55
+  },
+  {
+    "Mecanique": {
+      "Actions": [
+        {
+          "Name": "Tirer en haut",
+          "Function": "Player.weapon.shoot(50,50,70,*,\u0027top\u0027,0)",
+          "Description": "Tirer un projectile de x d\u00E9gats vers le haut",
+          "Available_parameter_values": null,
+          "Parameter_value": "50",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ],
+      "Image": "pack://application:,,,/Assets/lego_rouge.png",
+      "Name": "tir",
+      "id": "c5dcca3e-eb81-4b4f-bcf7-4add589f4843",
+      "margin": {
+        "Left": 33.666666666666664,
+        "Top": 124.66666666666666,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 33.666666666666664,
+      "y": 124.66666666666666,
+      "width": 70,
+      "height": 35
+    },
+    "Declencheur": {
+      "Events": [
+        {
+          "Name": "Appuyer sur",
+          "Function": "Game.keys.* == True",
+          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "A",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ],
+      "Image": "pack://application:,,,/Assets/lego_bleu.png",
+      "Name": "A",
+      "id": "6e12735b-e633-4ea1-ae74-cbdc9d7ccea3",
+      "margin": {
+        "Left": 39,
+        "Top": 159.33333333333331,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 39,
+      "y": 159.33333333333331,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "pack://application:,,,/Assets/lego_jaune.png",
+    "Name": "tir",
+    "id": "0f62ffde-080d-435a-96f9-f143c4fa07ec",
+    "margin": {
+      "Left": 33.666666666666664,
+      "Top": 124.66666666666666,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 33.666666666666664,
+    "y": 124.66666666666666,
     "width": 70,
     "height": 55
   },
@@ -259,27 +330,27 @@
       "Name": "z",
       "id": "580fa821-0a51-4e87-8cc4-ed2203bbad68",
       "margin": {
-        "Left": 57.66666666666666,
-        "Top": 74,
+        "Left": 50.33333333333333,
+        "Top": 76.66666666666666,
         "Right": 0,
         "Bottom": 0
       },
-      "x": 57.66666666666666,
-      "y": 74,
+      "x": 50.33333333333333,
+      "y": 76.66666666666666,
       "width": 70,
       "height": 35
     },
     "Image": "pack://application:,,,/Assets/lego_jaune.png",
     "Name": "haut",
-    "id": "ab4e5603-cf88-49fc-a5c5-411e56e13915",
+    "id": "d6951e15-4f7b-498d-a005-b2f9960ae58e",
     "margin": {
-      "Left": 322.3333333333333,
-      "Top": 221.33333333333331,
+      "Left": 48.33333333333333,
+      "Top": 42.66666666666666,
       "Right": 0,
       "Bottom": 0
     },
-    "x": 322.3333333333333,
-    "y": 221.33333333333331,
+    "x": 48.33333333333333,
+    "y": 42.66666666666666,
     "width": 70,
     "height": 55
   }

@@ -16,13 +16,17 @@ pygame.init()
 level = 0
 
 def next_level(Player,level):
-    level = (level + 1) % level_max
+    level = level +1
     Game.clean_entities()
+    if level == level_max :return Player,level
     Player = instance_entities(entities, level)
     return Player,level
 
-background = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/Fond.jpg")
-background = pygame.transform.scale(background,(1280,720))
+GameBackground = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/Fond.jpg")
+GameBackground = pygame.transform.scale(GameBackground,(1280,720))
+
+VictoryScreen = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/Victoire.png")
+VictoryScreen = pygame.transform.scale(VictoryScreen,(1280,720))
 
 left_border = Structure("left_border",-2147483646,-1,2147483646,2147483646,0,True,"square",0,False)
 right_border = Structure("right_border",Game.screen_width+1,-1,2147483646, 2147483646,0,True,"square",0,False)
@@ -38,8 +42,17 @@ level_max = len(entities)
 Gravity.is_gravity = False
 
 Player = instance_entities(entities,level)
+background = GameBackground
 
 while Game.running:
+    
+    if (level == level_max):
+        background = VictoryScreen
+        if Game.keys.ESPACE == True:
+            background = GameBackground
+            level = 0
+            Player = instance_entities(entities, level)
+
 
     Game.screen.blit(background, (0,0))
     Game.render()
@@ -64,11 +77,16 @@ while Game.running:
     if keys[pygame.K_s]:
         Player.move('bottom', 40)
         
+    if Game.keys.A == True:
+        Player.weapon.shoot(50,50,70,50,'top',0)
+        
     if keys[pygame.K_z]:
         Player.move('top', 40)
         
     if Player.finish() == True:
-        Player,level = next_level(Player,level)
+        if level < level_max:
+            Player,level = next_level(Player,level)
+
 
     Jump.handle_jump()
     Gravity.fall()
@@ -85,12 +103,7 @@ while Game.running:
     except AttributeError:
         pass
 
-    # flip() the display to put your work on screen
     pygame.display.flip()
-
-    # limits FPS to 60
-    # dt is delta time in seconds since last frame, used for framerate-
-    # independent physics.
     Game.dt = Game.clock.tick(60) / 1000
 
 pygame.quit()
