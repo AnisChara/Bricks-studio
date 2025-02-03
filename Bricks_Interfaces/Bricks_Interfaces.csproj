@@ -9,7 +9,49 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Bricks Studio Presentation.jpg" />
+    <None Remove="Assets\fireball.png" />
+    <None Remove="Assets\flag.png" />
+    <None Remove="Assets\Fond.jpg" />
+    <None Remove="Assets\images.png" />
+    <None Remove="Assets\lego_bleu.png" />
+    <None Remove="Assets\lego_rouge.png" />
+    <None Remove="Assets\mario.png" />
+    <None Remove="Assets\monster.png" />
+    <None Remove="Assets\téléchargement.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\net8.0-windows\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Bricks Studio Presentation.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\fireball.png" />
+    <Resource Include="Assets\flag.png" />
+    <Resource Include="Assets\Fond.jpg" />
+    <Resource Include="Assets\images.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\lego_bleu.png" />
+    <Resource Include="Assets\lego_rouge.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\mario.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\monster.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\téléchargement.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

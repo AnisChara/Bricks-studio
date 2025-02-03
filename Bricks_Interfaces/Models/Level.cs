@@ -18,7 +18,7 @@ namespace Bricks_Interfaces.Models
         public static string CurrentLevel = FirstLevel;
 
         public Level() { }
-        public Level(string Name,  ObservableCollection<Entity> Entitie, string Background = "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\Fond.jpg") {
+        public Level(string Name,  ObservableCollection<Entity> Entitie, string Background = "pack://application:,,,/Assets/Fond.jpg") {
         
             this.Name = Name;
             this.Entities = Entitie;

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Bricks Studio" Height="450" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\ASUS\Downloads\Bricks Studio Presentation.jpg" Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="Assets\Bricks Studio Presentation.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
         <TextBlock Text="Bienvenue sur Bricks Studio !" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Foreground="White">
