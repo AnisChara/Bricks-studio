@@ -266,7 +266,7 @@ namespace Bricks_Interfaces.Models
         public Entity () { } // pour le json
 
 
-        public Entity(string type, string id, double x, double y, double width, double height, int speed, bool is_collidable, string shape, int weight, bool render, bool has_weapon, int? max_health = null, int? damage = null, string image = null, bool Track = false)
+        public Entity(string type, string id, double x, double y, double width, double height, int speed, bool is_collidable, string shape, double weight, bool render, bool has_weapon, int? max_health = null, int? damage = null, string image = null, bool Track = false)
         {
             this.type = type;
             this.id = id;
@@ -284,6 +284,7 @@ namespace Bricks_Interfaces.Models
             this.damage = damage;
             this.color = color;
             this.image = image;
+            this.Track = Track;
         }
 
         public enum CollisionDirection
@@ -339,16 +340,23 @@ namespace Bricks_Interfaces.Models
         }
 
 
-        public (string,Entity) CheckAllCollision(ObservableCollection<Entity> Entities)
+        public (List<string>, List<Entity>) CheckAllCollision(ObservableCollection<Entity> Entities)
         {
+            List<string> directions = [];
+            List<Entity> Collisions = [];
+
             foreach (Entity entity in Entities)
             {
                 if (entity == this) continue;
                 var (result,direction) = this.CheckCollision(entity);
-                if (result) return (direction,entity);
+                if (result)
+                {
+                    directions.Add(direction);
+                    Collisions.Add(entity);
+                }
                 else continue;
             }
-            return ("none",null);
+            return (directions, Collisions);
         }
 
         public static Level GetLevel(string level_name)

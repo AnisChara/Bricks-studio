@@ -3,6 +3,77 @@
     "Mecanique": {
       "Actions": [
         {
+          "Name": "Droite de ",
+          "Function": "Player.move(\u0027right\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers la droite",
+          "Available_parameter_values": null,
+          "Parameter_value": "40",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ],
+      "Image": "pack://application:,,,/Assets/lego_rouge.png",
+      "Name": "droite",
+      "id": "f07ad8c2-ecc3-406d-86f0-f2c9f20aafaf",
+      "margin": {
+        "Left": 154.33333333333331,
+        "Top": 148.66666666666666,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 154.33333333333331,
+      "y": 148.66666666666666,
+      "width": 70,
+      "height": 35
+    },
+    "Declencheur": {
+      "Events": [
+        {
+          "Name": "Presser ",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuy\u00E9 sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "d",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ],
+      "Image": "pack://application:,,,/Assets/lego_bleu.png",
+      "Name": "d",
+      "id": "b712dca7-22b8-4e65-9687-db1f6e65961d",
+      "margin": {
+        "Left": 181,
+        "Top": 114,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 181,
+      "y": 114,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "pack://application:,,,/Assets/lego_jaune.png",
+    "Name": "droite",
+    "id": "80645d2e-8cc2-4a1e-a8d7-747a5092fcd0",
+    "margin": {
+      "Left": 154.33333333333331,
+      "Top": 148.66666666666666,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 154.33333333333331,
+    "y": 148.66666666666666,
+    "width": 70,
+    "height": 55
+  },
+  {
+    "Mecanique": {
+      "Actions": [
+        {
           "Name": "Gauche de ",
           "Function": "Player.move(\u0027left\u0027, *)",
           "Description": "Deplace le joeur de x pixel vers la Gauche",
@@ -14,17 +85,17 @@
           "Parameter_type": "number"
         }
       ],
-      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
+      "Image": "pack://application:,,,/Assets/lego_rouge.png",
       "Name": "gauche",
-      "id": "f795c724-ab95-474e-b54f-9b3ed29aaf57",
+      "id": "4e91237e-e824-4aba-aba8-0d77921c5fc6",
       "margin": {
         "Left": 79,
-        "Top": 144.07999999999998,
+        "Top": 210.66666666666663,
         "Right": 0,
         "Bottom": 0
       },
       "x": 79,
-      "y": 144.07999999999998,
+      "y": 210.66666666666663,
       "width": 70,
       "height": 35
     },
@@ -42,102 +113,31 @@
           "Parameter_type": "string"
         }
       ],
-      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png",
+      "Image": "pack://application:,,,/Assets/lego_bleu.png",
       "Name": "q",
-      "id": "69959414-d574-4581-ab73-5dce8317461f",
+      "id": "d9c73939-ccee-4176-9311-83f937443e7a",
       "margin": {
-        "Left": 86.33333333333333,
-        "Top": 176.07999999999998,
+        "Left": 62.33333333333333,
+        "Top": 240.66666666666663,
         "Right": 0,
         "Bottom": 0
       },
-      "x": 86.33333333333333,
-      "y": 176.07999999999998,
+      "x": 62.33333333333333,
+      "y": 240.66666666666663,
       "width": 70,
       "height": 35
     },
-    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png",
+    "Image": "pack://application:,,,/Assets/lego_jaune.png",
     "Name": "gauche",
-    "id": "8750135f-f547-4959-8b6d-46f660fa4b2f",
+    "id": "5a53b880-162a-48d2-9bf2-5bc4ab55588e",
     "margin": {
-      "Left": 43,
-      "Top": 230,
+      "Left": 79,
+      "Top": 210.66666666666663,
       "Right": 0,
       "Bottom": 0
     },
-    "x": 43,
-    "y": 230,
-    "width": 70,
-    "height": 55
-  },
-  {
-    "Mecanique": {
-      "Actions": [
-        {
-          "Name": "Haut de ",
-          "Function": "Player.move(\u0027top\u0027, *)",
-          "Description": "Deplace le joeur de x pixel vers le Haut",
-          "Available_parameter_values": null,
-          "Parameter_value": "40",
-          "Parameter_count": 1,
-          "Show_list": "Collapsed",
-          "Show_number": "Visible",
-          "Parameter_type": "number"
-        }
-      ],
-      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
-      "Name": "haut",
-      "id": "9d18ba5f-ccb0-46bc-b6e3-25fa9ce38511",
-      "margin": {
-        "Left": 209,
-        "Top": 142.07999999999998,
-        "Right": 0,
-        "Bottom": 0
-      },
-      "x": 209,
-      "y": 142.07999999999998,
-      "width": 70,
-      "height": 35
-    },
-    "Declencheur": {
-      "Events": [
-        {
-          "Name": "Presser ",
-          "Function": "keys[pygame.K_*]",
-          "Description": "l\u0027utilisateur reste appuy\u00E9 sur la touche d\u00E9sign\u00E9e",
-          "Available_parameter_values": null,
-          "Parameter_value": "z",
-          "Parameter_count": 1,
-          "Show_list": "Visible",
-          "Show_number": "Collapsed",
-          "Parameter_type": "string"
-        }
-      ],
-      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png",
-      "Name": "z",
-      "id": "94e49c0c-3ec3-484f-9380-10693d1c66e6",
-      "margin": {
-        "Left": 210.33333333333331,
-        "Top": 108.08,
-        "Right": 0,
-        "Bottom": 0
-      },
-      "x": 210.33333333333331,
-      "y": 108.08,
-      "width": 70,
-      "height": 35
-    },
-    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png",
-    "Name": "haut",
-    "id": "457a5d2a-cf99-410c-b2bd-c0b118d8cbbb",
-    "margin": {
-      "Left": 165,
-      "Top": 40.08,
-      "Right": 0,
-      "Bottom": 0
-    },
-    "x": 165,
-    "y": 40.08,
+    "x": 79,
+    "y": 210.66666666666663,
     "width": 70,
     "height": 55
   },
@@ -156,17 +156,17 @@
           "Parameter_type": "number"
         }
       ],
-      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
+      "Image": "pack://application:,,,/Assets/lego_rouge.png",
       "Name": "bas",
-      "id": "fb7f0410-86e5-44c4-8249-d8dfa7131289",
+      "id": "49a6743c-e01c-4b14-8f9f-9a944f803888",
       "margin": {
-        "Left": 54.33333333333333,
-        "Top": 151.4133333333333,
+        "Left": 8.333333333333332,
+        "Top": 32.66666666666666,
         "Right": 0,
         "Bottom": 0
       },
-      "x": 54.33333333333333,
-      "y": 151.4133333333333,
+      "x": 8.333333333333332,
+      "y": 32.66666666666666,
       "width": 70,
       "height": 35
     },
@@ -184,31 +184,31 @@
           "Parameter_type": "string"
         }
       ],
-      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png",
+      "Image": "pack://application:,,,/Assets/lego_bleu.png",
       "Name": "s",
-      "id": "3a2b60bc-aaa4-48b0-845c-9e79bf00da7a",
+      "id": "81d553a9-bebc-43da-90c5-f046c965cda2",
       "margin": {
-        "Left": 97.66666666666666,
-        "Top": 119.41333333333331,
+        "Left": 0,
+        "Top": 0,
         "Right": 0,
         "Bottom": 0
       },
-      "x": 97.66666666666666,
-      "y": 119.41333333333331,
+      "x": 0,
+      "y": 0,
       "width": 70,
       "height": 35
     },
-    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png",
+    "Image": "pack://application:,,,/Assets/lego_jaune.png",
     "Name": "bas",
-    "id": "5795b626-728f-4b8d-94e9-0a3527275dd2",
+    "id": "a2eb209d-46f0-4c93-aee4-608bb337f076",
     "margin": {
-      "Left": 54.33333333333333,
-      "Top": 151.4133333333333,
+      "Left": 342.3333333333333,
+      "Top": 128,
       "Right": 0,
       "Bottom": 0
     },
-    "x": 54.33333333333333,
-    "y": 151.4133333333333,
+    "x": 342.3333333333333,
+    "y": 128,
     "width": 70,
     "height": 55
   },
@@ -216,9 +216,9 @@
     "Mecanique": {
       "Actions": [
         {
-          "Name": "Droite de ",
-          "Function": "Player.move(\u0027right\u0027, *)",
-          "Description": "Deplace le joeur de x pixel vers la droite",
+          "Name": "Haut de ",
+          "Function": "Player.move(\u0027top\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers le Haut",
           "Available_parameter_values": null,
           "Parameter_value": "40",
           "Parameter_count": 1,
@@ -227,59 +227,59 @@
           "Parameter_type": "number"
         }
       ],
-      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
-      "Name": "droite",
-      "id": "2a105b3f-b071-4fed-83dc-31096340bcd6",
+      "Image": "pack://application:,,,/Assets/lego_rouge.png",
+      "Name": "haut",
+      "id": "5d3ae87b-be52-4b8f-867d-d127385bde02",
       "margin": {
-        "Left": 307.66666666666663,
-        "Top": 133.4133333333333,
+        "Left": 48.33333333333333,
+        "Top": 42.66666666666666,
         "Right": 0,
         "Bottom": 0
       },
-      "x": 307.66666666666663,
-      "y": 133.4133333333333,
+      "x": 48.33333333333333,
+      "y": 42.66666666666666,
       "width": 70,
       "height": 35
     },
     "Declencheur": {
       "Events": [
         {
-          "Name": "press",
+          "Name": "Presser ",
           "Function": "keys[pygame.K_*]",
-          "Description": "l\u0027utilisateur reste appuyer sur la touche d\u00E9sign\u00E9e",
+          "Description": "l\u0027utilisateur reste appuy\u00E9 sur la touche d\u00E9sign\u00E9e",
           "Available_parameter_values": null,
-          "Parameter_value": "d",
+          "Parameter_value": "z",
           "Parameter_count": 1,
           "Show_list": "Visible",
           "Show_number": "Collapsed",
           "Parameter_type": "string"
         }
       ],
-      "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_bleu.png",
-      "Name": "d",
-      "id": "88a39fd5-2f39-40fe-94ca-728e222f0332",
+      "Image": "pack://application:,,,/Assets/lego_bleu.png",
+      "Name": "z",
+      "id": "580fa821-0a51-4e87-8cc4-ed2203bbad68",
       "margin": {
-        "Left": 317,
-        "Top": 167.3733333333333,
+        "Left": 57.66666666666666,
+        "Top": 74,
         "Right": 0,
         "Bottom": 0
       },
-      "x": 317,
-      "y": 167.3733333333333,
+      "x": 57.66666666666666,
+      "y": 74,
       "width": 70,
       "height": 35
     },
-    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_jaune.png",
-    "Name": "droite",
-    "id": "dc264511-ca13-407b-8eef-01f9a70249e7",
+    "Image": "pack://application:,,,/Assets/lego_jaune.png",
+    "Name": "haut",
+    "id": "ab4e5603-cf88-49fc-a5c5-411e56e13915",
     "margin": {
-      "Left": 327,
-      "Top": 182,
+      "Left": 322.3333333333333,
+      "Top": 221.33333333333331,
       "Right": 0,
       "Bottom": 0
     },
-    "x": 327,
-    "y": 182,
+    "x": 322.3333333333333,
+    "y": 221.33333333333331,
     "width": 70,
     "height": 55
   }

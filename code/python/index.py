@@ -55,17 +55,17 @@ while Game.running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]: 
       Game.running = False 
+    if keys[pygame.K_d]:
+        Player.move('right', 40)
+        
     if keys[pygame.K_q]:
         Player.move('left', 40)
-        
-    if keys[pygame.K_z]:
-        Player.move('top', 40)
         
     if keys[pygame.K_s]:
         Player.move('bottom', 40)
         
-    if keys[pygame.K_d]:
-        Player.move('right', 40)
+    if keys[pygame.K_z]:
+        Player.move('top', 40)
         
     if Player.finish() == True:
         Player,level = next_level(Player,level)

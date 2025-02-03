@@ -46,7 +46,9 @@ namespace Bricks_Interfaces.Views
         {
             Point _startPoint = e.GetPosition(sender as Grid);
 
-            ((RenduStatiqueViewModel)this.DataContext).ActualiseDrag(_startPoint, this.ActualWidth, this.ActualHeight);
+            if (Keyboard.Modifiers == ModifierKeys.Control) ((RenduStatiqueViewModel)this.DataContext).Resize(_startPoint, this.ActualWidth, this.ActualHeight);
+
+            else((RenduStatiqueViewModel)this.DataContext).ActualiseDrag(_startPoint, this.ActualWidth, this.ActualHeight);
         }
 
         private void Button_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -62,10 +64,15 @@ namespace Bricks_Interfaces.Views
                 var entity = button.DataContext as Entity; // Remplacez YourEntityType par le type réel de vos entités
                 if (entity != null)
                 {
-                    ((RenduStatiqueViewModel)this.DataContext).OpenEntityMenu(entity);
+                    if (Keyboard.Modifiers == ModifierKeys.Control) ((RenduStatiqueViewModel)this.DataContext).CopyEntity(entity);
+                    else if (Keyboard.Modifiers == ModifierKeys.Shift) ((RenduStatiqueViewModel)this.DataContext).DeleteEntity(entity);
+
+
+                    else ((RenduStatiqueViewModel)this.DataContext).OpenEntityMenu(entity);
                 }
             }
         }
+
 
     }
 }

@@ -11,12 +11,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Media3D;
 
 namespace Bricks_Interfaces.ViewModels
 {
     public class RenduStatiqueViewModel : BaseNotifyPropertyChanged
     {
         public static DoubleClick entityMenu = null;
+        public static bool copy = false;
 
         private ObservableCollection<string> listLevel { get; set; }
         public ObservableCollection<string> ListLevel
@@ -155,19 +157,24 @@ namespace Bricks_Interfaces.ViewModels
 
             var (direction,entity_collided) = selectedEntity.CheckAllCollision(Entities);
 
-            if (direction == "right" && e.X >= selectedEntity.x)can_move_right = false;
-            if (direction == "left" && e.X < entity_collided.x +entity_collided.width )can_move_left = false;
-            if (direction == "bottom" && e.Y > selectedEntity.y)can_move_bottom = false;
-            if (direction == "top" && e.Y < entity_collided.y+entity_collided.height)can_move_top = false;
+            int right_collision_index = direction.IndexOf("right");
+            int left_collision_index = direction.IndexOf("left");
+            int bottom_collision_index = direction.IndexOf("bottom");
+            int top_collision_index = direction.IndexOf("top");
+
+            if (right_collision_index >= 0 && e.X >= selectedEntity.x)can_move_right = false;
+            if (left_collision_index >= 0 && e.X < entity_collided[left_collision_index].x + entity_collided[left_collision_index].width )can_move_left = false;
+            if (bottom_collision_index >= 0 && e.Y > selectedEntity.y)can_move_bottom = false;
+            if (top_collision_index >= 0 && e.Y < entity_collided[top_collision_index].y + entity_collided[top_collision_index].height)can_move_top = false;
             if (e.X < 0) can_move_left = false;
             if (e.X >= width-5 - selectedEntity.width) can_move_right = false;
             if (e.Y < 0) can_move_top = false;
             if (e.Y >= height-5 - selectedEntity.height) can_move_bottom = false;
 
-            if (e.X > selectedEntity.x && can_move_right) selectedEntity.x = e.X;
-            if (e.X < selectedEntity.x && can_move_left) selectedEntity.x = e.X;
-            if (e.Y < selectedEntity.y && can_move_top) selectedEntity.y = e.Y;
-            if (e.Y > selectedEntity.y && can_move_bottom) selectedEntity.y = e.Y;
+            if (e.X > selectedEntity.x && (can_move_right || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.x = e.X;
+            if (e.X < selectedEntity.x && (can_move_left || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.x = e.X;
+            if (e.Y < selectedEntity.y && (can_move_top || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.y = e.Y;
+            if (e.Y > selectedEntity.y && (can_move_bottom || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.y = e.Y;
 
 
             selectedEntity.margin = new Thickness(selectedEntity.x, selectedEntity.y, 0, 0);
@@ -192,7 +199,7 @@ namespace Bricks_Interfaces.ViewModels
 
             // Synchroniser les dimensions et l'état de la fenêtre
             entityMenu.Width = 200;
-            entityMenu.Height = 350;
+            entityMenu.Height = 450;
 
             // Synchroniser la position de la fenêtre
             entityMenu.Left = 700;
@@ -200,6 +207,85 @@ namespace Bricks_Interfaces.ViewModels
 
             entityMenu.Show();
         }
+
+        public void CopyEntity(Entity entity)
+        {
+            if (entity.id == "Player") return;
+
+            ObservableCollection<Entity> Entités = Entity.GetEntities(Level.CurrentLevel);
+
+
+            var newEntity = new Entity(
+                type: entity.type,
+                id: Guid.NewGuid().ToString(),
+                x: 100,
+                y: 200,
+                width: entity.width,
+                height: entity.height,
+                speed: entity.speed,
+                is_collidable: entity.is_collidable,
+                shape: entity.shape,
+                weight: entity.weight,
+                render: entity.render,
+                has_weapon: entity.has_weapon,
+                image: entity.image,
+                Track: entity.Track,
+                damage: entity.damage,
+                max_health: entity.max_health
+            );
+
+            newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
+
+            Entités.Add(newEntity);
+
+
+            Entity.SaveEntities(Entités, Level.CurrentLevel);
+        }
+
+        public void DeleteEntity(Entity Entity)
+        {
+
+            if (Entity == null) return;
+            if (Entity.id == "Player") return;
+
+            ObservableCollection<Entity> Entities = Entity.GetEntities(Level.CurrentLevel);
+            int index = Entities.IndexOf(Entities.Where(e => e.id == Entity.id).FirstOrDefault());
+            Entities.RemoveAt(index);
+            Entity.SaveEntities(Entities, Level.CurrentLevel);
+        }
+
+        public void Resize(Point e, double width, double height)
+        {
+            if (!dragging) return;
+
+            bool can_move_left = true;
+            bool can_move_right = true;
+            bool can_move_top = true;
+            bool can_move_bottom = true;
+
+            var (direction, entity_collided) = selectedEntity.CheckAllCollision(Entities);
+
+            int right_collision_index = direction.IndexOf("right");
+            int left_collision_index = direction.IndexOf("left");
+            int bottom_collision_index = direction.IndexOf("bottom");
+            int top_collision_index = direction.IndexOf("top");
+
+            if (right_collision_index >= 0 && e.X >= selectedEntity.x) can_move_right = false;
+            if (left_collision_index >= 0 && e.X < entity_collided[left_collision_index].x + entity_collided[left_collision_index].width) can_move_left = false;
+            if (bottom_collision_index >= 0 && e.Y > selectedEntity.y) can_move_bottom = false;
+            if (top_collision_index >= 0 && e.Y < entity_collided[top_collision_index].y + entity_collided[top_collision_index].height) can_move_top = false;
+            if (e.X < 0) can_move_left = false;
+            if (e.X >= width) can_move_right = false;
+            if (e.Y < 0) can_move_top = false;
+            if (e.Y >= height) can_move_bottom = false;
+
+            if (e.X > selectedEntity.x+selectedEntity.width && can_move_right) selectedEntity.width += e.X - (selectedEntity.x+selectedEntity.width);
+            if (e.X < selectedEntity.x + selectedEntity.width && selectedEntity.width >= 10) selectedEntity.width = e.X - selectedEntity.x;
+            if (e.Y < selectedEntity.y + selectedEntity.height && selectedEntity.height >= 10) selectedEntity.height = e.Y - selectedEntity.y;
+            if (e.Y > selectedEntity.y + selectedEntity.height && can_move_bottom) selectedEntity.height = e.Y - selectedEntity.y;
+
+        }
+
 
     }
 }
