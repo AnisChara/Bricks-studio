@@ -17,6 +17,8 @@ namespace Bricks_Interfaces.ViewModels
         public Visibility SpeedVisibility { get; set; } = Visibility.Collapsed;
         public Visibility TrackVisibility { get; set; } = Visibility.Collapsed;
         public Visibility HealthVisibility { get; set; } = Visibility.Collapsed;
+        public Visibility CollisionVisibility { get; set; } = Visibility.Collapsed;
+        public Visibility DeleteVisibility { get; set; } = Visibility.Visible;
 
         private Entity _entity; 
         public Entity Entity
@@ -36,12 +38,12 @@ namespace Bricks_Interfaces.ViewModels
             Entity = entity;
             if (Entity.type == "Player")
             {
-                DamageVisibility = Visibility.Collapsed;
                 HealthVisibility = Visibility.Visible;
+                DeleteVisibility = Visibility.Collapsed;
             }
             else if (Entity.type == "structure")
             {
-                DamageVisibility = Visibility.Collapsed;
+                CollisionVisibility = Visibility.Visible;
             }
             else if (Entity.type == "offensive_structure")
             {
@@ -56,7 +58,6 @@ namespace Bricks_Interfaces.ViewModels
             }
             else if (Entity.type == "zone")
             {
-                DamageVisibility = Visibility.Collapsed;
             }
         }
 

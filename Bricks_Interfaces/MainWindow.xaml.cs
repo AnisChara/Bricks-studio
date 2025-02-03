@@ -24,6 +24,8 @@ namespace Bricks_Interfaces
             this.DataContext = new MainWindowViewModel(project_path);
         }
 
+
+
         
     }
 }

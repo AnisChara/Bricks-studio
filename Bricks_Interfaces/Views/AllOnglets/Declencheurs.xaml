@@ -13,7 +13,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="AliceBlue" Grid.Column="0">
+        <StackPanel Background="White" Grid.Column="0">
             <ItemsControl ItemsSource="{Binding Events}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -45,21 +45,20 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </StackPanel>
-        <StackPanel Background="NavajoWhite" Grid.Column="1" Name="board">
+        <StackPanel Background="White" Grid.Column="1" Name="board">
             <TextBlock Text="Onglet Déclencheurs" FontSize="20" HorizontalAlignment="Center"/>
+
             <Grid>
                 <DataGrid ItemsSource="{Binding Declencheur}" Height="Auto" Width="Auto" AutoGenerateColumns="False" IsReadOnly="True" 
-GridLinesVisibility="None" HorizontalGridLinesBrush="Transparent" VerticalGridLinesBrush="Transparent"
-Background="#f4f4f4" BorderBrush="#cccccc" BorderThickness="1" Padding="10" Margin="10" 
-AlternatingRowBackground="#f9f9f9" SelectionMode="Single" SelectionUnit="FullRow"
-RowBackground="White">
+                  GridLinesVisibility="None" HorizontalGridLinesBrush="Transparent" VerticalGridLinesBrush="Transparent"
+                  Background="#f4f4f4" BorderBrush="#cccccc" BorderThickness="1" Padding="10" Margin="10" 
+                  AlternatingRowBackground="#f9f9f9" SelectionMode="Single" SelectionUnit="FullRow"
+                  RowBackground="White">
                     <DataGrid.Columns>
                         <!-- Colonne pour la propriété 'Name' -->
-                        <DataGridTextColumn Binding="{Binding Name}" Header="Action" FontWeight="Bold" Foreground="#333333" 
-                   Width="Auto"/>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Action" FontWeight="Bold" Foreground="#333333" Width="Auto"/>
                         <!-- Colonne pour la propriété 'Parameter_value' -->
-                        <DataGridTextColumn Binding="{Binding Parameter_value}" Header="Valeur" FontWeight="Bold" Foreground="#333333" 
-                  Width="Auto"/>
+                        <DataGridTextColumn Binding="{Binding Parameter_value}" Header="Valeur" FontWeight="Bold" Foreground="#333333" Width="Auto"/>
                     </DataGrid.Columns>
 
                     <!-- Style pour l'en-tête -->
@@ -76,11 +75,53 @@ RowBackground="White">
                     </DataGrid.Resources>
                 </DataGrid>
             </Grid>
-            <TextBox Text="{Binding DeclencheurName}" Width="100" Height="20" Margin="5" />
-            <Button Content="Confirmer" Width="100" Height="30" Margin="5" Command="{Binding ConfirmCommand}" CommandParameter="{Binding DeclencheurName}" />
-            <Button HorizontalAlignment="center" VerticalAlignment="Bottom" Content ="Clear" Width="30" Height="30" Background="Red" Command="{Binding DataContext.ClearDeclencheurCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+
+            <!-- TextBox pour la saisie du nom du déclencheur -->
+            <TextBox Text="{Binding DeclencheurName}" Width="100" Height="30" Margin="5" FontSize="14" Padding="5"/>
+
+            <!-- Bouton Confirmer avec un style amélioré -->
+            <Button Content="Confirmer" Width="100" Height="35" Margin="5" FontSize="14" Command="{Binding ConfirmCommand}" CommandParameter="{Binding DeclencheurName}" 
+            Background="#4CAF50" Foreground="White" BorderBrush="Green" BorderThickness="2" Padding="10,5"  FontWeight="Bold">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#4CAF50"/>
+                        <Setter Property="BorderBrush" Value="Green"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#45a049"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#388e3c"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <!-- Bouton Clear avec un style amélioré -->
+            <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Clear" Width="100" Height="35" Background="#D32F2F" Foreground="White" Command="{Binding DataContext.ClearDeclencheurCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#D32F2F"/>
+                        <Setter Property="BorderBrush" Value="#C62828"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E57373"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#C62828"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
-        
+
+
 
     </Grid>
 </UserControl>

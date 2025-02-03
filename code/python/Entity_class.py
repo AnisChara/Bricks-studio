@@ -63,6 +63,7 @@ class Entity(pygame.sprite.Sprite) :
                         self.sens = 'left'
             else: 
                 self.rect.x = collide[collide.index(direction)-1].rect.x + collide[collide.index(direction)-1].rect.width+1
+                return False
         if direction == "right":
             if not (collide and direction in collide):
                 self.rect.x += speed * Game.dt
@@ -73,15 +74,18 @@ class Entity(pygame.sprite.Sprite) :
                         self.sens = 'right'
             else:
                 self.rect.x = collide[collide.index(direction)-1].rect.x-1 - self.rect.width
+                return False
         if direction == "top":
             if not (collide and direction in collide):
                 self.rect.y -= speed * Game.dt
                 self.direction = direction
             else :
                 self.rect.y = collide[collide.index(direction)-1].rect.y + collide[collide.index(direction)-1].rect.height+1
+                return False
         if direction == "bottom":
             if not (collide and direction in collide):
                 self.rect.y += speed * Game.dt
                 self.direction = direction
             else:
                 self.rect.y = collide[collide.index(direction)-1].rect.y-self.rect.height-1
+                return False

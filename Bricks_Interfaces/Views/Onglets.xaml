@@ -8,9 +8,42 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
+    <UserControl.Resources>
+        <!-- Style personnalisé pour les onglets -->
+        <Style TargetType="TabItem">
+            <!-- Apparence générale de l'onglet -->
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
+            <Setter Property="Height" Value="40"/>
+
+            <!-- Effet lors du survol (Hover) -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5BB8FF"/>
+                </Trigger>
+
+                <!-- Effet lorsque l'onglet est sélectionné -->
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style pour la barre de l'onglet -->
+        <Style TargetType="TabPanel">
+            <Setter Property="Background" Value="#2e91f7"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#2e91f7">
         <TabControl Name="Tab">
-            <TabItem Name="node" Header="Nodes">
+            <TabItem Name="node" Header="Bricks">
                 <UserControls:Nodes x:Name="nod"/>
             </TabItem>
             <TabItem Name="declencheur" Header="Déclencheurs">

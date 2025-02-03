@@ -10,7 +10,6 @@
         Background="#2e91f7">
 
     <DockPanel>
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
@@ -25,12 +24,52 @@
 
                 <StackPanel Grid.Column="1">
                     <WrapPanel>
-                        <Button Content="Lancer le jeu" Margin="2" Width="80" HorizontalAlignment="Left" Command="{Binding CompileCommand}"/>
-                        <CheckBox Content="Gravité" IsChecked="{Binding Gravity}" Margin="5"></CheckBox>
+                        <!-- Amélioration du bouton -->
+                        <Button Content="Lancer" 
+                                Margin="1" Width="80" 
+                                Command="{Binding CompileCommand}"
+                                FontSize="12" FontWeight="Bold" Foreground="White"
+                                Background="#bc0a0f"
+                                BorderBrush="#8e0000"
+                                BorderThickness="2"
+                                Padding="10,5"
+                                VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            Padding="3,3">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <!-- Transition de couleur au survol -->
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#bc0a0f"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="#8e0000"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#ff5c5c"/>
+                                            <Setter Property="BorderBrush" Value="#d70000"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#990000"/>
+                                            <Setter Property="BorderBrush" Value="#7f0000"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <!-- CheckBox pour la gravité -->
+                        <CheckBox Content="Gravité" Foreground="White" FontWeight="Bold" IsChecked="{Binding Gravity}" Margin="600 10 0 0"/>
                     </WrapPanel>
                 </StackPanel>
             </Grid>
 
+            <!-- Section 2 de ton Grid -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
@@ -38,7 +77,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Margin="8 8 0 8" Background="LightGray">
+                <Border Grid.Column="0" Margin="8 8 0 8" Background="#2e91f7">
                     <UserControls:Onglets x:Name="onglets"/>
                 </Border>
 

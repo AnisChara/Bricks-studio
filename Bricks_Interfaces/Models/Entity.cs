@@ -296,11 +296,6 @@ namespace Bricks_Interfaces.Models
         }
         public (bool isColliding, string direction) CheckCollision( Entity entity2)
         {
-            // Vérifie si les deux entités sont marquées comme "collidables"
-            if (!this.is_collidable || !entity2.is_collidable)
-            {
-                return (false, "none");
-            }
 
             // Vérifie les collisions en utilisant les coordonnées et les dimensions
             bool isColliding = this.x < entity2.x + entity2.width &&

@@ -160,9 +160,9 @@ namespace Bricks_Interfaces.ViewModels
             if (direction == "bottom" && e.Y > selectedEntity.y)can_move_bottom = false;
             if (direction == "top" && e.Y < entity_collided.y+entity_collided.height)can_move_top = false;
             if (e.X < 0) can_move_left = false;
-            if (e.X >= width - selectedEntity.width) can_move_right = false;
+            if (e.X >= width-5 - selectedEntity.width) can_move_right = false;
             if (e.Y < 0) can_move_top = false;
-            if (e.Y >= height - selectedEntity.height) can_move_bottom = false;
+            if (e.Y >= height-5 - selectedEntity.height) can_move_bottom = false;
 
             if (e.X > selectedEntity.x && can_move_right) selectedEntity.x = e.X;
             if (e.X < selectedEntity.x && can_move_left) selectedEntity.x = e.X;

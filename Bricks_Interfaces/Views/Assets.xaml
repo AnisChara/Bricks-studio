@@ -7,18 +7,73 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
+    <UserControl.Resources>
+        <Style x:Key="StyledButton" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" BlurRadius="5" Opacity="0.2"/>
+                </Setter.Value>
+            </Setter>
+
+            <!-- Supprime le style Windows par défaut -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="Red"
+                                CornerRadius="5"
+                                Padding="10"
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Effet Hover (rouge foncé) -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#B22222"/>
+                            </Trigger>
+                            <!-- Effet Pressé (rouge encore plus foncé) -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#8B0000"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Background="#fecf67">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <WrapPanel HorizontalAlignment="Center" >
-                <Button x:Name="btn_structure" Content="Ajouter structure" Margin="0 0 25 0" Command="{Binding AddStructure}"/>
-                <!-- Obstacle = Structure offensive -->
-                <Button x:Name="btn_obstacle" Content="Ajouter obstacle" Margin="0 0 25 0" Command="{Binding AddObstacle}"/>
-                <Button x:Name="btn_ennemie" Content="Ajouter ennemie" Margin="0 0 25 0" Command="{Binding AddEnnemy}"/>
-                <Button x:Name="btn_zone" Content="Ajouter ligne d'arrivée" Command="{Binding AddZone}" Margin="0 0 25 0"/>
-                <Button Content="Ajouter niveau" Margin="0 0 0 0" Command="{Binding AddLevelCommand}" />
-                <TextBox  Margin="0 0 25 0" Text="{Binding LevelName}" Width="30"/>
-                <Button Content="Supprimer niveau" Margin="0 0 25 0" Command="{Binding DeleteLevelCommand}" />
-            </WrapPanel>
-        </StackPanel>
+        <Border Background="#fecf67" Padding="20" CornerRadius="10">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
+
+                    <Button x:Name="btn_structure" Content="Ajouter structure" 
+                            Command="{Binding AddStructure}" Style="{StaticResource StyledButton}" />
+
+                    <Button x:Name="btn_obstacle" Content="Ajouter obstacle" 
+                            Command="{Binding AddObstacle}" Style="{StaticResource StyledButton}" />
+
+                    <Button x:Name="btn_ennemie" Content="Ajouter ennemie" 
+                            Command="{Binding AddEnnemy}" Style="{StaticResource StyledButton}" />
+
+                    <Button x:Name="btn_zone" Content="Ajouter ligne d'arrivée" 
+                            Command="{Binding AddZone}" Style="{StaticResource StyledButton}" />
+
+                    <Button Content="Ajouter niveau" 
+                            Command="{Binding AddLevelCommand}" Style="{StaticResource StyledButton}" />
+
+                    <TextBox Text="{Binding LevelName}" Width="100" Height="35" 
+                             FontSize="20" VerticalAlignment="Center" Margin="10"/>
+
+                    <Button Content="Supprimer niveau" 
+                            Command="{Binding DeleteLevelCommand}" Style="{StaticResource StyledButton}" />
+                </WrapPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

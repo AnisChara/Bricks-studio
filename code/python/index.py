@@ -58,17 +58,14 @@ while Game.running:
     if keys[pygame.K_q]:
         Player.move('left', 40)
         
-    if keys[pygame.K_d]:
-        Player.move('right', 40)
-        
     if keys[pygame.K_z]:
         Player.move('top', 40)
         
     if keys[pygame.K_s]:
         Player.move('bottom', 40)
         
-    if keys[pygame.K_a]:
-        Player.weapon.shoot(50,50,70,50,None,0)
+    if keys[pygame.K_d]:
+        Player.move('right', 40)
         
     if Player.finish() == True:
         Player,level = next_level(Player,level)

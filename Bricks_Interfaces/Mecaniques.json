@@ -17,13 +17,41 @@
     "Name": "tir en haut",
     "id": "98468618-2f92-4b05-bee7-6cecbf85af4c",
     "margin": {
-      "Left": 217.66666666666666,
-      "Top": 424.7466666666666,
+      "Left": 128.33333333333331,
+      "Top": 343.3333333333333,
       "Right": 0,
       "Bottom": 0
     },
-    "x": 217.66666666666666,
-    "y": 424.7466666666666,
+    "x": 128.33333333333331,
+    "y": 343.3333333333333,
+    "width": 70,
+    "height": 35
+  },
+  {
+    "Actions": [
+      {
+        "Name": "Sauter de",
+        "Function": "Player.jump(*)",
+        "Description": "Sauter de x pixel",
+        "Available_parameter_values": null,
+        "Parameter_value": "400",
+        "Parameter_count": 1,
+        "Show_list": "Collapsed",
+        "Show_number": "Visible",
+        "Parameter_type": "number"
+      }
+    ],
+    "Image": "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\lego_rouge.png",
+    "Name": "saut",
+    "id": "67e4bef8-5493-4cb7-896c-d796b7602ae8",
+    "margin": {
+      "Left": 269,
+      "Top": 248.66666666666663,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 269,
+    "y": 248.66666666666663,
     "width": 70,
     "height": 35
   }

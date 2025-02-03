@@ -66,10 +66,6 @@ namespace Bricks_Interfaces.ViewModels
                 image : "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\téléchargement.jpg",
                 Track : false
             );
-            newEntity.x *= 0.584;
-            newEntity.y *= 0.515;
-            newEntity.width *= 0.584;
-            newEntity.height *= 0.515;
 
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
@@ -102,10 +98,6 @@ namespace Bricks_Interfaces.ViewModels
                 Track: false
 
             );
-            newEntity.x *= 0.584;
-            newEntity.y *= 0.515;
-            newEntity.width *= 0.584;
-            newEntity.height *= 0.515;
 
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
@@ -126,8 +118,8 @@ namespace Bricks_Interfaces.ViewModels
                 id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
-                width: 100,
-                height: 100,
+                width: 50,
+                height: 50,
                 speed: 5,
                 is_collidable: true,
                 shape: "square",
@@ -140,10 +132,6 @@ namespace Bricks_Interfaces.ViewModels
                 Track: false
 
             );
-            newEntity.x *= 0.584;
-            newEntity.y *= 0.515;
-            newEntity.width *= 0.584;
-            newEntity.height *= 0.515;
 
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 
@@ -166,17 +154,13 @@ namespace Bricks_Interfaces.ViewModels
                 speed: 5,
                 is_collidable: false,
                 shape: "square",
-                weight: 10,
+                weight: 0,
                 render: true,
                 has_weapon: false,
                 image: "C:\\Users\\user\\Documents\\COURS\\C#\\Projet\\bricks-studio\\assets\\flag.png",
                 Track: false
 
             );
-            newEntity.x *= 0.584;
-            newEntity.y *= 0.515;
-            newEntity.width *= 0.584;
-            newEntity.height *= 0.515;
 
             newEntity.margin = new Thickness(newEntity.x, newEntity.y, 0, 0);
 

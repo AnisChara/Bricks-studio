@@ -28,16 +28,22 @@ class Offensive_Entity(Pawn) :
                         offensive_Entity.deal_damage(collision)
                     except AttributeError:
                         pass
-    def get_direction_to(self, Player) -> str:
+    def get_direction_to(self, Player) -> list:
         dx = Player.rect.x - self.rect.x
         dy = Player.rect.y - self.rect.y
 
+        directions = []
+
+        # Déterminer la direction principale (celle avec la plus grande distance)
         if abs(dx) > abs(dy):  
-            return "right" if dx > 0 else "left"
-        elif abs(dy) > abs(dx):
-            return "bottom" if dy > 0 else "top"
-        else:  
-            return "right" if dx > 0 else "left"
+            directions.append("right" if dx > 0 else "left")
+            directions.append("bottom" if dy > 0 else "top")
+        else:
+            directions.append("bottom" if dy > 0 else "top")
+            directions.append("right" if dx > 0 else "left")
+
+        return directions
+
     
     def HandleTrackPlayer(Player):
         for Monster in Game.entities:
@@ -45,4 +51,5 @@ class Offensive_Entity(Pawn) :
             if Monster.track == False: continue
 
             direction = Monster.get_direction_to(Player)
-            Monster.move(direction)
+            if (Monster.move(direction[0]) == False):
+                Monster.move(direction[1])

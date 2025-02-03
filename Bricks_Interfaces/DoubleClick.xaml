@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -44,16 +45,19 @@
         <TextBlock Text="Track :" Grid.Row="5" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding TrackVisibility}" />
         <CheckBox IsChecked="{Binding Entity.Track}" Grid.Column="1" Grid.Row="5" Margin="5"  Visibility="{Binding TrackVisibility}"/>
 
-        <TextBlock Text="Vie :" Grid.Row="6" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding HealthVisibility}" />
-        <TextBox Grid.Column="1" Grid.Row="6" Margin="5" Text="{Binding Entity.max_health, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding HealthVisibility}"/>
+        <TextBlock Text="Collision :" Grid.Row="6" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding CollisionVisibility}" />
+        <CheckBox IsChecked="{Binding Entity.is_collidable}" Grid.Column="1" Grid.Row="6" Margin="5"  Visibility="{Binding CollisionVisibility}"/>
 
-        <TextBlock Text="Image:" Grid.Row="7" VerticalAlignment="Center" Margin="0,5"/>
-        <TextBox Grid.Column="1" Grid.Row="7" Margin="5" Text="{Binding Entity.image, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Vie :" Grid.Row="7" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding HealthVisibility}" />
+        <TextBox Grid.Column="1" Grid.Row="7" Margin="5" Text="{Binding Entity.max_health, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding HealthVisibility}"/>
+
+        <TextBlock Text="Image:" Grid.Row="8" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox Grid.Column="1" Grid.Row="8" Margin="5" Text="{Binding Entity.image, UpdateSourceTrigger=PropertyChanged}"/>
 
         <!-- Boutons -->
-        <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+        <StackPanel Grid.Row="10" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
             <Button Content="Sauvegarder" Width="100" Margin="5" Click="SaveButton_Click"/>
-            <Button Content="Supprimer" Width="100" Margin="5" Click="DeleteButton_Click"/>
+            <Button Content="Supprimer" Width="100" Margin="5" Click="DeleteButton_Click" Visibility="{Binding DeleteVisibility}"/>
             <Button Content="Annuler" Width="100" Margin="5" Click="CancelButton_Click"/>
         </StackPanel>
     </Grid>
