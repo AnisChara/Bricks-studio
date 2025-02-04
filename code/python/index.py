@@ -37,7 +37,7 @@ Game.entities.append(left_border)
 Game.entities.append(right_border)
 Game.entities.append(up_border)
 Game.entities.append(down_border)
-entities = Game.load_entities()
+entities = Game.load_entities("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Entity.json")
 level_max = len(entities)
 Gravity.is_gravity = False
 

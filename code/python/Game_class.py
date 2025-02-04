@@ -29,8 +29,8 @@ class Game() :
             if type(entity).__name__ != "Pawn" and type(entity).__name__ != "Offensive_Entity": continue
             if entity.health <= 0: entity.die()
 
-    def load_entities():
-        with open('C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/Entity.json', 'r') as file:
+    def load_entities(path):
+        with open(path, 'r') as file:
             entities = json.load(file)  
         return entities
     def clean_entities():
