@@ -3,77 +3,6 @@
     "Mecanique": {
       "Actions": [
         {
-          "Name": "Droite de ",
-          "Function": "Player.move(\u0027right\u0027, *)",
-          "Description": "Deplace le joeur de x pixel vers la droite",
-          "Available_parameter_values": null,
-          "Parameter_value": "40",
-          "Parameter_count": 1,
-          "Show_list": "Collapsed",
-          "Show_number": "Visible",
-          "Parameter_type": "number"
-        }
-      ],
-      "Image": "pack://application:,,,/Assets/lego_rouge.png",
-      "Name": "droite",
-      "id": "f07ad8c2-ecc3-406d-86f0-f2c9f20aafaf",
-      "margin": {
-        "Left": 154.33333333333331,
-        "Top": 148.66666666666666,
-        "Right": 0,
-        "Bottom": 0
-      },
-      "x": 154.33333333333331,
-      "y": 148.66666666666666,
-      "width": 70,
-      "height": 35
-    },
-    "Declencheur": {
-      "Events": [
-        {
-          "Name": "Presser ",
-          "Function": "keys[pygame.K_*]",
-          "Description": "l\u0027utilisateur reste appuy\u00E9 sur la touche d\u00E9sign\u00E9e",
-          "Available_parameter_values": null,
-          "Parameter_value": "d",
-          "Parameter_count": 1,
-          "Show_list": "Visible",
-          "Show_number": "Collapsed",
-          "Parameter_type": "string"
-        }
-      ],
-      "Image": "pack://application:,,,/Assets/lego_bleu.png",
-      "Name": "d",
-      "id": "b712dca7-22b8-4e65-9687-db1f6e65961d",
-      "margin": {
-        "Left": 181,
-        "Top": 114,
-        "Right": 0,
-        "Bottom": 0
-      },
-      "x": 181,
-      "y": 114,
-      "width": 70,
-      "height": 35
-    },
-    "Image": "pack://application:,,,/Assets/lego_jaune.png",
-    "Name": "droite",
-    "id": "80645d2e-8cc2-4a1e-a8d7-747a5092fcd0",
-    "margin": {
-      "Left": 291.66666666666663,
-      "Top": 162.66666666666666,
-      "Right": 0,
-      "Bottom": 0
-    },
-    "x": 291.66666666666663,
-    "y": 162.66666666666666,
-    "width": 70,
-    "height": 55
-  },
-  {
-    "Mecanique": {
-      "Actions": [
-        {
           "Name": "Gauche de ",
           "Function": "Player.move(\u0027left\u0027, *)",
           "Description": "Deplace le joeur de x pixel vers la Gauche",
@@ -351,6 +280,77 @@
     },
     "x": 48.33333333333333,
     "y": 42.66666666666666,
+    "width": 70,
+    "height": 55
+  },
+  {
+    "Mecanique": {
+      "Actions": [
+        {
+          "Name": "Droite de ",
+          "Function": "Player.move(\u0027right\u0027, *)",
+          "Description": "Deplace le joeur de x pixel vers la droite",
+          "Available_parameter_values": null,
+          "Parameter_value": "40",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ],
+      "Image": "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/lego_rouge.png",
+      "Name": "droite",
+      "id": "2e0fd813-49ac-4880-9394-2d51e324f714",
+      "margin": {
+        "Left": 280.3333333333333,
+        "Top": 36,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 280.3333333333333,
+      "y": 36,
+      "width": 70,
+      "height": 35
+    },
+    "Declencheur": {
+      "Events": [
+        {
+          "Name": "Presser ",
+          "Function": "keys[pygame.K_*]",
+          "Description": "l\u0027utilisateur reste appuy\u00E9 sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "d",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ],
+      "Image": "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/lego_bleu.png",
+      "Name": "d",
+      "id": "bebae6f9-8ad1-4a05-9402-ca5bea56e2a0",
+      "margin": {
+        "Left": 294.3333333333333,
+        "Top": 2,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 294.3333333333333,
+      "y": 2,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "pack://application:,,,/Assets/lego_jaune.png",
+    "Name": "droite",
+    "id": "112bcb5a-04c5-4ab3-8197-fcce5e5d1dc2",
+    "margin": {
+      "Left": 280.3333333333333,
+      "Top": 36,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 280.3333333333333,
+    "y": 36,
     "width": 70,
     "height": 55
   }

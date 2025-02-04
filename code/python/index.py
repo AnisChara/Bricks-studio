@@ -22,10 +22,10 @@ def next_level(Player,level):
     Player = instance_entities(entities, level)
     return Player,level
 
-GameBackground = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/Fond.jpg")
+GameBackground = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/Fond.jpg")
 GameBackground = pygame.transform.scale(GameBackground,(1280,720))
 
-VictoryScreen = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/Victoire.png")
+VictoryScreen = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/Victoire.png")
 VictoryScreen = pygame.transform.scale(VictoryScreen,(1280,720))
 
 left_border = Structure("left_border",-2147483646,-1,2147483646,2147483646,0,True,"square",0,False)
@@ -68,9 +68,6 @@ while Game.running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]: 
       Game.running = False 
-    if keys[pygame.K_d]:
-        Player.move('right', 40)
-        
     if keys[pygame.K_q]:
         Player.move('left', 40)
         
@@ -82,6 +79,9 @@ while Game.running:
         
     if keys[pygame.K_z]:
         Player.move('top', 40)
+        
+    if keys[pygame.K_d]:
+        Player.move('right', 40)
         
     if Player.finish() == True:
         if level < level_max:

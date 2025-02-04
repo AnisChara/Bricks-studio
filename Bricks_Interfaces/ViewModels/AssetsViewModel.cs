@@ -63,7 +63,7 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 0,
                 render: true,
                 has_weapon: false,
-                image : "pack://application:,,,/Assets/téléchargement.jpg",
+                image : MainWindowViewModel.formattedPath+"/../../../Assets/téléchargement.jpg",
                 Track : false
             );
 
@@ -94,7 +94,7 @@ namespace Bricks_Interfaces.ViewModels
                 render: true,
                 has_weapon: false,
                 damage:100,
-                image : "pack://application:,,,/Assets/images.png",
+                image : MainWindowViewModel.formattedPath + "/../../../Assets/images.png",
                 Track: false
 
             );
@@ -128,7 +128,7 @@ namespace Bricks_Interfaces.ViewModels
                 has_weapon: false,
                 max_health:100,
                 damage:100,
-                image: "pack://application:,,,/Assets/monster.png",
+                image: MainWindowViewModel.formattedPath + "/../../../Assets/monster.png",
                 Track: false
 
             );
@@ -157,7 +157,7 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 0,
                 render: true,
                 has_weapon: false,
-                image: "pack://application:,,,/Assets/flag.png",
+                image: MainWindowViewModel.formattedPath + "/../../../Assets/flag.png",
                 Track: false
 
             );
@@ -200,7 +200,7 @@ namespace Bricks_Interfaces.ViewModels
                 max_health: 100,
                 weight: 10,
                 damage: null,
-                image: "pack://application:,,,/Assets/mario.png",
+                image: MainWindowViewModel.formattedPath + "/../../../Assets/mario.png",
                 Track: false
 
             );

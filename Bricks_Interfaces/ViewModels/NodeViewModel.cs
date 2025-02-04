@@ -119,14 +119,14 @@ namespace Bricks_Interfaces.ViewModels
             if (direction == "bottom" && e.Y > selectedBrick.y) { can_move_bottom = false; may_fuse = true; }
             if (direction == "top" && e.Y < entity_collided.y + entity_collided.height) {can_move_top = false; may_fuse = true;}
 
-            if (may_fuse == true && selectedBrick.Image == "pack://application:,,,/Assets/lego_rouge.png" && entity_collided.Image == "pack://application:,,,/Assets/lego_bleu.png") //temp
+            if (may_fuse == true && selectedBrick.Image == MainWindowViewModel.formattedPath + "/../../../Assets/lego_rouge.png" && entity_collided.Image == MainWindowViewModel.formattedPath + "/../../../Assets/lego_bleu.png") //temp
             { 
                 rect.Visibility = System.Windows.Visibility.Visible;
                 MecaniqueToFuse = selectedBrick as Mecanique;
                 DeclencheurToFuse = entity_collided as Declencheur;
                 can_fuse = true;
             }
-            if (may_fuse == true && selectedBrick.Image == "pack://application:,,,/Assets/lego_bleu.png" && entity_collided.Image == "pack://application:,,,/Assets/lego_rouge.png")
+            if (may_fuse == true && selectedBrick.Image == MainWindowViewModel.formattedPath + "/../../../Assets/lego_bleu.png" && entity_collided.Image == MainWindowViewModel.formattedPath + "/../../../Assets/lego_rouge.png")
             {
                 rect.Visibility = System.Windows.Visibility.Visible;
                 DeclencheurToFuse = selectedBrick as Declencheur;
