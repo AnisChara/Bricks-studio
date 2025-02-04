@@ -145,77 +145,6 @@
     "Mecanique": {
       "Actions": [
         {
-          "Name": "Tirer en haut",
-          "Function": "Player.weapon.shoot(50,50,70,*,\u0027top\u0027,0)",
-          "Description": "Tirer un projectile de x d\u00E9gats vers le haut",
-          "Available_parameter_values": null,
-          "Parameter_value": "50",
-          "Parameter_count": 1,
-          "Show_list": "Collapsed",
-          "Show_number": "Visible",
-          "Parameter_type": "number"
-        }
-      ],
-      "Image": "pack://application:,,,/Assets/lego_rouge.png",
-      "Name": "tir",
-      "id": "c5dcca3e-eb81-4b4f-bcf7-4add589f4843",
-      "margin": {
-        "Left": 33.666666666666664,
-        "Top": 124.66666666666666,
-        "Right": 0,
-        "Bottom": 0
-      },
-      "x": 33.666666666666664,
-      "y": 124.66666666666666,
-      "width": 70,
-      "height": 35
-    },
-    "Declencheur": {
-      "Events": [
-        {
-          "Name": "Appuyer sur",
-          "Function": "Game.keys.* == True",
-          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
-          "Available_parameter_values": null,
-          "Parameter_value": "A",
-          "Parameter_count": 1,
-          "Show_list": "Visible",
-          "Show_number": "Collapsed",
-          "Parameter_type": "string"
-        }
-      ],
-      "Image": "pack://application:,,,/Assets/lego_bleu.png",
-      "Name": "A",
-      "id": "6e12735b-e633-4ea1-ae74-cbdc9d7ccea3",
-      "margin": {
-        "Left": 39,
-        "Top": 159.33333333333331,
-        "Right": 0,
-        "Bottom": 0
-      },
-      "x": 39,
-      "y": 159.33333333333331,
-      "width": 70,
-      "height": 35
-    },
-    "Image": "pack://application:,,,/Assets/lego_jaune.png",
-    "Name": "tir",
-    "id": "0f62ffde-080d-435a-96f9-f143c4fa07ec",
-    "margin": {
-      "Left": 33.666666666666664,
-      "Top": 124.66666666666666,
-      "Right": 0,
-      "Bottom": 0
-    },
-    "x": 33.666666666666664,
-    "y": 124.66666666666666,
-    "width": 70,
-    "height": 55
-  },
-  {
-    "Mecanique": {
-      "Actions": [
-        {
           "Name": "Haut de ",
           "Function": "Player.move(\u0027top\u0027, *)",
           "Description": "Deplace le joeur de x pixel vers le Haut",
@@ -351,6 +280,77 @@
     },
     "x": 280.3333333333333,
     "y": 36,
+    "width": 70,
+    "height": 55
+  },
+  {
+    "Mecanique": {
+      "Actions": [
+        {
+          "Name": "Tirer en haut",
+          "Function": "Player.weapon.shoot(50,50,70,*,\u0027top\u0027,0)",
+          "Description": "Tirer un projectile de x d\u00E9gats vers le haut",
+          "Available_parameter_values": null,
+          "Parameter_value": "70",
+          "Parameter_count": 1,
+          "Show_list": "Collapsed",
+          "Show_number": "Visible",
+          "Parameter_type": "number"
+        }
+      ],
+      "Image": "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/lego_rouge.png",
+      "Name": "tir",
+      "id": "e4269185-18f0-4d63-b9f3-7558f97f26c2",
+      "margin": {
+        "Left": 166.33333333333331,
+        "Top": 82,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 166.33333333333331,
+      "y": 82,
+      "width": 70,
+      "height": 35
+    },
+    "Declencheur": {
+      "Events": [
+        {
+          "Name": "Appuyer sur",
+          "Function": "Game.keys.* == True",
+          "Description": "l\u0027utilisateur appuie sur la touche d\u00E9sign\u00E9e",
+          "Available_parameter_values": null,
+          "Parameter_value": "A",
+          "Parameter_count": 1,
+          "Show_list": "Visible",
+          "Show_number": "Collapsed",
+          "Parameter_type": "string"
+        }
+      ],
+      "Image": "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/lego_bleu.png",
+      "Name": "a",
+      "id": "d425d75f-8d74-4248-805d-093d92b4f328",
+      "margin": {
+        "Left": 178.33333333333331,
+        "Top": 51.333333333333314,
+        "Right": 0,
+        "Bottom": 0
+      },
+      "x": 178.33333333333331,
+      "y": 51.333333333333314,
+      "width": 70,
+      "height": 35
+    },
+    "Image": "pack://application:,,,/Assets/lego_jaune.png",
+    "Name": "tir",
+    "id": "055bbfee-c47d-4e2f-a9b3-1a90c82db68d",
+    "margin": {
+      "Left": 166.33333333333331,
+      "Top": 82,
+      "Right": 0,
+      "Bottom": 0
+    },
+    "x": 166.33333333333331,
+    "y": 82,
     "width": 70,
     "height": 55
   }

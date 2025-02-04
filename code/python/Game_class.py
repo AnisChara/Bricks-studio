@@ -1,6 +1,7 @@
 import pygame
 from Keys_class import Keys
 import json
+import os
 
 class Game() :
 
@@ -12,6 +13,7 @@ class Game() :
     running = True
     dt = 0
     keys = Keys()
+    directory = os.getcwd()
 
     def render():
         for entity in reversed(Game.entities):
