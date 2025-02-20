@@ -11,7 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 using Microsoft.Win32;
 
 namespace Bricks_Interfaces
@@ -46,14 +48,14 @@ namespace Bricks_Interfaces
                 // Créez une instance de la fenêtre de création de projet et affichez-la
                 var mainWindow = new MainWindow(filePath);
 
-            // Synchroniser les dimensions et l'état de la fenêtre
-            mainWindow.Width = 1280;
-            mainWindow.Height = 720;
-            mainWindow.WindowState = WindowState.Normal;
+                // Synchroniser les dimensions et l'état de la fenêtre
+                mainWindow.Width = this.Width;
+                mainWindow.Height = this.Height;
+                mainWindow.WindowState = this.WindowState;
 
-            // Synchroniser la position de la fenêtre
-            mainWindow.Left = 0;
-            mainWindow.Top = 0;
+                // Synchroniser la position de la fenêtre
+                mainWindow.Left = this.Left;
+                mainWindow.Top = this.Top;
 
                 mainWindow.Show();
                 this.Close(); // Fermez la fenêtre actuelle si nécessaire
@@ -80,14 +82,14 @@ namespace Bricks_Interfaces
                 // Ouvrir la fenêtre principale après sélection (ou directement)
                 var mainWindow = new MainWindow(filePath);
 
-            // Synchroniser les dimensions et l'état de la fenêtre
-            mainWindow.Width = 1280;
-            mainWindow.Height = 720;
-            mainWindow.WindowState = WindowState.Maximized;
+                // Synchroniser les dimensions et l'état de la fenêtre
+                mainWindow.Width = this.Width;
+                mainWindow.Height = this.Height;
+                mainWindow.WindowState = this.WindowState;
 
-            // Synchroniser la position de la fenêtre
-            mainWindow.Left = 0;
-            mainWindow.Top = 0;
+                // Synchroniser la position de la fenêtre
+                mainWindow.Left = this.Left;
+                mainWindow.Top = this.Top;
 
                 mainWindow.Show();
                 this.Close(); // Fermer la fenêtre d'accueil
