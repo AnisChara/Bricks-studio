@@ -12,6 +12,7 @@ from loading_function import instance_entities
 
 # pygame setup
 pygame.init()
+project_path = ""
 
 level = 0
 
@@ -22,10 +23,10 @@ def next_level(Player,level):
     Player = instance_entities(entities, level)
     return Player,level
 
-GameBackground = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/Fond.jpg")
+GameBackground = pygame.image.load("A:/Code/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/Fond.jpg")
 GameBackground = pygame.transform.scale(GameBackground,(1280,720))
 
-VictoryScreen = pygame.image.load("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/Victoire.png")
+VictoryScreen = pygame.image.load("A:/Code/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/Victoire.png")
 VictoryScreen = pygame.transform.scale(VictoryScreen,(1280,720))
 
 left_border = Structure("left_border",-2147483646,-1,2147483646,2147483646,0,True,"square",0,False)
@@ -37,9 +38,9 @@ Game.entities.append(left_border)
 Game.entities.append(right_border)
 Game.entities.append(up_border)
 Game.entities.append(down_border)
-entities = Game.load_entities("C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Entity.json")
+entities = Game.load_entities("A:/Code/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Entity.json")
 level_max = len(entities)
-Gravity.is_gravity = False
+Gravity.is_gravity =True
 
 Player = instance_entities(entities,level)
 background = GameBackground
@@ -74,14 +75,14 @@ while Game.running:
     if keys[pygame.K_s]:
         Player.move('bottom', 40)
         
-    if Game.keys.A == True:
-        Player.weapon.shoot(50,50,70,50,'top',0)
-        
     if keys[pygame.K_z]:
         Player.move('top', 40)
         
     if keys[pygame.K_d]:
         Player.move('right', 40)
+        
+    if Game.keys.A == True:
+        Player.weapon.shoot(50,50,70,70,'top',0)
         
     if Player.finish() == True:
         if level < level_max:
