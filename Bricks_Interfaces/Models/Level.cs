@@ -12,17 +12,18 @@ namespace Bricks_Interfaces.Models
     {
         public string Name { get; set; }
         public ObservableCollection<Entity> Entities { get; set; }
-        public string Background { get; set; } = MainWindowViewModel.formattedPath + "/../../../Assets/lego_rouge.png\"Assets/Fond.jpg";
+        public string Background { get; set; }
 
-        public static string FirstLevel = "Niveau 0";
+        public static string FirstLevel = "Niveau 1";
 
         public static string CurrentLevel = FirstLevel;
 
         public Level() { }
-        public Level(string Name,  ObservableCollection<Entity> Entitie) {
+        public Level(string Name,  ObservableCollection<Entity> Entitie, string background) {
         
             this.Name = Name;
             this.Entities = Entitie;
+            this.Background = background;
         }
 
         public override bool Equals(object obj)

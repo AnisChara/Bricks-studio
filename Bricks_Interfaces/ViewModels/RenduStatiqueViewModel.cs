@@ -119,7 +119,7 @@ namespace Bricks_Interfaces.ViewModels
 
             _fileWatcher = new FileSystemWatcher
             {
-                Path = "../../../",
+                Path = MainWindowViewModel.ProjectPath,
                 Filter = "Entity.json",
                 NotifyFilter = NotifyFilters.LastWrite
             };

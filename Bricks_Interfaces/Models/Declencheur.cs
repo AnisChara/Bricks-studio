@@ -50,7 +50,7 @@ namespace Bricks_Interfaces.Models
             {
                 try
                 {
-                    json = System.IO.File.ReadAllText("../../../Declencheurs.json");
+                    json = System.IO.File.ReadAllText(MainWindowViewModel.DeclencheursPath);
                     Nodes = JsonSerializer.Deserialize<ObservableCollection<Declencheur>>(json);
                     succes = true;
 
@@ -59,32 +59,6 @@ namespace Bricks_Interfaces.Models
             }
 
             return Nodes;
-        }
-
-        public static void InitializeFileWatcher(ObservableCollection<Declencheur> Nodes)
-        {
-            FileSystemWatcher _fileWatcher;
-
-            _fileWatcher = new FileSystemWatcher
-            {
-                Path = "../../../",
-                Filter = "Declencheurs.json",
-                NotifyFilter = NotifyFilters.LastWrite
-            };
-
-
-
-            _fileWatcher.Changed += (sender, e) =>
-            {
-                Nodes = Declencheur.GetDeclencheurs();
-            };
-            _fileWatcher.Renamed += (sender, e) =>
-                Nodes = Declencheur.GetDeclencheurs();
-            _fileWatcher.Created += (sender, e) =>
-                Nodes = Declencheur.GetDeclencheurs();
-
-            _fileWatcher.EnableRaisingEvents = true; // Active la surveillance
-
         }
 
         public static void SaveDeclencheurs(ObservableCollection<Declencheur> Levels)
@@ -96,7 +70,7 @@ namespace Bricks_Interfaces.Models
                 try
                 {
                     string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
-                    System.IO.File.WriteAllText("../../../Declencheurs.json", json);
+                    System.IO.File.WriteAllText(MainWindowViewModel.DeclencheursPath, json);
                     succes = true;
 
                 }

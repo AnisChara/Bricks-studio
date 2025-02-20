@@ -3,7 +3,7 @@ from Game_class import Game
 
 class Offensive_Entity(Pawn) :
 
-    def __init__(self,id,x, y, width, height, health,speed = 1, is_collidable = False, shape = "square", weight = 10, render = True ,damage = 100, image =  "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/monster.png",track = False) : #ajouter arg pour image
+    def __init__(self,id,x, y, width, height, health,speed = 1, is_collidable = False, shape = "square", weight = 10, render = True ,damage = 100, image = Game.directory+"/Assets/monster.png",track = False) : #ajouter arg pour image
         super().__init__(id, x, y, width, height, health, speed, is_collidable, shape , weight, image)
         self.damage = damage
         self.track = track

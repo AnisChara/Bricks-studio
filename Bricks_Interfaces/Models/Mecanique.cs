@@ -49,7 +49,7 @@ namespace Bricks_Interfaces.Models
             {
                 try
                 {
-                    json = System.IO.File.ReadAllText("../../../Mecaniques.json");
+                    json = System.IO.File.ReadAllText(MainWindowViewModel.MecaniquesPath);
                     Nodes = JsonSerializer.Deserialize<ObservableCollection<Mecanique>>(json);
                     succes = true;
 
@@ -60,27 +60,6 @@ namespace Bricks_Interfaces.Models
             return Nodes;
         }
 
-        public static void InitializeFileWatcher(ObservableCollection<Mecanique> Mecaniques, FileSystemWatcher _fileWatcher )
-        {
-            
-
-            _fileWatcher = new FileSystemWatcher
-            {
-                Path = "../../../",
-                Filter = "Mecaniques.json",
-                NotifyFilter = NotifyFilters.LastWrite
-            };
-
-
-
-            _fileWatcher.Changed += (sender, e) =>
-            {
-                 Mecaniques = Models.Mecanique.GetMecaniques();  
-            };
-
-            _fileWatcher.EnableRaisingEvents = true; // Active la surveillance
-
-        }
 
         public static void SaveMecaniques(ObservableCollection<Models.Mecanique> Levels)
         {
@@ -91,7 +70,7 @@ namespace Bricks_Interfaces.Models
                 try
                 {
                     string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
-                    System.IO.File.WriteAllText("../../../Mecaniques.json", json);
+                    System.IO.File.WriteAllText(MainWindowViewModel.MecaniquesPath, json);
                     succes = true;
 
                 }

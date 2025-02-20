@@ -12,8 +12,7 @@ from loading_function import instance_entities
 
 # pygame setup
 pygame.init()
-project_path = ""
-
+Game.directory = ""
 level = 0
 
 def next_level(Player,level):
@@ -23,10 +22,10 @@ def next_level(Player,level):
     Player = instance_entities(entities, level)
     return Player,level
 
-GameBackground = pygame.image.load("A:/Code/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/Fond.jpg")
+GameBackground = pygame.image.load(Game.directory+"/Assets/Fond.jpg")
 GameBackground = pygame.transform.scale(GameBackground,(1280,720))
 
-VictoryScreen = pygame.image.load("A:/Code/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets/Victoire.png")
+VictoryScreen = pygame.image.load(Game.directory+"/Assets/Victoire.png")
 VictoryScreen = pygame.transform.scale(VictoryScreen,(1280,720))
 
 left_border = Structure("left_border",-2147483646,-1,2147483646,2147483646,0,True,"square",0,False)
@@ -38,7 +37,7 @@ Game.entities.append(left_border)
 Game.entities.append(right_border)
 Game.entities.append(up_border)
 Game.entities.append(down_border)
-entities = Game.load_entities("A:/Code/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Entity.json")
+entities = Game.load_entities(Game.directory+"/Entity.json")
 level_max = len(entities)
 Gravity.is_gravity =True
 

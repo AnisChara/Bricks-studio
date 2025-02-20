@@ -53,10 +53,6 @@ namespace Bricks_Interfaces.Models
         }
 
 
-
-
-
-
         public static ObservableCollection<Node> GetNodes()
         {
             ObservableCollection<Node> Nodes = new ObservableCollection<Node>();
@@ -67,7 +63,7 @@ namespace Bricks_Interfaces.Models
             {
                 try
                 {
-                    json = System.IO.File.ReadAllText("../../../Nodes.json");
+                    json = System.IO.File.ReadAllText(MainWindowViewModel.NodesPath);
                     Nodes = JsonSerializer.Deserialize<ObservableCollection<Node>>(json);
                     succes = true;
 
@@ -78,27 +74,6 @@ namespace Bricks_Interfaces.Models
             return Nodes;
         }
 
-        public static void InitializeFileWatcher(ObservableCollection<Node> Nodes)
-        {
-            FileSystemWatcher _fileWatcher;
-            _fileWatcher = new FileSystemWatcher
-            {
-                Path = "../../../",
-                Filter = "Nodes.json",
-                NotifyFilter = NotifyFilters.LastWrite
-            };
-
-
-
-            _fileWatcher.Changed += (sender, e) =>
-            {
-                // Lorsque le fichier JSON est modifié, rechargez les données
-                Nodes = Node.GetNodes();
-            };
-
-            _fileWatcher.EnableRaisingEvents = true; // Active la surveillance
-
-        }
 
         public static void SaveNodes(ObservableCollection<Node> Levels)
         {
@@ -109,7 +84,7 @@ namespace Bricks_Interfaces.Models
                 try
                 {
                     string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
-                    System.IO.File.WriteAllText("../../../Nodes.json", json);
+                    System.IO.File.WriteAllText(MainWindowViewModel.NodesPath, json);
                     succes = true;
 
                 }

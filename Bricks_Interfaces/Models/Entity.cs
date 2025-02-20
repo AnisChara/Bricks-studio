@@ -376,7 +376,7 @@ namespace Bricks_Interfaces.Models
             {
                 try
                 {
-                    json = System.IO.File.ReadAllText("../../../Entity.json");
+                    json = System.IO.File.ReadAllText(MainWindowViewModel.EntityPath);
                     Levels = JsonSerializer.Deserialize<ObservableCollection<Level>>(json);
                     if (Levels != null && Levels.Count > 0)
                     {
@@ -402,7 +402,7 @@ namespace Bricks_Interfaces.Models
             {
                 try
                 {
-                    json = System.IO.File.ReadAllText("../../../Entity.json");
+                    json = System.IO.File.ReadAllText(MainWindowViewModel.EntityPath);
                     listofLevels = JsonSerializer.Deserialize<ObservableCollection<Level>>(json);
                     succes = true;
                 }
@@ -425,7 +425,7 @@ namespace Bricks_Interfaces.Models
                 try
                 {
                     string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
-                    System.IO.File.WriteAllText("../../../Entity.json", json);
+                    System.IO.File.WriteAllText(MainWindowViewModel.EntityPath, json);
                     succes = true;
 
                 }
@@ -451,7 +451,7 @@ namespace Bricks_Interfaces.Models
                 try
                 {
                     string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
-                    System.IO.File.WriteAllText("../../../Entity.json", json);
+                    System.IO.File.WriteAllText(MainWindowViewModel.EntityPath, json);
                     succes = true;
 
                 }

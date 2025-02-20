@@ -197,7 +197,7 @@ namespace Bricks_Interfaces.ViewModels
         {
             MecaWatcher = new FileSystemWatcher
             {
-                Path = "../../../",
+                Path = MainWindowViewModel.ProjectPath,
                 Filter = "Mecaniques.json",
                 NotifyFilter = NotifyFilters.LastWrite
             };
@@ -214,7 +214,7 @@ namespace Bricks_Interfaces.ViewModels
 
             DeclWatcher = new FileSystemWatcher
             {
-                Path = "../../../",
+                Path = MainWindowViewModel.ProjectPath,
                 Filter = "Declencheurs.json",
                 NotifyFilter = NotifyFilters.LastWrite
             };
@@ -231,7 +231,7 @@ namespace Bricks_Interfaces.ViewModels
 
             NodeWatcher = new FileSystemWatcher
             {
-                Path = "../../../",
+                Path = MainWindowViewModel.ProjectPath,
                 Filter = "Nodes.json",
                 NotifyFilter = NotifyFilters.LastWrite
             };

@@ -20,12 +20,8 @@ namespace Bricks_Interfaces
     {
         public MainWindow(string project_path)
         {
-            InitializeComponent();
             this.DataContext = new MainWindowViewModel(project_path);
+            InitializeComponent();
         }
-
-
-
-        
     }
 }

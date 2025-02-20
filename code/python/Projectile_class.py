@@ -3,7 +3,7 @@ from Game_class import Game
 
 class Projectile(Entity) :
 
-    def __init__(self,id,x, y, width, height,  speed, is_collidable, shape, weight, emitter,direction,damage,image = Game.directory + "/../../../Assets/fireball.png") : #ajouter arg pour image
+    def __init__(self,id,x, y, width, height,  speed, is_collidable, shape, weight, emitter,direction,damage,image = Game.directory + "/Assets/fireball.png") : #ajouter arg pour image
         super().__init__(id,image,x, y, width, height,  speed, is_collidable, shape, weight)
         self.emitter = emitter
         self.direction = direction

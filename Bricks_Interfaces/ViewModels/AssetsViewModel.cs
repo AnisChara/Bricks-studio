@@ -63,7 +63,7 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 0,
                 render: true,
                 has_weapon: false,
-                image : MainWindowViewModel.formattedPath+"/../../../Assets/téléchargement.jpg",
+                image : MainWindowViewModel.AssetsPath+"/téléchargement.jpg",
                 Track : false
             );
 
@@ -94,7 +94,7 @@ namespace Bricks_Interfaces.ViewModels
                 render: true,
                 has_weapon: false,
                 damage:100,
-                image : MainWindowViewModel.formattedPath + "/../../../Assets/images.png",
+                image : MainWindowViewModel.AssetsPath + "/images.png",
                 Track: false
 
             );
@@ -128,7 +128,7 @@ namespace Bricks_Interfaces.ViewModels
                 has_weapon: false,
                 max_health:100,
                 damage:100,
-                image: MainWindowViewModel.formattedPath + "/../../../Assets/monster.png",
+                image: MainWindowViewModel.AssetsPath + "/monster.png",
                 Track: false
 
             );
@@ -157,7 +157,7 @@ namespace Bricks_Interfaces.ViewModels
                 weight: 0,
                 render: true,
                 has_weapon: false,
-                image: MainWindowViewModel.formattedPath + "/../../../Assets/flag.png",
+                image: MainWindowViewModel.AssetsPath + "/flag.png",
                 Track: false
 
             );
@@ -200,14 +200,14 @@ namespace Bricks_Interfaces.ViewModels
                 max_health: 100,
                 weight: 10,
                 damage: null,
-                image: MainWindowViewModel.formattedPath + "/../../../Assets/mario.png",
+                image: MainWindowViewModel.AssetsPath + "/mario.png",
                 Track: false
 
             );
 
             ObservableCollection<Entity> Entitylevel = new ObservableCollection<Entity>();
             Entitylevel.Add(Player);
-            var level = new Level(LevelName, Entitylevel);
+            var level = new Level(LevelName, Entitylevel, MainWindowViewModel.AssetsPath+"/Fond.jpg");
 
             levels.Add(level);
             Entity.SaveAllLevels(levels);

@@ -1,18 +1,18 @@
 [
   {
-    "Name": "Niveau 0",
+    "Name": "Niveau 1",
     "Entities": [
       {
         "type": "Player",
-        "x": 72.39999999999998,
-        "y": 234,
-        "width": 108,
-        "height": 90,
+        "x": 1.533333333333303,
+        "y": 0.37333333333332774,
+        "width": 62.5,
+        "height": 62.5,
         "color": null,
         "id": "Player",
         "margin": {
-          "Left": 72.39999999999998,
-          "Top": 234,
+          "Left": 0,
+          "Top": 0,
           "Right": 0,
           "Bottom": 0
         },
@@ -22,12 +22,12 @@
         "render": true,
         "has_weapon": true,
         "max_health": 100,
-        "weight": 1,
+        "weight": 10,
         "damage": null,
-        "image": "A:/Code/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets\\mario.png",
+        "image": "A:\\Code\\test/fsgn/Assets/mario.png",
         "Track": false
       }
     ],
-    "Background": "A:/Code/bricks-studio/Bricks_Interfaces/bin/Debug/net8.0-windows/../../../Assets\\Fond.jpg"
+    "Background": "A:\\Code\\test/fsgn/Assets/Fond.jpg"
   }
 ]

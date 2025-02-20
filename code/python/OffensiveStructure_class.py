@@ -3,7 +3,7 @@ from Game_class import Game
 
 class Offensive_Structure(Structure) :
 
-    def __init__(self,id, x, y, width, height, speed = 10, is_collidable = False, shape = "square", weight = 10, render = True , damage = 100,image = "C:/Users/user/Documents/COURS/C#/Projet/bricks-studio/assets/images.png") : #ajouter arg pour image
+    def __init__(self,id, x, y, width, height, speed = 10, is_collidable = False, shape = "square", weight = 10, render = True , damage = 100,image = Game.directory+"/Assets/images.png") : #ajouter arg pour image
         super().__init__(id,x, y, width, height,  speed, is_collidable, shape, weight, render, image)
         self.damage = damage
 
