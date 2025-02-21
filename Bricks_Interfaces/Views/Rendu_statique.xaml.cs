@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,10 +23,15 @@ namespace Bricks_Interfaces.Views
     /// </summary>
     public partial class Rendu_statique : UserControl
     {
+        public static double RenduWidth;
+        public static double RenduHeight;
         public Rendu_statique()
         {
             InitializeComponent();
-            this.DataContext = new RenduStatiqueViewModel();
+            RenduHeight = this.ActualHeight;
+            RenduWidth = this.ActualWidth;
+            this.DataContext = new RenduStatiqueViewModel(this.ActualWidth, this.ActualHeight);
+            this.SizeChanged += ResizeScreen;
         }
 
 
@@ -48,7 +54,7 @@ namespace Bricks_Interfaces.Views
 
             if (Keyboard.Modifiers == ModifierKeys.Control) ((RenduStatiqueViewModel)this.DataContext).Resize(_startPoint, this.ActualWidth, this.ActualHeight);
 
-            else((RenduStatiqueViewModel)this.DataContext).ActualiseDrag(_startPoint, this.ActualWidth, this.ActualHeight);
+            else((RenduStatiqueViewModel)this.DataContext).ActualiseDrag(_startPoint);
         }
 
         private void Button_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -71,6 +77,11 @@ namespace Bricks_Interfaces.Views
                     else ((RenduStatiqueViewModel)this.DataContext).OpenEntityMenu(entity);
                 }
             }
+        }
+
+        private void ResizeScreen(object sender, SizeChangedEventArgs e)
+        {
+            ((RenduStatiqueViewModel)this.DataContext).ResizeScreen(this.ActualWidth,this.ActualHeight);
         }
 
 

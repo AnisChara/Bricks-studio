@@ -19,6 +19,8 @@ namespace Bricks_Interfaces.ViewModels
     {
         public static DoubleClick entityMenu = null;
         public static bool copy = false;
+        public static double Width;
+        public static double Height;
 
         private ObservableCollection<string> listLevel { get; set; }
         public ObservableCollection<string> ListLevel
@@ -107,11 +109,13 @@ namespace Bricks_Interfaces.ViewModels
         }
 
 
-        public RenduStatiqueViewModel()
+        public RenduStatiqueViewModel(double width, double height)
         {
             InitializeFileWatcher();
             Entities = CurrentLevel.Entities;
             ListLevel = null;
+            Width = width;
+            Height = height;
         }
 
         private void InitializeFileWatcher()
@@ -146,9 +150,10 @@ namespace Bricks_Interfaces.ViewModels
             dragging = true;
         }
 
-        public void ActualiseDrag(Point e, double width, double height)
+        public void ActualiseDrag(Point e)
         {
             if (!dragging) return;
+
 
             bool can_move_left = true;
             bool can_move_right = true;
@@ -167,9 +172,9 @@ namespace Bricks_Interfaces.ViewModels
             if (bottom_collision_index >= 0 && e.Y > selectedEntity.y)can_move_bottom = false;
             if (top_collision_index >= 0 && e.Y < entity_collided[top_collision_index].y + entity_collided[top_collision_index].height)can_move_top = false;
             if (e.X < 0) can_move_left = false;
-            if (e.X >= width-5 - selectedEntity.width) can_move_right = false;
+            if (e.X >= Width-5 - selectedEntity.width) can_move_right = false;
             if (e.Y < 0) can_move_top = false;
-            if (e.Y >= height-5 - selectedEntity.height) can_move_bottom = false;
+            if (e.Y >= Height-5 - selectedEntity.height) can_move_bottom = false;
 
             if (e.X > selectedEntity.x && (can_move_right || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.x = e.X;
             if (e.X < selectedEntity.x && (can_move_left || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.x = e.X;
@@ -183,6 +188,8 @@ namespace Bricks_Interfaces.ViewModels
         public void StopDrag()
         {
             dragging = false;
+
+
 
             Entity.SaveEntities(Entities, CurrentLevel_name);
         }
@@ -248,10 +255,10 @@ namespace Bricks_Interfaces.ViewModels
             if (Entity == null) return;
             if (Entity.id == "Player") return;
 
-            ObservableCollection<Entity> Entities = Entity.GetEntities(Level.CurrentLevel);
+            ObservableCollection<Entity> Entities = Entity.GetEntities(CurrentLevel_name);
             int index = Entities.IndexOf(Entities.Where(e => e.id == Entity.id).FirstOrDefault());
             Entities.RemoveAt(index);
-            Entity.SaveEntities(Entities, Level.CurrentLevel);
+            Entity.SaveEntities(Entities, CurrentLevel_name);
         }
 
         public void Resize(Point e, double width, double height)
@@ -284,6 +291,29 @@ namespace Bricks_Interfaces.ViewModels
             if (e.Y < selectedEntity.y + selectedEntity.height && selectedEntity.height >= 10) selectedEntity.height = e.Y - selectedEntity.y;
             if (e.Y > selectedEntity.y + selectedEntity.height && can_move_bottom) selectedEntity.height = e.Y - selectedEntity.y;
 
+        }
+
+        public void ResizeScreen(double width, double height)
+        {
+            if (Width <= 0 || Height <= 0)
+            {
+                Width = CurrentLevel.LastWidth;
+                Height = CurrentLevel.LastHeight;
+            }
+            if (width != Width || height != Height)
+            {
+                foreach (var entity in Entities)
+                {
+
+                    entity.x *= (width / Width);
+                    entity.y *= (height / Height);
+                    entity.margin = new Thickness(entity.x, entity.y, 0, 0);
+                    entity.width *= (width / Width);
+                    entity.height *= (height / Height);
+                }
+            }
+            Width = width; Height = height;
+            Entity.SaveEntities(Entities, CurrentLevel_name, Width, Height);
         }
 
 

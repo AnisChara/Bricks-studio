@@ -433,11 +433,16 @@ namespace Bricks_Interfaces.Models
             }
         }
 
-        public static void SaveEntities(ObservableCollection<Entity> Entities , string level_name)
+        public static void SaveEntities(ObservableCollection<Entity> Entities , string level_name, double? width = null, double? height = null)
         {
             var Levels = GetAllLevels();
             int index = Levels.IndexOf(GetLevel(level_name));
             Levels[index].Entities = Entities;
+            if (width!=null && height!=null)
+            {
+                Levels[index].LastHeight = (double)height;
+                Levels[index].LastWidth = (double)width;
+            }
 
             SaveAllLevels(Levels);
         }

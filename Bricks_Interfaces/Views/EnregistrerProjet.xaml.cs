@@ -124,7 +124,7 @@ namespace Bricks_Interfaces
 
                 );
                 ObservableCollection<Entity> Entitylevel = [Player];
-                var level = new Level("Niveau 1", Entitylevel, ProjectPath + "/Assets/Fond.jpg");
+                var level = new Level("Niveau 1", Entitylevel, ProjectPath + "/Assets/Fond.jpg", 700, 300);
                 ObservableCollection<Level> Levels = [level];
                 string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
                 System.IO.File.WriteAllText(ProjectPath + "/Entity.json", json);

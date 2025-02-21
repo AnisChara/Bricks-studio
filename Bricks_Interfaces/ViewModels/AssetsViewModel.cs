@@ -1,4 +1,5 @@
 ﻿using Bricks_Interfaces.Models;
+using Bricks_Interfaces.Views;
 using Bricks_Interfaces.Views.AllOnglets;
 using System;
 using System.Collections.Generic;
@@ -207,7 +208,7 @@ namespace Bricks_Interfaces.ViewModels
 
             ObservableCollection<Entity> Entitylevel = new ObservableCollection<Entity>();
             Entitylevel.Add(Player);
-            var level = new Level(LevelName, Entitylevel, MainWindowViewModel.AssetsPath+"/Fond.jpg");
+            var level = new Level(LevelName, Entitylevel, MainWindowViewModel.AssetsPath+"/Fond.jpg",Rendu_statique.RenduWidth, Rendu_statique.RenduHeight);
 
             levels.Add(level);
             Entity.SaveAllLevels(levels);
