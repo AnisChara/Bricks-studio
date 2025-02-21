@@ -159,6 +159,10 @@ namespace Bricks_Interfaces.ViewModels
             bool can_move_right = true;
             bool can_move_top = true;
             bool can_move_bottom = true;
+            bool atBorderRight = false;
+            bool atBorderLeft = false;
+            bool atBorderTop = false;
+            bool atBorderBottom = false;
 
             var (direction,entity_collided) = selectedEntity.CheckAllCollision(Entities);
 
@@ -167,14 +171,14 @@ namespace Bricks_Interfaces.ViewModels
             int bottom_collision_index = direction.IndexOf("bottom");
             int top_collision_index = direction.IndexOf("top");
 
-            if (right_collision_index >= 0 && e.X >= selectedEntity.x)can_move_right = false;
-            if (left_collision_index >= 0 && e.X < entity_collided[left_collision_index].x + entity_collided[left_collision_index].width )can_move_left = false;
-            if (bottom_collision_index >= 0 && e.Y > selectedEntity.y)can_move_bottom = false;
-            if (top_collision_index >= 0 && e.Y < entity_collided[top_collision_index].y + entity_collided[top_collision_index].height)can_move_top = false;
-            if (e.X < 0) can_move_left = false;
-            if (e.X >= Width-5 - selectedEntity.width) can_move_right = false;
-            if (e.Y < 0) can_move_top = false;
-            if (e.Y >= Height-5 - selectedEntity.height) can_move_bottom = false;
+            if (right_collision_index >= 0 && e.X >= selectedEntity.x) { can_move_right = false; /*selectedEntity.x = entity_collided[right_collision_index].x - selectedEntity.width -1;*/ } //TOFIX
+            if (left_collision_index >= 0 && e.X < selectedEntity.x) { can_move_left = false; /*selectedEntity.x = entity_collided[left_collision_index].x + entity_collided[left_collision_index].width +1;*/ }
+            if (bottom_collision_index >= 0 && e.Y > selectedEntity.y) { can_move_bottom = false; /*selectedEntity.y = entity_collided[bottom_collision_index].y - selectedEntity.height -1;*/ }
+            if (top_collision_index >= 0 && e.Y < selectedEntity.y) { can_move_top = false; /*selectedEntity.y = entity_collided[top_collision_index].y + entity_collided[top_collision_index].height +1;*/ }
+            if (e.X < 0 && selectedEntity.x <= 0){ can_move_left = false; selectedEntity.x = 0; }
+            if (e.X >= Width - selectedEntity.width && selectedEntity.x >= Width-selectedEntity.width){ can_move_right = false; selectedEntity.x = Width-selectedEntity.width; }
+            if (e.Y < 0 && selectedEntity.y <= 0){ can_move_top = false; selectedEntity.y = 0; }
+            if (e.Y >= Height - selectedEntity.height && selectedEntity.y >= Height - selectedEntity.height){ can_move_bottom = false; selectedEntity.y= Height-selectedEntity.height; }
 
             if (e.X > selectedEntity.x && (can_move_right || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.x = e.X;
             if (e.X < selectedEntity.x && (can_move_left || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.x = e.X;
