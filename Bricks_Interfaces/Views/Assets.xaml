@@ -49,31 +49,48 @@
 
     <Grid Background="#fecf67">
         <Border Background="#fecf67" Padding="20" CornerRadius="10">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
+            <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True">
+                <Viewbox Stretch="Uniform">
+                    <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
 
-                    <Button x:Name="btn_structure" Content="Ajouter structure" 
-                            Command="{Binding AddStructure}" Style="{StaticResource StyledButton}" />
+                        <Button x:Name="btn_structure" Content="Ajouter structure" 
+                            Command="{Binding AddStructure}" 
+                            Style="{StaticResource StyledButton}"
+                            MinWidth="100" MinHeight="40" FontSize="22"/>
 
-                    <Button x:Name="btn_obstacle" Content="Ajouter obstacle" 
-                            Command="{Binding AddObstacle}" Style="{StaticResource StyledButton}" />
+                        <Button x:Name="btn_obstacle" Content="Ajouter obstacle" 
+                            Command="{Binding AddObstacle}" 
+                            Style="{StaticResource StyledButton}"
+                            MinWidth="100" MinHeight="40" FontSize="22"/>
 
-                    <Button x:Name="btn_ennemie" Content="Ajouter ennemie" 
-                            Command="{Binding AddEnnemy}" Style="{StaticResource StyledButton}" />
+                        <Button x:Name="btn_ennemie" Content="Ajouter ennemie" 
+                            Command="{Binding AddEnnemy}" 
+                            Style="{StaticResource StyledButton}"
+                            MinWidth="100" MinHeight="40" FontSize="22"/>
 
-                    <Button x:Name="btn_zone" Content="Ajouter ligne d'arrivée" 
-                            Command="{Binding AddZone}" Style="{StaticResource StyledButton}" />
+                        <Button x:Name="btn_zone" Content="Ajouter ligne d'arrivée" 
+                            Command="{Binding AddZone}" 
+                            Style="{StaticResource StyledButton}"
+                            MinWidth="100" MinHeight="40" FontSize="22"/>
 
-                    <Button Content="Ajouter niveau" 
-                            Command="{Binding AddLevelCommand}" Style="{StaticResource StyledButton}" />
+                        <Button Content="Ajouter niveau" 
+                            Command="{Binding AddLevelCommand}" 
+                            Style="{StaticResource StyledButton}"
+                            MinWidth="100" MinHeight="40" FontSize="22"/>
 
-                    <TextBox Text="{Binding LevelName}" Width="100" Height="35" 
-                             FontSize="20" VerticalAlignment="Center" Margin="10"/>
+                        <TextBox Text="{Binding LevelName}" 
+                             FontSize="22" VerticalAlignment="Center" Margin="10"
+                             MinWidth="120" Height="40"/>
 
-                    <Button Content="Supprimer niveau" 
-                            Command="{Binding DeleteLevelCommand}" Style="{StaticResource StyledButton}" />
-                </WrapPanel>
-            </StackPanel>
+                        <Button Content="Supprimer niveau" 
+                            Command="{Binding DeleteLevelCommand}" 
+                            Style="{StaticResource StyledButton}"
+                            MinWidth="100" MinHeight="40" FontSize="22" />
+
+                    </WrapPanel>
+                </Viewbox>
+            </DockPanel>
         </Border>
     </Grid>
+
 </UserControl>

@@ -265,25 +265,17 @@ namespace Bricks_Interfaces.ViewModels
         {
             if (!dragging) return;
 
-            bool can_move_left = true;
             bool can_move_right = true;
-            bool can_move_top = true;
             bool can_move_bottom = true;
 
             var (direction, entity_collided) = selectedEntity.CheckAllCollision(Entities);
 
             int right_collision_index = direction.IndexOf("right");
-            int left_collision_index = direction.IndexOf("left");
             int bottom_collision_index = direction.IndexOf("bottom");
-            int top_collision_index = direction.IndexOf("top");
 
             if (right_collision_index >= 0 && e.X >= selectedEntity.x) can_move_right = false;
-            if (left_collision_index >= 0 && e.X < entity_collided[left_collision_index].x + entity_collided[left_collision_index].width) can_move_left = false;
             if (bottom_collision_index >= 0 && e.Y > selectedEntity.y) can_move_bottom = false;
-            if (top_collision_index >= 0 && e.Y < entity_collided[top_collision_index].y + entity_collided[top_collision_index].height) can_move_top = false;
-            if (e.X < 0) can_move_left = false;
             if (e.X >= width) can_move_right = false;
-            if (e.Y < 0) can_move_top = false;
             if (e.Y >= height) can_move_bottom = false;
 
             if (e.X > selectedEntity.x+selectedEntity.width && can_move_right) selectedEntity.width += e.X - (selectedEntity.x+selectedEntity.width);
@@ -315,7 +307,5 @@ namespace Bricks_Interfaces.ViewModels
             Width = width; Height = height;
             Entity.SaveEntities(Entities, CurrentLevel_name, Width, Height);
         }
-
-
     }
 }
