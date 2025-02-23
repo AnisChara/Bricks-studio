@@ -26,14 +26,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Champ Width -->
-        <TextBlock Text="Largeur:" VerticalAlignment="Center" Margin="0,5" FontWeight="Bold"/>
-        <TextBox Grid.Column="1" Margin="5" Text="{Binding Entity.width, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#007ACC" BorderThickness="1" Padding="5"/>
-
-        <!-- Champ Height -->
-        <TextBlock Text="Hauteur:" Grid.Row="1" VerticalAlignment="Center" Margin="0,5" FontWeight="Bold"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding Entity.height, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#007ACC" BorderThickness="1" Padding="5"/>
-
         <!-- Champ Poids -->
         <TextBlock Text="Poids:" Grid.Row="2" VerticalAlignment="Center" Margin="0,5" FontWeight="Bold"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Text="{Binding Entity.weight, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#007ACC" BorderThickness="1" Padding="5"/>

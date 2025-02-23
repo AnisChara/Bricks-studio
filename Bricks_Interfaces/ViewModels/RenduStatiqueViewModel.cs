@@ -283,9 +283,12 @@ namespace Bricks_Interfaces.ViewModels
             if (e.Y >= height) can_move_bottom = false;
 
             if (e.X > selectedEntity.x+selectedEntity.width && can_move_right) selectedEntity.width += e.X - (selectedEntity.x+selectedEntity.width);
-            if (e.X < selectedEntity.x + selectedEntity.width && selectedEntity.width >= 10) selectedEntity.width = e.X - selectedEntity.x;
-            if (e.Y < selectedEntity.y + selectedEntity.height && selectedEntity.height >= 10) selectedEntity.height = e.Y - selectedEntity.y;
+            if (e.X < selectedEntity.x + selectedEntity.width && selectedEntity.width >= 20) selectedEntity.width = e.X - selectedEntity.x;
+            if (e.Y < selectedEntity.y + selectedEntity.height && selectedEntity.height >= 20) selectedEntity.height = e.Y - selectedEntity.y;
             if (e.Y > selectedEntity.y + selectedEntity.height && can_move_bottom) selectedEntity.height = e.Y - selectedEntity.y;
+
+            if (selectedEntity.width < 20) selectedEntity.width = 20;
+            if (selectedEntity.height < 20) selectedEntity.height = 20;
 
         }
 

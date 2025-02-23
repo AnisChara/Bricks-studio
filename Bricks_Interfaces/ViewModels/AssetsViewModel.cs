@@ -213,7 +213,7 @@ namespace Bricks_Interfaces.ViewModels
             levels.Add(level);
             Entity.SaveAllLevels(levels);
             Level.CurrentLevel = LevelName;
-            LevelName = "";
+            LevelName = null;
         }
 
         private void DeleteLevel(object parameter)
