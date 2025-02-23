@@ -285,6 +285,7 @@ namespace Bricks_Interfaces.Models
             this.color = color;
             this.image = image;
             this.Track = Track;
+            this.margin = new Thickness(x, y, 0, 0);
         }
 
         public enum CollisionDirection

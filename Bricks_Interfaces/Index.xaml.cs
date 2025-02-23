@@ -59,9 +59,7 @@ namespace Bricks_Interfaces
                 // Créer et configurer la fenêtre principale
                 var mainWindow = new MainWindow(folderPath)
                 {
-                    Width = 1280,
-                    Height = 720,
-                    WindowState = this.WindowState,
+                    WindowState = WindowState.Maximized,
                     Left = this.Left,
                     Top = this.Top
                 };

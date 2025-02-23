@@ -294,10 +294,15 @@ namespace Bricks_Interfaces.ViewModels
 
         public void ResizeScreen(double width, double height)
         {
+            if (CurrentLevel.LastWidth == 0 || CurrentLevel.LastHeight == 0)
+            {
+                CurrentLevel.LastHeight = height;
+                CurrentLevel.LastWidth = width;
+            }
             if (Width <= 0 || Height <= 0)
             {
-                Width = CurrentLevel.LastWidth;
-                Height = CurrentLevel.LastHeight;
+                Width = width;
+                Height = height;
             }
             if (width != Width || height != Height)
             {

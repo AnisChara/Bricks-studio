@@ -119,8 +119,8 @@ namespace Bricks_Interfaces.ViewModels
                 id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
-                width: 50,
-                height: 50,
+                width: 100,
+                height: 100,
                 speed: 5,
                 is_collidable: true,
                 shape: "square",
@@ -150,8 +150,8 @@ namespace Bricks_Interfaces.ViewModels
                 id: Guid.NewGuid().ToString(),
                 x: 100,
                 y: 200,
-                width: 100,
-                height: 100,
+                width: 50,
+                height: 50,
                 speed: 5,
                 is_collidable: false,
                 shape: "square",
@@ -186,12 +186,12 @@ namespace Bricks_Interfaces.ViewModels
             }
             var levels = Entity.GetAllLevels();
             Entity Player = new Entity(
-                
+
                 type: "Player",
-                x: 1.533333333333303,
-                y: 0.37333333333332774,
-                width: 62.5,
-                height: 62.5,
+                x: 100,
+                y: 100,
+                width: 100,
+                height: 100,
                 id: "Player",
                 speed: 10,
                 is_collidable: true,
@@ -201,14 +201,14 @@ namespace Bricks_Interfaces.ViewModels
                 max_health: 100,
                 weight: 10,
                 damage: null,
-                image: MainWindowViewModel.AssetsPath + "/mario.png",
-                Track: false
+                Track: false,
+                image: MainWindowViewModel.AssetsPath + "/mario.png"
 
             );
 
             ObservableCollection<Entity> Entitylevel = new ObservableCollection<Entity>();
             Entitylevel.Add(Player);
-            var level = new Level(LevelName, Entitylevel, MainWindowViewModel.AssetsPath+"/Fond.jpg",Rendu_statique.RenduWidth, Rendu_statique.RenduHeight);
+            var level = new Level(LevelName, Entitylevel, MainWindowViewModel.AssetsPath+"/Fond.jpg",RenduStatiqueViewModel.Width,RenduStatiqueViewModel.Height);
 
             levels.Add(level);
             Entity.SaveAllLevels(levels);

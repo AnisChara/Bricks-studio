@@ -66,9 +66,9 @@ namespace Bricks_Interfaces
                 MessageBox.Show("Veuillez choisir un emplacement valide.");
                 return;
             }
-            if (ProjectName.Text == null || ProjectName.Text == "")
+            if (!IsValidFolderName(ProjectName.Text))
             {
-                MessageBox.Show("Veuillez choisir un nom valide.");
+                MessageBox.Show("Nom invalide");
                 return;
             }
 
@@ -79,9 +79,7 @@ namespace Bricks_Interfaces
             var mainWindow = new MainWindow(ProjectPath);
 
             // Synchroniser les dimensions et l'état et la position de la fenêtre
-            mainWindow.Width = 1280;
-            mainWindow.Height = 720;
-            mainWindow.WindowState = this.WindowState;
+            mainWindow.WindowState = WindowState.Maximized;
             mainWindow.Left = this.Left;
             mainWindow.Top = this.Top;
 
@@ -91,6 +89,7 @@ namespace Bricks_Interfaces
 
         private void CreateProject(string ProjectPath)
         {
+
 
             if (!Directory.Exists(ProjectPath))
             {
@@ -106,10 +105,10 @@ namespace Bricks_Interfaces
                 Entity Player = new Entity(
 
                     type: "Player",
-                    x: 1.533333333333303,
-                    y: 0.37333333333332774,
-                    width: 62.5,
-                    height: 62.5,
+                    x: 100,
+                    y: 100,
+                    width: 100,
+                    height: 100,
                     id: "Player",
                     speed: 10,
                     is_collidable: true,
@@ -124,7 +123,7 @@ namespace Bricks_Interfaces
 
                 );
                 ObservableCollection<Entity> Entitylevel = [Player];
-                var level = new Level("Niveau 1", Entitylevel, ProjectPath + "/Assets/Fond.jpg", 700, 300);
+                var level = new Level("Niveau 1", Entitylevel, ProjectPath + "/Assets/Fond.jpg", 0, 0);
                 ObservableCollection<Level> Levels = [level];
                 string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
                 System.IO.File.WriteAllText(ProjectPath + "/Entity.json", json);
@@ -132,7 +131,7 @@ namespace Bricks_Interfaces
             }
         }
 
-        static void CopyDirectory(string sourceDir, string destinationDir)
+        private void CopyDirectory(string sourceDir, string destinationDir)
         {
             // Crée le dossier de destination s'il n'existe pas
             if (!Directory.Exists(destinationDir))
@@ -153,6 +152,32 @@ namespace Bricks_Interfaces
                 string newDestDir = Path.Combine(destinationDir, Path.GetFileName(subDir));
                 CopyDirectory(subDir, newDestDir);
             }
+        }
+
+        private bool IsValidFolderName(string folderName)
+        {
+            if (string.IsNullOrWhiteSpace(folderName))
+                return false;
+
+            // Vérifie si le nom contient des caractères interdits sous Windows
+            char[] invalidChars = Path.GetInvalidFileNameChars();
+            foreach (char c in folderName)
+            {
+                if (Array.IndexOf(invalidChars, c) >= 0)
+                    return false;
+            }
+
+            // Vérifie si le nom est un nom réservé sous Windows
+            string[] reservedNames = { "CON", "PRN", "AUX", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9",
+                                   "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9" };
+            if (Array.Exists(reservedNames, name => string.Equals(folderName, name, StringComparison.OrdinalIgnoreCase)))
+                return false;
+
+            // Vérifie si le nom termine par un espace ou un point (problème sous Windows)
+            if (folderName.EndsWith(" ") || folderName.EndsWith("."))
+                return false;
+
+            return true;
         }
     }
 }
