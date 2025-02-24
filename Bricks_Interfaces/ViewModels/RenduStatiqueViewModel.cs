@@ -175,15 +175,15 @@ namespace Bricks_Interfaces.ViewModels
             if (left_collision_index >= 0 && e.X < selectedEntity.x) { can_move_left = false; /*selectedEntity.x = entity_collided[left_collision_index].x + entity_collided[left_collision_index].width +1;*/ }
             if (bottom_collision_index >= 0 && e.Y > selectedEntity.y) { can_move_bottom = false; /*selectedEntity.y = entity_collided[bottom_collision_index].y - selectedEntity.height -1;*/ }
             if (top_collision_index >= 0 && e.Y < selectedEntity.y) { can_move_top = false; /*selectedEntity.y = entity_collided[top_collision_index].y + entity_collided[top_collision_index].height +1;*/ }
-            if (e.X < 0 && selectedEntity.x <= 0){ can_move_left = false; selectedEntity.x = 0; }
-            if (e.X >= Width - selectedEntity.width && selectedEntity.x >= Width-selectedEntity.width){ can_move_right = false; selectedEntity.x = Width-selectedEntity.width; }
-            if (e.Y < 0 && selectedEntity.y <= 0){ can_move_top = false; selectedEntity.y = 0; }
-            if (e.Y >= Height - selectedEntity.height && selectedEntity.y >= Height - selectedEntity.height){ can_move_bottom = false; selectedEntity.y= Height-selectedEntity.height; }
+            if (e.X < 0 && selectedEntity.x <= 0){ atBorderLeft = true; selectedEntity.x = 0; }
+            if (e.X >= Width - selectedEntity.width && selectedEntity.x >= Width-selectedEntity.width){ atBorderRight = true; selectedEntity.x = Width-selectedEntity.width; }
+            if (e.Y < 0 && selectedEntity.y <= 0){ atBorderTop = true; selectedEntity.y = 0; }
+            if (e.Y >= Height - selectedEntity.height && selectedEntity.y >= Height - selectedEntity.height){ atBorderBottom = true; selectedEntity.y= Height-selectedEntity.height; }
 
-            if (e.X > selectedEntity.x && (can_move_right || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.x = e.X;
-            if (e.X < selectedEntity.x && (can_move_left || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.x = e.X;
-            if (e.Y < selectedEntity.y && (can_move_top || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.y = e.Y;
-            if (e.Y > selectedEntity.y && (can_move_bottom || Keyboard.Modifiers == ModifierKeys.Shift)) selectedEntity.y = e.Y;
+            if (e.X > selectedEntity.x && (can_move_right || Keyboard.Modifiers == ModifierKeys.Shift) && !atBorderRight) selectedEntity.x = e.X;
+            if (e.X < selectedEntity.x && (can_move_left || Keyboard.Modifiers == ModifierKeys.Shift) && !atBorderLeft) selectedEntity.x = e.X;
+            if (e.Y < selectedEntity.y && (can_move_top || Keyboard.Modifiers == ModifierKeys.Shift) && !atBorderTop) selectedEntity.y = e.Y;
+            if (e.Y > selectedEntity.y && (can_move_bottom || Keyboard.Modifiers == ModifierKeys.Shift) && !atBorderBottom) selectedEntity.y = e.Y;
 
 
             selectedEntity.margin = new Thickness(selectedEntity.x, selectedEntity.y, 0, 0);
