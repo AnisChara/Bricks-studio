@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -107,39 +108,24 @@ namespace Bricks_Interfaces.ViewModels
 
             // Chemin vers le script Python
             System.IO.File.WriteAllText(PythonScriptPath, text);
+            string pythonExecutable = "python"; 
 
-            // Chemin vers le script PowerShell
-            string pathToScript = formattedPath + "./../../../..\\code\\powershell\\script.ps1";
-
-            // Préparation des arguments pour PowerShell
-            var scriptArguments = "-ExecutionPolicy Bypass -File \"" + pathToScript + "\"  -customDistPath \"" + PythonScriptPathOutput + "\"";
-
-
-            var processStartInfo = new ProcessStartInfo("powershell.exe", scriptArguments)
+            // Adapter pour Linux/macOS
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true,
-                //WorkingDirectory = output_path,
+                pythonExecutable = "python3"; 
+            }
+
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = pythonExecutable,
+                Arguments = PythonScriptPath, 
+                UseShellExecute = false,       
+                CreateNoWindow = true          
             };
 
-            using var process = new Process
-            {
-                StartInfo = processStartInfo
-            };
-
-            // Gestion de la sortie et des erreurs
-            process.OutputDataReceived += (sender, e) => Console.WriteLine(e.Data);
-            process.ErrorDataReceived += (sender, e) => Console.Error.WriteLine(e.Data);
-
+            Process process = new Process { StartInfo = psi };
             process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
-
-            // Attendre la fin du script PowerShell
-            process.WaitForExit();
-            int exitCode = process.ExitCode;
 
         }
     }
