@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Bricks_Interfaces.Views.EntityMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bricks_Interfaces.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Champ Poids -->
+            <TextBlock Text="Poids:" Grid.Row="2" VerticalAlignment="Center" Margin="0,5" FontWeight="Bold"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Text="{Binding Entity.weight, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#007ACC" BorderThickness="1" Padding="5"/>
+
+            <!-- Champ Dégâts -->
+            <TextBlock Text="Dégats:" Grid.Row="3" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding DamageVisibility}" FontWeight="Bold"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Text="{Binding Entity.damage, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding DamageVisibility}" BorderBrush="#007ACC" BorderThickness="1" Padding="5"/>
+
+            <!-- Champ Vitesse -->
+            <TextBlock Text="Vitesse:" Grid.Row="4" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding SpeedVisibility}" FontWeight="Bold"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding Entity.speed, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding SpeedVisibility}" BorderBrush="#007ACC" BorderThickness="1" Padding="5"/>
+
+            <!-- Champ Track -->
+            <TextBlock Text="Track :" Grid.Row="5" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding TrackVisibility}" FontWeight="Bold"/>
+            <CheckBox IsChecked="{Binding Entity.Track}" Grid.Column="1" Grid.Row="5" Margin="5" Visibility="{Binding TrackVisibility}"/>
+
+            <!-- Champ Collision -->
+            <TextBlock Text="Collision :" Grid.Row="6" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding CollisionVisibility}" FontWeight="Bold"/>
+            <CheckBox IsChecked="{Binding Entity.is_collidable}" Grid.Column="1" Grid.Row="6" Margin="5" Visibility="{Binding CollisionVisibility}"/>
+
+            <!-- Champ Vie -->
+            <TextBlock Text="Vie :" Grid.Row="7" VerticalAlignment="Center" Margin="0,5" Visibility="{Binding HealthVisibility}" FontWeight="Bold"/>
+            <TextBox Grid.Column="1" Grid.Row="7" Margin="5" Text="{Binding Entity.max_health, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding HealthVisibility}" BorderBrush="#007ACC" BorderThickness="1" Padding="5"/>
+
+            <!-- Champ Image -->
+            <TextBlock Text="Image:" Grid.Row="8" VerticalAlignment="Center" Margin="0,5" FontWeight="Bold"/>
+            <TextBox Grid.Column="1" Grid.Row="8" Margin="5" Text="{Binding Entity.image, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#007ACC" BorderThickness="1" Padding="5"/>
+
+            <!-- Boutons -->
+            <!--<StackPanel Grid.Row="9" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+                <Button Content="Sauvegarder" Width="100" Margin="5" Click="SaveButton_Click" Background="#4CAF50" Foreground="White" BorderBrush="#4CAF50" BorderThickness="1" Padding="5"/>
+                <Button Content="Supprimer" Width="100" Margin="5" Click="DeleteButton_Click" Visibility="{Binding DeleteVisibility}" Background="#F44336" Foreground="White" BorderBrush="#F44336" BorderThickness="1" Padding="5"/>
+                <Button Content="Annuler" Width="100" Margin="5" Click="CancelButton_Click" Background="#FF9800" Foreground="White" BorderBrush="#FF9800" BorderThickness="1" Padding="5"/>
+            </StackPanel>-->
+        </Grid>
+</UserControl>

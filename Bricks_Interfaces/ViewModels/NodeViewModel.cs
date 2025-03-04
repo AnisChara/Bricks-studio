@@ -3,6 +3,7 @@ using Bricks_Interfaces.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -24,11 +25,22 @@ namespace Bricks_Interfaces.ViewModels
         public Brick selectedBrick;
         public bool dragging = false;
         bool can_fuse = false;
-        public Mecanique MecaniqueToFuse; 
-        public Declencheur DeclencheurToFuse;
+        string fuse_direction = "";
+        public Brick BrickToFuse; 
         private FileSystemWatcher MecaWatcher;
         private FileSystemWatcher DeclWatcher;
         private FileSystemWatcher NodeWatcher;
+
+        private string debug;
+        public string Debug
+        {
+            get => debug;
+            set
+            {
+                debug = value;
+                OnPropertyChanged(nameof(Debug));
+            }
+        }
 
 
         private Button selectedButton;
@@ -60,35 +72,35 @@ namespace Bricks_Interfaces.ViewModels
                 OnPropertyChanged(nameof(Nodes));
             }
         }
-        private ObservableCollection<Declencheur> declencheurs { get; set; }
-        public ObservableCollection<Declencheur> Declencheurs
+        private ObservableCollection<Event> events { get; set; }
+        public ObservableCollection<Event> Events
         {
-            get => declencheurs;
+            get => events;
             set
             {
-                declencheurs = value;
-                OnPropertyChanged(nameof(Declencheurs));
+                events = value;
+                OnPropertyChanged(nameof(Events));
             }
         }
-        private ObservableCollection<Models.Mecanique> mecaniques { get; set; }
-        public ObservableCollection<Models.Mecanique> Mecaniques
+        private ObservableCollection<Models.Action> actions { get; set; }
+        public ObservableCollection<Models.Action> Actions
         {
-            get => mecaniques;
+            get => actions;
             set
             {
-                mecaniques = value;
-                OnPropertyChanged(nameof(Mecaniques));
+                actions = value;
+                OnPropertyChanged(nameof(Actions));
             }
         }
 
 
         public NodeViewModel() {
 
-            InitializeFileWatcher("Mecaniques");
-            InitializeFileWatcher("Declencheurs");
+            InitializeFileWatcher();
             Nodes = Node.GetNodes();
-            Mecaniques = Models.Mecanique.GetMecaniques();
-            Declencheurs = Declencheur.GetDeclencheurs();
+            Actions = Models.Action.GetSavedActions();
+            Events = Event.GetSavedEvents();
+            Debug = "TEST";
         }
 
         public void StartDrag(object parameter,Button button, System.Windows.Shapes.Rectangle rect)
@@ -109,96 +121,157 @@ namespace Bricks_Interfaces.ViewModels
             bool can_move_top = true;
             bool can_move_bottom = true;
             bool may_fuse = false;
+            double dx = 0;
+            double dy = 0;
+            Node node = null;
+            double saveY = selectedBrick.y;
+            double saveHeight = selectedBrick.height;
+            double lowerActionY = selectedBrick.y;
+            double lowerEventY = selectedBrick.y;
 
-            var (direction, entity_collided) = selectedBrick.CheckAllCollision(Nodes);
-            if (direction == "none" && entity_collided == null) (direction, entity_collided) = selectedBrick.CheckAllCollision(Mecaniques);
-            if (direction == "none" && entity_collided == null) (direction, entity_collided) = selectedBrick.CheckAllCollision(Declencheurs);
+            if (selectedBrick.NodeId != string.Empty)
+            {
+                node = Nodes.FirstOrDefault(obj => obj.id == selectedBrick.NodeId);
+                lowerActionY = Actions.Where(obj=> obj.NodeId == selectedBrick.NodeId ).MinBy(obj => obj.y)?.y ?? selectedBrick.y; 
+                if (Events.Any())lowerEventY = Events.Where(obj => obj.NodeId == selectedBrick.NodeId).MinBy(obj => obj.y)?.y ?? selectedBrick.y; 
+                selectedBrick.y = Math.Min(lowerActionY, lowerEventY); 
+                selectedBrick.height = (node.Mecanique.Actions.Count() + node.Declencheur.Events.Count()) * 35;
+            }
 
+            Debug = height.ToString() + " " + selectedBrick.y.ToString();
+
+            var (direction, entity_collided) = selectedBrick.CheckAllCollision(Actions, ref debug);
+            OnPropertyChanged(nameof(Debug));
+            if (direction == "none" && entity_collided == null) (direction, entity_collided) = selectedBrick.CheckAllCollision(Events, ref debug);
             if (direction == "right" && e.X >= selectedBrick.x) can_move_right = false;
             if (direction == "left" && e.X < entity_collided.x + entity_collided.width) can_move_left = false;
-            if (direction == "bottom" && e.Y > selectedBrick.y) { can_move_bottom = false; may_fuse = true; }
-            if (direction == "top" && e.Y < entity_collided.y + entity_collided.height) {can_move_top = false; may_fuse = true;}
+            if (direction == "bottom" && e.Y > selectedBrick.y) { can_move_bottom = false; may_fuse = true; fuse_direction = "bottom"; }
+            if (direction == "top" && e.Y < entity_collided.y + entity_collided.height) {can_move_top = false; may_fuse = true; fuse_direction = "top"; }
 
-            if (may_fuse == true && selectedBrick.Image == MainWindowViewModel.formattedPath + "/../../../Assets/lego_rouge.png" && entity_collided.Image == MainWindowViewModel.formattedPath + "/../../../Assets/lego_bleu.png") //temp
-            { 
-                rect.Visibility = System.Windows.Visibility.Visible;
-                MecaniqueToFuse = selectedBrick as Mecanique;
-                DeclencheurToFuse = entity_collided as Declencheur;
-                can_fuse = true;
-            }
-            if (may_fuse == true && selectedBrick.Image == MainWindowViewModel.formattedPath + "/../../../Assets/lego_bleu.png" && entity_collided.Image == MainWindowViewModel.formattedPath + "/../../../Assets/lego_rouge.png")
+            if (may_fuse) if (selectedBrick.NodeId == entity_collided.NodeId && selectedBrick.NodeId != string.Empty) may_fuse = false;
+
+
+            if (may_fuse == true) //temp
             {
                 rect.Visibility = System.Windows.Visibility.Visible;
-                DeclencheurToFuse = selectedBrick as Declencheur;
-                MecaniqueToFuse = entity_collided as Mecanique;
+                BrickToFuse = entity_collided;
                 can_fuse = true;
             }
+          
             if (can_fuse == false) rect.Visibility = System.Windows.Visibility.Collapsed;
 
             if (e.X < 0) can_move_left = false;
-            if (e.X >= width - selectedBrick.width) can_move_right = false;
+            if (e.X >= width - selectedBrick.width*2) can_move_right = false;
             if (e.Y < 0) can_move_top = false;
-            if (e.Y >= height - selectedBrick.height) can_move_bottom = false;
+            if (e.Y >= height - selectedBrick.height*2) can_move_bottom = false;
 
-            if (e.X > selectedBrick.x && can_move_right) selectedBrick.x = e.X;
-            if (e.X < selectedBrick.x && can_move_left) selectedBrick.x = e.X;
-            if (e.Y < selectedBrick.y && can_move_top) selectedBrick.y = e.Y;
-            if (e.Y > selectedBrick.y && can_move_bottom) selectedBrick.y = e.Y;
+            if (e.X > selectedBrick.x && can_move_right) dx = e.X - selectedBrick.x ;
+            if (e.X < selectedBrick.x && can_move_left) dx = e.X - selectedBrick.x;
+            if (e.Y < selectedBrick.y && can_move_top) dy = e.Y - saveY;
+            if (e.Y > selectedBrick.y && can_move_bottom) dy = e.Y - saveY;
 
+            selectedBrick.y = saveY;
+            selectedBrick.height = saveHeight;
+            move_brick(selectedBrick, dx,dy);
 
-            selectedBrick.margin = new Thickness(selectedBrick.x, selectedBrick.y, 0, 0);
         }
 
         public void StopDrag()
         {
             dragging = false;
-            if (can_fuse) Fuse(DeclencheurToFuse,MecaniqueToFuse);
-            if (selectedBrick is Node) Node.SaveNodes(Nodes);
-            else
-            {
-                Declencheur.SaveDeclencheurs(Declencheurs);
-                Models.Mecanique.SaveMecaniques(Mecaniques);
-                Node.SaveNodes(Nodes);
-            }
+            if (can_fuse) Fuse(BrickToFuse);
+            Node.SaveNodes(Nodes);
+            Models.Action.SaveActions(Actions);
+            Models.Event.SaveEvents(Events);
         }
 
-
-
-        public void OpenBrickMenu(Brick brick)
+        private void Fuse(Brick BrickToFuse)
         {
-            if (BrickMenu != null)
+            if (selectedBrick.NodeId == string.Empty && BrickToFuse.NodeId == string.Empty)
             {
-                MessageBox.Show("Un menu Brick est deja ouvert veuillez d'abord la fermer.");
+                var new_node = new Node(
+                    new Mecanique([], ""),
+                    new Declencheur([], ""),
+                    "",
+                    0,
+                    0
+                );
+                Nodes.Add(new_node);
+
+                if (selectedBrick is Models.Action) new_node.Mecanique.Actions.Add((Models.Action)selectedBrick);
+                else new_node.Declencheur.Events.Add((Event)selectedBrick);
+
+                if (BrickToFuse is Models.Action) new_node.Mecanique.Actions.Add((Models.Action)BrickToFuse);
+                else new_node.Declencheur.Events.Add((Event)BrickToFuse);
+
+                selectedBrick.NodeId = new_node.id;
+                BrickToFuse.NodeId = new_node.id;
+            }
+            if (selectedBrick.NodeId != string.Empty && BrickToFuse.NodeId == string.Empty)
+            {
+
+            }
+            if (BrickToFuse.NodeId != string.Empty && selectedBrick.NodeId == string.Empty)
+            {
+
+            }
+
+            if (fuse_direction == "bottom")
+            {
+                selectedBrick.x = BrickToFuse.x;
+                selectedBrick.y = BrickToFuse.y - selectedBrick.height;
+            }
+            if (fuse_direction == "top")
+            {
+                selectedBrick.x = BrickToFuse.x;
+                selectedBrick.y = BrickToFuse.y + BrickToFuse.height;
+            }
+
+            selectedBrick.margin = new Thickness(selectedBrick.x, selectedBrick.y, 0, 0);
+
+        }
+
+        private void move_brick(Brick brick, double dx, double dy)
+        {
+            if (brick.NodeId == string.Empty)
+            {
+                brick.x += dx;
+                brick.y += dy;
+                brick.margin = new Thickness(brick.x, brick.y, 0, 0);
                 return;
             }
 
-            BrickMenu = new MenuBrick(brick);
+            Node node = null;
 
-            // Synchroniser les dimensions et l'état de la fenêtre
-            BrickMenu.Width = 200;
-            BrickMenu.Height = 300;
+            foreach (var item in Nodes)
+            {
+                if(item.id == brick.NodeId) { node = item; break; }
+            }
 
-            // Synchroniser la position de la fenêtre
-            BrickMenu.Left = 700;
-            BrickMenu.Top = 200;
-
-            BrickMenu.Show();
+            foreach (var item in Actions)
+            {
+                if (item.NodeId == brick.NodeId)
+                {
+                    item.x += dx; item.y += dy;
+                    item.margin = new Thickness(item.x, item.y, 0, 0);
+                }
+            }
+            foreach (var item in Events)
+            {
+                if (item.NodeId == brick.NodeId)
+                {
+                    item.x += dx; item.y += dy;
+                    item.margin = new Thickness(item.x, item.y, 0, 0);
+                }
+            }
         }
 
-        private void Fuse(Declencheur Declencheur, Mecanique Mecanique)
-        {
-            var new_node = new Node(Mecanique,Declencheur,Mecanique.Name,Mecanique.x,Mecanique.y);
-            Nodes.Add(new_node);
-            Declencheurs.Remove(Declencheur);
-            Mecaniques.Remove(Mecanique);
-        }
-
-        private void InitializeFileWatcher(string target)
+        private void InitializeFileWatcher()
         {
             MecaWatcher = new FileSystemWatcher
             {
                 Path = MainWindowViewModel.ProjectPath,
-                Filter = "Mecaniques.json",
+                Filter = "Actions.json",
                 NotifyFilter = NotifyFilters.LastWrite
             };
 
@@ -207,7 +280,7 @@ namespace Bricks_Interfaces.ViewModels
 
             MecaWatcher.Changed += (sender, e) =>
             {
-                Mecaniques = Models.Mecanique.GetMecaniques();
+                Actions = Models.Action.GetSavedActions();
             };
 
             MecaWatcher.EnableRaisingEvents = true; // Active la surveillance
@@ -215,7 +288,7 @@ namespace Bricks_Interfaces.ViewModels
             DeclWatcher = new FileSystemWatcher
             {
                 Path = MainWindowViewModel.ProjectPath,
-                Filter = "Declencheurs.json",
+                Filter = "Events.json",
                 NotifyFilter = NotifyFilters.LastWrite
             };
 
@@ -224,7 +297,7 @@ namespace Bricks_Interfaces.ViewModels
 
             DeclWatcher.Changed += (sender, e) =>
             {
-                Declencheurs = Declencheur.GetDeclencheurs();
+                Events = Event.GetSavedEvents();
             };
 
             DeclWatcher.EnableRaisingEvents = true; // Active la surveillance

@@ -1,0 +1,169 @@
+﻿<UserControl x:Class="Bricks_Interfaces.Views.Nodes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Bricks_Interfaces.Views"
+      xmlns:UserControls="clr-namespace:Bricks_Interfaces.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+
+    <Grid Width="auto" Height="auto" PreviewMouseMove="Button_PreviewMouseMove" Background="White">
+            <!-- Grille de fond -->
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Background="red" Grid.Column="0">
+                <UserControls:Actions x:Name="ACtions"/>
+            </StackPanel>
+
+            <StackPanel Background="White" Grid.Column="1" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Background="blue">
+                        <ItemsControl ItemsSource="{Binding Events}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Width="auto">
+                                        <Button Content="{Binding Name}" 
+                    Command="{Binding DataContext.AddEventCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                    CommandParameter="{Binding}" 
+                    Width="70" 
+                    Height="30"
+                    FontSize="12">
+                                            <Button.ToolTip>
+                                                <ToolTip Content="{Binding Description}" />
+                                            </Button.ToolTip>
+                                        </Button>
+
+                                        <ComboBox Width="30" FontSize="12" Height="auto"
+                     SelectedItem="{Binding Parameter_value}"
+                     ItemsSource="{Binding Available_parameter_values}" 
+                     Visibility="{Binding Show_list}">
+                                        </ComboBox>
+
+
+                                        <TextBox Width="30" FontSize="20" Height="auto"
+                    Text="{Binding Parameter_value}" Visibility="{Binding Show_number}"/>
+
+                                    </StackPanel>
+
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <ItemsControl ItemsSource="{Binding Nodes}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button  Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
+                        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" CommandParameter="{Binding .}">
+                                        <Button.Content>
+                                            <Grid>
+                                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                                    <Image Source="pack://application:,,,/Assets/lego_bleu.png" 
+                           Stretch="Fill" Width="70" Height="35" Margin="0 0 0 -78"/>
+                                                    <Image Source="pack://application:,,,/Assets/lego_rouge.png" 
+                           Stretch="Fill" Width="70" Height="35"/>
+                                                </StackPanel>
+
+                                                <Rectangle Fill="#5000FF00" Visibility="Hidden"/>
+
+                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Margin="0 30 0 0"/>
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="White"></SolidColorBrush>
+                                                </Grid.Background>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding Declencheurs}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
+PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" CommandParameter="{Binding .}">
+                                        <Button.Content>
+                                            <Grid>
+                                                <Image Source="{Binding Image}" Stretch="Fill" />
+
+
+                                                <Rectangle Fill="#5000FF00" Visibility="Collapsed"/>
+
+                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="White"></SolidColorBrush>
+                                                </Grid.Background>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding Mecaniques}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
+PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" CommandParameter="{Binding .}">
+                                        <Button.Content>
+                                            <Grid>
+                                                <Image Source="{Binding Image}" Stretch="Fill" />
+
+
+                                                <Rectangle Fill="#5000FF00" Visibility="Hidden"/>
+
+                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="White"></SolidColorBrush>
+                                                </Grid.Background>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                    
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

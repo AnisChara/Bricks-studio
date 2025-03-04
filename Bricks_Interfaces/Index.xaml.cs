@@ -50,7 +50,7 @@ namespace Bricks_Interfaces
             {
                 string folderPath = dialog.SelectedPath;
 
-                if (!Directory.Exists(folderPath + "/Assets")|| !Directory.Exists(folderPath + "/python") || !File.Exists(folderPath + "/Mecaniques.json") || !File.Exists(folderPath + "/Declencheurs.json") || !File.Exists(folderPath + "/Nodes.json") || !File.Exists(folderPath + "/Entity.json"))
+                if (!Directory.Exists(folderPath + "/Assets")|| !Directory.Exists(folderPath + "/python") || !File.Exists(folderPath + "/Actions.json") || !File.Exists(folderPath + "/Events.json") || !File.Exists(folderPath + "/Nodes.json") || !File.Exists(folderPath + "/Entity.json"))
                 {
                     MessageBox.Show("Projet non-conforme.");
                     return;

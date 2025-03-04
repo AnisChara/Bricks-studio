@@ -28,37 +28,14 @@ namespace Bricks_Interfaces.ViewModels
                 }
             }
         }
-        public ObservableCollection<Models.Action> Mecanique { get; set; }
+
+        public ObservableCollection<Models.Action> SavedActions { get; set; }
         public ICommand AddActionCommand { get; set; }
-        public ICommand ClearMecaniqueCommand { get; set; }
-        public ICommand ConfirmCommand { get; set; }
-
-        public Models.Mecanique Final_mecanique { get; set; }
-
-        private string mecaniqueName;
-        public string MecaniqueName
-        {
-            get => mecaniqueName;
-            set
-            {
-                if (mecaniqueName != value)
-                {
-                    mecaniqueName = value;
-                    OnPropertyChanged(nameof(MecaniqueName));
-                }
-            }
-        }
 
         public MecaniqueViewModel()
         {
             Actions = Models.Action.GetActions();
-
-        
-            Mecanique = new ObservableCollection<Models.Action>();
             AddActionCommand = new RelayCommand(AddAction);
-            ClearMecaniqueCommand = new RelayCommand(ClearMecanique);
-            ConfirmCommand = new RelayCommand(Confirm);
-
         }
 
 
@@ -66,11 +43,6 @@ namespace Bricks_Interfaces.ViewModels
         {
             Models.Action selectedAction = parameter as Models.Action;
 
-            if (Mecanique.Contains(selectedAction))
-            {
-                MessageBox.Show("Action deja dans la Mecanique");
-                return;
-            }
             if (selectedAction.Parameter_type == "number" && !int.TryParse(selectedAction.Parameter_value, out _))
             {
                 MessageBox.Show("Veuillez fournir un parametre valide");
@@ -83,38 +55,10 @@ namespace Bricks_Interfaces.ViewModels
                 return;
             }
 
-            Models.Action copy = new Models.Action(selectedAction.Name, selectedAction.Function, selectedAction.Description, null, selectedAction.Parameter_count, selectedAction.Parameter_type);
-            copy.Parameter_value = selectedAction.Parameter_value;
-
-            Mecanique.Add(copy);
-        }
-
-        private void ClearMecanique(object parameter)
-        {
-            Mecanique.Clear();
-            MecaniqueName = string.Empty;
-        }
-
-        private void Confirm(object parameter)
-        {
-            string name = parameter as string;
-
-            if (!string.IsNullOrEmpty(name) && Mecanique.Count() > 0)
-            {
-
-                ObservableCollection<Models.Mecanique> Mecaniques = Models.Mecanique.GetMecaniques();
-
-                Final_mecanique = new Models.Mecanique(Mecanique.ToList(), name);
-                ClearMecanique(parameter);
-                Mecaniques.Add(Final_mecanique);
-
-                Models.Mecanique.SaveMecaniques(Mecaniques);
-
-            }
-            else
-            {
-                MessageBox.Show("Veuillez rentrez un nom et/ou une mecanique valide");
-            }
+            selectedAction.Text = selectedAction.Name + " " + selectedAction.Parameter_value;
+            SavedActions = Models.Action.GetSavedActions();
+            SavedActions.Add(selectedAction);
+            Models.Action.SaveActions(SavedActions);
         }
     }
 }

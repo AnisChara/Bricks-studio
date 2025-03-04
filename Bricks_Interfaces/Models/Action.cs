@@ -1,16 +1,21 @@
-﻿using System;
+﻿using Bricks_Interfaces.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Bricks_Interfaces.Models
 {
-    public class Action
+    public class Action : Brick
     {
-        public string Name { get; set; }
         public string Function { get; set; }
+        public string Text { get; set; }
         public string Description { get; set; }
         public ObservableCollection<string>? Available_parameter_values { get; set; }
         public string Parameter_value { get; set; }
@@ -19,11 +24,15 @@ namespace Bricks_Interfaces.Models
         public string Show_number { get; set; }
         public string Parameter_type { get; set; }
 
-        public Action(string Name, string Function, string Description, ObservableCollection<string> Available_parameter_values, int Parameter_count, string Parameter_type)
+
+
+        public Action(string Name, string Function, string Description, ObservableCollection<string> Available_parameter_values, int Parameter_count, string Parameter_type, double x = 0, double y = 0, double width = 100, double height = 35) : base(Name, x, y, width, height)
         {
             this.Name = Name;
             this.Function = Function;
             this.Description = Description;
+            this.Image = MainWindowViewModel.formattedPath + "/../../../Assets/lego_rouge.png";
+            Text = this.Name + " " + this.Parameter_value;
 
             this.Available_parameter_values = Available_parameter_values;
             this.Parameter_count = Parameter_count;
@@ -70,7 +79,44 @@ namespace Bricks_Interfaces.Models
 
             return result.ToString();
         }
+        public static ObservableCollection<Action> GetSavedActions()
+        {
+            ObservableCollection<Action> Nodes = new ObservableCollection<Action>();
+            string json;
+            bool succes = false;
 
+            while (!succes)
+            {
+                try
+                {
+                    json = System.IO.File.ReadAllText(MainWindowViewModel.ActionsPath);
+                    Nodes = JsonSerializer.Deserialize<ObservableCollection<Action>>(json);
+                    succes = true;
+
+                }
+                catch (Exception e) { }
+            }
+
+            return Nodes;
+        }
+
+
+        public static void SaveActions(ObservableCollection<Models.Action> Levels)
+        {
+            bool succes = false;
+
+            while (!succes)
+            {
+                try
+                {
+                    string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
+                    System.IO.File.WriteAllText(MainWindowViewModel.ActionsPath, json);
+                    succes = true;
+
+                }
+                catch (Exception e) { }
+            }
+        }
         public static ObservableCollection<Action> GetActions()
         {
             ObservableCollection<Action> actions =

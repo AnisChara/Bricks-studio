@@ -122,6 +122,7 @@ namespace Bricks_Interfaces.Models
                 }
             }
         }
+        public string NodeId { get; set; } = string.Empty;
 
         public Brick(string name, double x, double y, double width, double height)
         {
@@ -178,11 +179,13 @@ namespace Bricks_Interfaces.Models
             return (true, direction);
         }
 
-        public (string, Brick) CheckAllCollision(IEnumerable<Brick> Entities)
+        public (string, Brick) CheckAllCollision(IEnumerable<Brick> Entities, ref string debug)
         {
             foreach (Brick entity in Entities)
             {
                 if (entity == this) continue;
+                if (entity.NodeId == this.NodeId && entity.NodeId != string.Empty) continue;
+                //debug = this.y.ToString();
                 var (result, direction) = this.CheckCollision(entity);
                 if (result) return (direction, entity);
                 else continue;

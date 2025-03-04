@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Nodes.xaml.cs" />
+    <Compile Remove="Views\Onglets.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Assets\Bricks Studio Presentation.jpg" />
     <None Remove="Assets\fireball.png" />
     <None Remove="Assets\flag.png" />
@@ -19,6 +24,11 @@
     <None Remove="Assets\mario.png" />
     <None Remove="Assets\monster.png" />
     <None Remove="Assets\téléchargement.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Views\Nodes.xaml" />
+    <Page Remove="Views\Onglets.xaml" />
   </ItemGroup>
 
   <ItemGroup>

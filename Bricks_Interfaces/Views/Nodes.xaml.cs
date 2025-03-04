@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using Bricks_Interfaces.Models;
 using Bricks_Interfaces.ViewModels;
 
-namespace Bricks_Interfaces.Views.AllOnglets
+namespace Bricks_Interfaces.Views
 {
     /// <summary>
     /// Logique d'interaction pour Nodes.xaml
@@ -24,8 +24,7 @@ namespace Bricks_Interfaces.Views.AllOnglets
     {
         public Nodes()
         {
-            InitializeComponent();
-            this.DataContext = new NodeViewModel();
+            DataContext = new NodeViewModel();
         }
 
         private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -37,7 +36,7 @@ namespace Bricks_Interfaces.Views.AllOnglets
                 var entity = button.DataContext as Brick; // Remplacez YourEntityType par le type réel de vos entités
                 if (entity != null)
                 {
-                    ((NodeViewModel)this.DataContext).StartDrag(entity,button,grid.Children.OfType<Rectangle>().FirstOrDefault());
+                    ((NodeViewModel)DataContext).StartDrag(entity, button, grid.Children.OfType<Rectangle>().FirstOrDefault());
                 }
             }
         }
@@ -46,12 +45,12 @@ namespace Bricks_Interfaces.Views.AllOnglets
         {
             Point _startPoint = e.GetPosition(sender as Grid);
 
-            ((NodeViewModel)this.DataContext).ActualiseDrag(_startPoint, this.ActualWidth, this.ActualHeight);
+            ((NodeViewModel)DataContext).ActualiseDrag(_startPoint, ActualWidth, ActualHeight);
         }
 
         private void Button_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            ((NodeViewModel)this.DataContext).StopDrag();
+            ((NodeViewModel)DataContext).StopDrag();
         }
         private void Button_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -62,7 +61,7 @@ namespace Bricks_Interfaces.Views.AllOnglets
                 if (entity != null)
                 {
                     bool FullVisibility = entity is Node;
-                    ((NodeViewModel)this.DataContext).OpenBrickMenu(entity);
+                    ((NodeViewModel)DataContext).OpenBrickMenu(entity);
                 }
             }
         }

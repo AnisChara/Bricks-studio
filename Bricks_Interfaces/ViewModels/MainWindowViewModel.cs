@@ -27,6 +27,8 @@ namespace Bricks_Interfaces.ViewModels
         public static string NodesPath = "";
         public static string MecaniquesPath = "";
         public static string DeclencheursPath = "";
+        public static string ActionsPath = "";
+        public static string EventsPath = "";
         public static string EntityPath = "";
 
 
@@ -50,8 +52,8 @@ namespace Bricks_Interfaces.ViewModels
             CompileCommand = new RelayCommand(Compile);
             ProjectPath = project_path.Replace("\\", "/");
             NodesPath = project_path + "/Nodes.json";
-            MecaniquesPath = project_path + "/Mecaniques.json";
-            DeclencheursPath = project_path + "/Declencheurs.json";
+            ActionsPath = project_path + "/Actions.json";
+            EventsPath = project_path + "/Events.json";
             EntityPath = project_path + "/Entity.json";
             AssetsPath = project_path + "/Assets";
             PythonScriptPath = project_path + "/python/index.py";

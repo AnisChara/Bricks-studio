@@ -14,6 +14,7 @@ from loading_function import instance_entities
 pygame.init()
 Game.directory = ""
 level = 0
+pygame.display.set_caption("Mon Jeu en Pygame")
 
 def next_level(Player,level):
     level = level +1

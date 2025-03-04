@@ -98,8 +98,8 @@ namespace Bricks_Interfaces
                 Directory.CreateDirectory(ProjectPath+"/python");
                 CopyDirectory("../../../Assets", ProjectPath+"/Assets");
                 CopyDirectory("../../../../code/python", ProjectPath+ "/python");
-                File.Copy("../../../Mecaniques.json", ProjectPath + "/Mecaniques.json", true);
-                File.Copy("../../../Declencheurs.json", ProjectPath + "/Declencheurs.json", true);
+                File.Copy("../../../Actions.json", ProjectPath + "/Actions.json", true);
+                File.Copy("../../../Events.json", ProjectPath + "/Events.json", true);
                 File.Copy("../../../Nodes.json", ProjectPath + "/Nodes.json", true);
 
                 Entity Player = new Entity(
