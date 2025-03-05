@@ -56,6 +56,7 @@ namespace Bricks_Interfaces.ViewModels
             }
 
             selectedAction.Text = selectedAction.Name + " " + selectedAction.Parameter_value;
+            selectedAction.id = Guid.NewGuid().ToString();
             SavedActions = Models.Action.GetSavedActions();
             SavedActions.Add(selectedAction);
             Models.Action.SaveActions(SavedActions);

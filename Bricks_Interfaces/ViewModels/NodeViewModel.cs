@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Xml.Linq;
 
 namespace Bricks_Interfaces.ViewModels
 {
@@ -22,11 +25,14 @@ namespace Bricks_Interfaces.ViewModels
     {
         public static MenuBrick BrickMenu = null;
 
+        private string fuse_image = MainWindowViewModel.AssetsPath + "/lego_jaune.png";
         public Brick selectedBrick;
         public bool dragging = false;
         bool can_fuse = false;
         string fuse_direction = "";
-        public Brick BrickToFuse; 
+        public Brick BrickToFuse;
+        private double mouseX;
+        private double mouseY;
         private FileSystemWatcher MecaWatcher;
         private FileSystemWatcher DeclWatcher;
         private FileSystemWatcher NodeWatcher;
@@ -93,7 +99,6 @@ namespace Bricks_Interfaces.ViewModels
             }
         }
 
-
         public NodeViewModel() {
 
             InitializeFileWatcher();
@@ -103,12 +108,14 @@ namespace Bricks_Interfaces.ViewModels
             Debug = "TEST";
         }
 
-        public void StartDrag(object parameter,Button button, System.Windows.Shapes.Rectangle rect)
+        public void StartDrag(System.Windows.Point _startPoint,object parameter,Button button, System.Windows.Shapes.Rectangle rect)
         {
             selectedBrick = parameter as Brick;
             selectedButton = button;
             this.rect = rect;
             dragging = true;
+            mouseX = _startPoint.X;
+            mouseY = _startPoint.Y;
         }
 
         public void ActualiseDrag(System.Windows.Point e, double width, double height)
@@ -121,58 +128,94 @@ namespace Bricks_Interfaces.ViewModels
             bool can_move_top = true;
             bool can_move_bottom = true;
             bool may_fuse = false;
-            double dx = 0;
-            double dy = 0;
-            Node node = null;
+            double x = selectedBrick.x;
+            double y = selectedBrick.y;
             double saveY = selectedBrick.y;
             double saveHeight = selectedBrick.height;
-            double lowerActionY = selectedBrick.y;
-            double lowerEventY = selectedBrick.y;
+            int NodeIndex = 0;
+            int NodeLength = 1;
 
             if (selectedBrick.NodeId != string.Empty)
             {
-                node = Nodes.FirstOrDefault(obj => obj.id == selectedBrick.NodeId);
-                lowerActionY = Actions.Where(obj=> obj.NodeId == selectedBrick.NodeId ).MinBy(obj => obj.y)?.y ?? selectedBrick.y; 
-                if (Events.Any())lowerEventY = Events.Where(obj => obj.NodeId == selectedBrick.NodeId).MinBy(obj => obj.y)?.y ?? selectedBrick.y; 
-                selectedBrick.y = Math.Min(lowerActionY, lowerEventY); 
-                selectedBrick.height = (node.Mecanique.Actions.Count() + node.Declencheur.Events.Count()) * 35;
+                NodeIndex = GetNodeIndex(selectedBrick);
+                NodeLength = GetNodeLength(selectedBrick);
+                //Debug = GetNodeIndex(selectedBrick).ToString();
+                ResizeToNode(selectedBrick);
             }
 
-            Debug = height.ToString() + " " + selectedBrick.y.ToString();
+            //Debug = width.ToString() + " " + height.ToString() + " " + selectedBrick.x.ToString() + " " + selectedBrick.y.ToString();
 
-            var (direction, entity_collided) = selectedBrick.CheckAllCollision(Actions, ref debug);
-            OnPropertyChanged(nameof(Debug));
-            if (direction == "none" && entity_collided == null) (direction, entity_collided) = selectedBrick.CheckAllCollision(Events, ref debug);
-            if (direction == "right" && e.X >= selectedBrick.x) can_move_right = false;
-            if (direction == "left" && e.X < entity_collided.x + entity_collided.width) can_move_left = false;
-            if (direction == "bottom" && e.Y > selectedBrick.y) { can_move_bottom = false; may_fuse = true; fuse_direction = "bottom"; }
-            if (direction == "top" && e.Y < entity_collided.y + entity_collided.height) {can_move_top = false; may_fuse = true; fuse_direction = "top"; }
+            //Debug = selectedBrick.x.ToString() + " " + selectedBrick.y.ToString() + " "+ selectedBrick.width.ToString() + " " + selectedBrick.height.ToString();
+
+            var (direction, entity_collided) = selectedBrick.CheckAllCollision(Actions);
+            if (direction == "none" && entity_collided == null) (direction, entity_collided) = selectedBrick.CheckAllCollision(Events);
+            if (direction == "right") can_move_right = false;
+            if (direction == "left" ) can_move_left = false;
+            if (direction == "bottom" ) { can_move_bottom = false; may_fuse = true; fuse_direction = "bottom"; }
+            if (direction == "top") {can_move_top = false; may_fuse = true; fuse_direction = "top"; }
 
             if (may_fuse) if (selectedBrick.NodeId == entity_collided.NodeId && selectedBrick.NodeId != string.Empty) may_fuse = false;
 
 
-            if (may_fuse == true) //temp
+            if (may_fuse == true) 
             {
-                rect.Visibility = System.Windows.Visibility.Visible;
+                //rect.Visibility = System.Windows.Visibility.Visible;
                 BrickToFuse = entity_collided;
                 can_fuse = true;
+
+                if (selectedBrick.NodeId == string.Empty)
+                {
+                    selectedBrick.Image = fuse_image;
+                }
+                else if (fuse_direction == "bottom")
+                {
+                    double minY = selectedBrick.y;
+                    selectedBrick.y = saveY;
+                    Brick HigherAction = null;
+                    Brick HigherEvent = null;
+                    var node = Nodes.FirstOrDefault(obj => obj.id == selectedBrick.NodeId);
+                    HigherAction = Actions.Where(obj => obj.NodeId == selectedBrick.NodeId).MaxBy(obj => obj.y) ?? selectedBrick;
+                    HigherEvent = Events.Where(obj => obj.NodeId == selectedBrick.NodeId).MaxBy(obj => obj.y) ?? selectedBrick;
+                    if (HigherAction.y > HigherEvent.y) HigherAction.Image = fuse_image;
+                    else HigherEvent.Image = fuse_image;
+                    selectedBrick.y = minY;
+                }
+                else if (fuse_direction == "top")
+                {
+                    double maxY = selectedBrick.y;
+                    selectedBrick.y = saveY;
+                    Brick LowerAction = null;
+                    Brick LowerEvent = null;
+                    var node = Nodes.FirstOrDefault(obj => obj.id == selectedBrick.NodeId);
+                    LowerAction = Actions.Where(obj => obj.NodeId == selectedBrick.NodeId).MinBy(obj => obj.y) ?? selectedBrick;
+                    LowerEvent = Events.Where(obj => obj.NodeId == selectedBrick.NodeId).MinBy(obj => obj.y) ?? selectedBrick;
+                    if (LowerAction.y < LowerEvent.y) LowerAction.Image = fuse_image;
+                    else LowerEvent.Image = fuse_image;
+                    selectedBrick.y = maxY;
+                }
+            }
+            else
+            {
+                ResetImage();
             }
           
             if (can_fuse == false) rect.Visibility = System.Windows.Visibility.Collapsed;
 
-            if (e.X < 0) can_move_left = false;
-            if (e.X >= width - selectedBrick.width*2) can_move_right = false;
-            if (e.Y < 0) can_move_top = false;
-            if (e.Y >= height - selectedBrick.height*2) can_move_bottom = false;
-
-            if (e.X > selectedBrick.x && can_move_right) dx = e.X - selectedBrick.x ;
-            if (e.X < selectedBrick.x && can_move_left) dx = e.X - selectedBrick.x;
-            if (e.Y < selectedBrick.y && can_move_top) dy = e.Y - saveY;
-            if (e.Y > selectedBrick.y && can_move_bottom) dy = e.Y - saveY;
-
+            if (selectedBrick.x <= 0) { can_move_left = false; x = 0; }
+            if (selectedBrick.x >= width - selectedBrick.width - 100) { can_move_right = false; x = width - selectedBrick.width - 100; }  // 100 à cause des menus actions et events
+            if (selectedBrick.y <= 0) { can_move_top = false; y = NodeIndex * saveHeight; }
+            if (selectedBrick.y >= height - selectedBrick.height - 100) { can_move_bottom = false; y = height - ((NodeLength- NodeIndex) * saveHeight) - 100; }
+            //Debug = height.ToString() + " " +y.ToString() + " " + saveHeight.ToString() + " " + (height - ((NodeLength - NodeIndex) * saveHeight) - 100).ToString();
             selectedBrick.y = saveY;
             selectedBrick.height = saveHeight;
-            move_brick(selectedBrick, dx,dy);
+           // Debug = e.X.ToString() + " " + mouseX.ToString() + " " + selectedBrick.x.ToString();
+            if (e.X > mouseX && can_move_right) { x = selectedBrick.x + (e.X - mouseX); mouseX = e.X; };
+            if (e.X < mouseX && can_move_left) { x = selectedBrick.x + (e.X - mouseX); mouseX = e.X; };
+            if (e.Y < mouseY && can_move_top) { y = selectedBrick.y + (e.Y - mouseY); mouseY = e.Y; };
+            if (e.Y > mouseY && can_move_bottom) { y = selectedBrick.y + (e.Y - mouseY); mouseY = e.Y; };
+
+
+            move_brick(selectedBrick, x,y);
 
         }
 
@@ -187,6 +230,24 @@ namespace Bricks_Interfaces.ViewModels
 
         private void Fuse(Brick BrickToFuse)
         {
+            int NodeIndex = 0;
+            int NodeLength = 1;
+
+            if (selectedBrick.NodeId != string.Empty)
+            {
+                NodeIndex = GetNodeIndex(selectedBrick);
+                NodeLength = GetNodeLength(selectedBrick);
+            }
+
+            if (fuse_direction == "bottom")
+            {
+                move_brick(selectedBrick, BrickToFuse.x, BrickToFuse.y - selectedBrick.height* (NodeLength - NodeIndex));
+            }
+            else if (fuse_direction == "top")
+            {
+                move_brick(selectedBrick, BrickToFuse.x , BrickToFuse.y+BrickToFuse.height* (NodeIndex+1));
+            }
+
             if (selectedBrick.NodeId == string.Empty && BrickToFuse.NodeId == string.Empty)
             {
                 var new_node = new Node(
@@ -207,36 +268,48 @@ namespace Bricks_Interfaces.ViewModels
                 selectedBrick.NodeId = new_node.id;
                 BrickToFuse.NodeId = new_node.id;
             }
-            if (selectedBrick.NodeId != string.Empty && BrickToFuse.NodeId == string.Empty)
+            else if (selectedBrick.NodeId != string.Empty && BrickToFuse.NodeId == string.Empty)
             {
-
+                var node = Nodes.FirstOrDefault(obj => obj.id == selectedBrick.NodeId);
+                if (BrickToFuse is Models.Action) { node.Mecanique.Actions.Add((Models.Action)BrickToFuse); }
+                else if (BrickToFuse is Models.Event) { node.Declencheur.Events.Add((Models.Event)BrickToFuse); }
+                BrickToFuse.NodeId = node.id;
             }
-            if (BrickToFuse.NodeId != string.Empty && selectedBrick.NodeId == string.Empty)
+            else if (BrickToFuse.NodeId != string.Empty && selectedBrick.NodeId == string.Empty)
             {
-
+                var node = Nodes.FirstOrDefault(obj => obj.id == BrickToFuse.NodeId);
+                if (selectedBrick is Models.Action) { node.Mecanique.Actions.Add((Models.Action)selectedBrick); }
+                else if (selectedBrick is Models.Event) { node.Declencheur.Events.Add((Models.Event)selectedBrick); }
+                selectedBrick.NodeId = node.id;
             }
-
-            if (fuse_direction == "bottom")
+            else if (BrickToFuse.NodeId != string.Empty && selectedBrick.NodeId != string.Empty)
             {
-                selectedBrick.x = BrickToFuse.x;
-                selectedBrick.y = BrickToFuse.y - selectedBrick.height;
-            }
-            if (fuse_direction == "top")
-            {
-                selectedBrick.x = BrickToFuse.x;
-                selectedBrick.y = BrickToFuse.y + BrickToFuse.height;
+                var selectedNode = Nodes.FirstOrDefault(obj => obj.id == selectedBrick.NodeId);
+                var BrickToFuseNode = Nodes.FirstOrDefault(obj => obj.id == BrickToFuse.NodeId);
+                BrickToFuseNode.Declencheur.Events.AddRange(selectedNode.Declencheur.Events);
+                BrickToFuseNode.Mecanique.Actions.AddRange(selectedNode.Mecanique.Actions);
+                foreach (var item in Actions)
+                {
+                    if (item.NodeId == selectedNode.id) item.NodeId = BrickToFuseNode.id;
+                }
+                foreach (var item in Events)
+                {
+                    if (item.NodeId == selectedNode.id) item.NodeId = BrickToFuseNode.id;
+                }
+                Nodes.Remove(selectedNode);
             }
 
-            selectedBrick.margin = new Thickness(selectedBrick.x, selectedBrick.y, 0, 0);
-
+            ResetImage();
         }
 
-        private void move_brick(Brick brick, double dx, double dy)
+        private void move_brick(Brick brick, double x, double y)
         {
+            double dx = x - brick.x;
+            double dy = y - brick.y;
             if (brick.NodeId == string.Empty)
             {
-                brick.x += dx;
-                brick.y += dy;
+                brick.x = x;
+                brick.y = y;
                 brick.margin = new Thickness(brick.x, brick.y, 0, 0);
                 return;
             }
@@ -265,6 +338,52 @@ namespace Bricks_Interfaces.ViewModels
                 }
             }
         }
+
+        private void ResizeToNode(Brick brick)
+        {
+            double lowerActionY = brick.y;
+            double lowerEventY = brick.y;
+
+            var node = Nodes.FirstOrDefault(obj => obj.id == brick.NodeId);
+            lowerActionY = Actions.Where(obj => obj.NodeId == brick.NodeId).MinBy(obj => obj.y)?.y ?? lowerActionY;
+            if (Events.Any()) lowerEventY = Events.Where(obj => obj.NodeId == brick.NodeId).MinBy(obj => obj.y)?.y ?? lowerEventY;
+            brick.y = Math.Min(lowerActionY, lowerEventY);
+            brick.height = (node.Mecanique.Actions.Count() + node.Declencheur.Events.Count()) * 35;
+        }
+
+        private int GetNodeIndex(Brick brick)
+        {
+            int index = 0;
+            foreach(var Act in Actions)
+            {
+                if (Act.NodeId != brick.NodeId) continue;
+                if (Act.y < brick.y) index++;
+            }
+            foreach (var Act in Events)
+            {
+                if (Act.NodeId != brick.NodeId) continue;
+                if (Act.y < brick.y) index++;
+            }
+            return index;
+        }
+        private int GetNodeLength(Brick brick)
+        {
+            var node = Nodes.FirstOrDefault(obj => obj.id == brick.NodeId);
+            return node.Declencheur.Events.Count() + node.Mecanique.Actions.Count();
+        }
+
+        private void ResetImage()
+        {
+            foreach (var item in Actions)
+            {
+                item.Image = MainWindowViewModel.AssetsPath + "/lego_rouge.png";
+            }
+            foreach (var item in Events)
+            {
+                item.Image = MainWindowViewModel.AssetsPath + "/lego_bleu.png";
+            }
+        }
+
 
         private void InitializeFileWatcher()
         {

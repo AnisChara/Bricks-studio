@@ -46,7 +46,7 @@
                         <UserControls:Events x:Name="Events"/>
                         <TextBlock  Text="{Binding Debug, UpdateSourceTrigger=PropertyChanged}" Foreground="White"></TextBlock>
                     </StackPanel>
-                    <StackPanel Grid.Row="1" PreviewMouseMove="Button_PreviewMouseMove" >
+                    <StackPanel Grid.Row="1" PreviewMouseMove="Button_PreviewMouseMove" Name="Board">
                         <ItemsControl ItemsSource="{Binding Events}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>

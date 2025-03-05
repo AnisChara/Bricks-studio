@@ -80,7 +80,7 @@ namespace Bricks_Interfaces.ViewModels
                 string declencheur = string.Empty;
                 string mecanique = string.Empty;
 
-                if(node.Mecanique == null || node.Declencheur == null)
+                if(node.Mecanique.Actions.Count() == 0 || node.Declencheur.Events.Count() == 0)
                 {
                     continue;
                 }
