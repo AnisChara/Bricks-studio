@@ -39,7 +39,7 @@ namespace Bricks_Interfaces.Views
                 var entity = button.DataContext as Brick; // Remplacez YourEntityType par le type réel de vos entités
                 if (entity != null)
                 {
-                    ((NodeViewModel)DataContext).StartDrag(_startPoint,entity, button, grid.Children.OfType<Rectangle>().FirstOrDefault());
+                    ((NodeViewModel)DataContext).StartDrag(_startPoint,entity, button);
                 }
             }
         }

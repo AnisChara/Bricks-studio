@@ -179,17 +179,19 @@ namespace Bricks_Interfaces.Models
             return (true, direction);
         }
 
-        public (string, Brick) CheckAllCollision(IEnumerable<Brick> Entities)
+        public (List<string>, List<Brick>) CheckAllCollision(IEnumerable<Brick> Entities)
         {
+            List<string> directions = new List<string>();
+            List<Brick> bricks = new List<Brick>();
+
             foreach (Brick entity in Entities)
             {
                 if (entity == this) continue;
                 if (entity.NodeId == this.NodeId && entity.NodeId != string.Empty) continue;
                 var (result, direction) = this.CheckCollision(entity);
-                if (result) return (direction, entity);
-                else continue;
+                if (result) { directions.Add(direction); bricks.Add(entity); }
             }
-            return ("none", null);
+            return (directions, bricks);
         }
     }
 }
