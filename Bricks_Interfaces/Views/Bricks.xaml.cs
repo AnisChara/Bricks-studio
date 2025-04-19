@@ -55,17 +55,25 @@ namespace Bricks_Interfaces.Views
         {
             ((NodeViewModel)DataContext).StopDrag();
         }
-        private void Button_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        private void Button_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Point _startPoint = e.GetPosition(Board);
+
             if (sender is Button button)
             {
+                var grid = button.Content as Grid;
                 // Récupérez l'entité liée via le DataContext
                 var entity = button.DataContext as Brick; // Remplacez YourEntityType par le type réel de vos entités
                 if (entity != null)
                 {
-                    bool FullVisibility = entity is Node;
+                    ((NodeViewModel)DataContext).StartDrag(_startPoint, entity, button, true);
                 }
             }
+        }
+
+        private void Button_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ((NodeViewModel)DataContext).StopDrag();
         }
     }
 }

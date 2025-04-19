@@ -56,7 +56,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
-PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" CommandParameter="{Binding .}">
+PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonDown="Button_MouseRightButtonDown" CommandParameter="{Binding .}" PreviewMouseRightButtonUp="Button_PreviewMouseRightButtonUp">
                                         <Button.Content>
                                             <Grid>
                                                 <Image Source="{Binding Image}" Stretch="Fill" />
@@ -83,7 +83,7 @@ PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButt
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Width="{Binding width}" Height="{Binding height}" Margin="{Binding margin}" PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown" 
-PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Button_MouseRightButtonUp" CommandParameter="{Binding .}">
+PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp" PreviewMouseRightButtonDown="Button_MouseRightButtonDown" CommandParameter="{Binding .}" PreviewMouseRightButtonUp="Button_PreviewMouseRightButtonUp">
                                         <Button.Content>
                                             <Grid>
                                                 <Image Source="{Binding Image}" Stretch="Fill" />

@@ -42,6 +42,7 @@ namespace Bricks_Interfaces.ViewModels
         bool can_fuse = false;
         string fuse_direction = "";
         public Brick BrickToFuse;
+        private bool split = false;
         private double mouseX;
         private double mouseY;
         private FileSystemWatcher MecaWatcher;
@@ -109,18 +110,20 @@ namespace Bricks_Interfaces.ViewModels
             ResetImage();
         }
 
-        public void StartDrag(System.Windows.Point _startPoint,object parameter,Button button)
+        public void StartDrag(System.Windows.Point _startPoint,object parameter,Button button, bool split = false)
         {
             selectedBrick = parameter as Brick;
             selectedButton = button;
             dragging = true;
             mouseX = _startPoint.X;
             mouseY = _startPoint.Y;
+            this.split = split; 
         }
 
         public void ActualiseDrag(System.Windows.Point e, double width, double height)
         {
             if (!dragging) return;
+            if (split) if(!SplitBrick(selectedBrick)) return;
 
             can_fuse = false;
             bool can_move_left = true;
@@ -151,11 +154,12 @@ namespace Bricks_Interfaces.ViewModels
             var (directions, entities_collided) = selectedBrick.CheckAllCollision(Actions);
             var (directions2, entities_collided2) = selectedBrick.CheckAllCollision(Events);
             directions.AddRange(directions2);
-            Debug = directions.Contains("bottom").ToString();
             entities_collided.AddRange(entities_collided2);
-            if (directions.Contains("right")) can_move_right = false;
-            if (directions.Contains("left")) can_move_left = false;
-            if (directions.Contains("bottom")) { can_move_bottom = false; may_fuse = true; fuse_direction = "bottom"; }
+
+
+            if (directions.Contains("right")) { can_move_right = false; x = entities_collided[directions.IndexOf("right")].x - selectedBrick.width +1;}
+            if (directions.Contains("left")) { can_move_left = false; x = entities_collided[directions.IndexOf("left")].x + entities_collided[directions.IndexOf("left")].width - 1; }
+            if (directions.Contains("bottom")) { can_move_bottom = false; may_fuse = true; fuse_direction = "bottom";  }
             if (directions.Contains("top")) {can_move_top = false; may_fuse = true; fuse_direction = "top"; }
 
             if (selectedBrick.x <= 0) { can_move_left = false; x = 0; }
@@ -221,6 +225,7 @@ namespace Bricks_Interfaces.ViewModels
                 ResetImage();
             }
 
+            split = false;
         }
 
         public void StopDrag()
@@ -230,6 +235,50 @@ namespace Bricks_Interfaces.ViewModels
             Node.SaveNodes(Nodes);
             Models.Action.SaveActions(Actions);
             Models.Event.SaveEvents(Events);
+        }
+
+        private bool SplitBrick(Brick brick)
+        {
+            int NodeLength = GetNodeLength(brick);
+            if (NodeLength < 2) { return false; }
+
+            int NodeIndex = GetNodeIndex(brick);
+            if (NodeIndex != 0 && NodeIndex != NodeLength - 1) { Debug = NodeIndex.ToString() +" "+ NodeLength.ToString(); return false;   }
+
+            var node = Nodes.FirstOrDefault(obj => obj.id == brick.NodeId);
+
+
+            if (brick is Models.Action)
+            {
+                node.Mecanique.Actions.Remove(node.Mecanique.Actions.FirstOrDefault(b => b.id == brick.id));
+            }
+            else if (brick is Models.Event)
+            {
+                node.Declencheur.Events.Remove(node.Declencheur.Events.FirstOrDefault(b => b.id == brick.id));
+            }
+
+
+            if (node.Mecanique.Actions.Count() + node.Declencheur.Events.Count() < 2)
+            {
+                Nodes.Remove(node);
+
+                foreach (var b in Actions)
+                {
+                    if (b.NodeId == brick.NodeId)
+                        b.NodeId = string.Empty;
+                }
+                foreach (var b in Events)
+                {
+                    if (b.NodeId == brick.NodeId)
+                        b.NodeId = string.Empty;
+                }
+            }
+
+            brick.NodeId = string.Empty;
+            Node.SaveNodes(Nodes);
+            Models.Action.SaveActions(Actions);
+            Models.Event.SaveEvents(Events);
+            return true;
         }
 
         private void Fuse(Brick BrickToFuse)
@@ -356,11 +405,13 @@ namespace Bricks_Interfaces.ViewModels
             int index = 0;
             foreach(var Act in Actions)
             {
+                if (Act == brick) continue;
                 if (Act.NodeId != brick.NodeId) continue;
                 if (Act.y < brick.y) index++;
             }
             foreach (var Act in Events)
             {
+                if (Act == brick) continue;
                 if (Act.NodeId != brick.NodeId) continue;
                 if (Act.y < brick.y) index++;
             }
@@ -369,7 +420,7 @@ namespace Bricks_Interfaces.ViewModels
         private int GetNodeLength(Brick brick)
         {
             var node = Nodes.FirstOrDefault(obj => obj.id == brick.NodeId);
-            return node.Declencheur.Events.Count() + node.Mecanique.Actions.Count();
+            return node != null ? node.Declencheur.Events.Count() + node.Mecanique.Actions.Count() : 1;
         }
 
         private void ResetImage()
