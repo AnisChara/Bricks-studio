@@ -93,7 +93,7 @@ namespace Bricks_Interfaces.ViewModels
                     }
                     else
                     {
-                        declencheur += node.Declencheur.Events[i].Formate() + " & ";
+                        declencheur += node.Declencheur.Events[i].Formate() + " and ";
                     }
                 }
                 for (int i = 0; i < node.Mecanique.Actions.Count; i++)

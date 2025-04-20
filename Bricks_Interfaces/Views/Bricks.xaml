@@ -27,24 +27,29 @@
 
         <Grid >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="{Binding ActionMenuSize}"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Background="red" Grid.Column="0">
-                <UserControls:Actions x:Name="Actions"/>
+            <Border Grid.Column="0"
+                Background="#2e91f7"
+                BorderBrush="#FFCCCCCC"
+                BorderThickness="1"
+                CornerRadius="4">
+                <StackPanel>
+                    <UserControls:Actions x:Name="Actions"/>
+                </StackPanel>
+            </Border>
 
-            </StackPanel>
-
-            <StackPanel Background="White" Grid.Column="1" >
+            <StackPanel Background="WhiteSmoke" Grid.Column="1" >
                 <Grid >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="{Binding EventMenuSize}"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Background="blue" Orientation="Horizontal">
+                        <StackPanel Grid.Row="0" Background="#ff5f42" Orientation="Horizontal">
                         <UserControls:Events x:Name="Events"/>
-                        <TextBlock  Text="{Binding Debug, UpdateSourceTrigger=PropertyChanged}" Foreground="White"></TextBlock>
+                        <!-- <TextBlock  Text="{Binding Debug, UpdateSourceTrigger=PropertyChanged}" Foreground="White"></TextBlock> -->
                     </StackPanel>
                     <StackPanel Grid.Row="1" PreviewMouseMove="Button_PreviewMouseMove" Name="Board">
                         <ItemsControl ItemsSource="{Binding Events}">

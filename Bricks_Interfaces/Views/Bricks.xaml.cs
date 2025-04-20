@@ -57,8 +57,6 @@ namespace Bricks_Interfaces.Views
         }
         private void Button_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Point _startPoint = e.GetPosition(Board);
-
             if (sender is Button button)
             {
                 var grid = button.Content as Grid;
@@ -66,14 +64,14 @@ namespace Bricks_Interfaces.Views
                 var entity = button.DataContext as Brick; // Remplacez YourEntityType par le type réel de vos entités
                 if (entity != null)
                 {
-                    ((NodeViewModel)DataContext).StartDrag(_startPoint, entity, button, true);
+                    if (Keyboard.Modifiers == ModifierKeys.Control) ((NodeViewModel)DataContext).DeleteBricks(entity);
+                    else ((NodeViewModel)DataContext).SplitBrick(entity);
                 }
             }
         }
 
         private void Button_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            ((NodeViewModel)DataContext).StopDrag();
         }
     }
 }

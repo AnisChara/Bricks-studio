@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,25 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Bricks_Interfaces.Models
 {
-    public class Action : Brick
+    public class Action : Brick, INotifyPropertyChanged
     {
         public string Function { get; set; }
         public string Text { get; set; }
         public string Description { get; set; }
         public ObservableCollection<string>? Available_parameter_values { get; set; }
-        public string Parameter_value { get; set; }
+        private string _parameter_value;
+        public string Parameter_value
+        {
+            get => _parameter_value;
+            set
+            {
+                if (_parameter_value != value)
+                {
+                    _parameter_value = value;
+                    OnPropertyChanged(nameof(Parameter_value));
+                }
+            }
+        }
         public int Parameter_count { get; set; }
         public string Show_list { get; set; }
         public string Show_number { get; set; }

@@ -6,34 +6,91 @@
              xmlns:local="clr-namespace:Bricks_Interfaces.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="10">
         <ItemsControl ItemsSource="{Binding Events}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Width="auto">
-                        <Button Content="{Binding Name}" 
-Command="{Binding DataContext.AddEventCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-CommandParameter="{Binding}" 
-Width="70" 
-Height="30"
-FontSize="12">
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="5"
+                                VerticalAlignment="Center">
+                        <!-- Bouton avec texte auto-adaptatif -->
+                        <Button Command="{Binding DataContext.AddEventCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                CommandParameter="{Binding}" 
+                                Width="90"
+                                Height="36"
+                                Padding="8,0"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Background="#FF4285F4"
+                                BorderThickness="0"
+                                Cursor="Hand">
+                            <Viewbox MaxWidth="110" MaxHeight="30" Stretch="Uniform">
+                                <TextBlock Text="{Binding Name}" 
+                                           TextWrapping="NoWrap"
+                                           TextTrimming="CharacterEllipsis"/>
+                            </Viewbox>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}" 
+                                                        CornerRadius="4"
+                                                        Padding="{TemplateBinding Padding}">
+                                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                                      VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF3367D6"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#FF2A56B7"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
                             <Button.ToolTip>
-                                <ToolTip Content="{Binding Description}" />
+                                <ToolTip Content="{Binding Description}" 
+                                         Background="#FF333333"
+                                         Foreground="White"
+                                         Padding="8"
+                                         FontSize="13"/>
                             </Button.ToolTip>
                         </Button>
 
-                        <ComboBox Width="30" FontSize="12" Height="auto"
- SelectedItem="{Binding Parameter_value}"
- ItemsSource="{Binding Available_parameter_values}" 
- Visibility="{Binding Show_list}">
+                        <ComboBox Width="60" 
+                                  Height="36"
+                                  Margin="0,0,0,0"
+                                  FontSize="20"
+                                  SelectedItem="{Binding Parameter_value}"
+                                  ItemsSource="{Binding Available_parameter_values}" 
+                                  Visibility="{Binding Show_list}"
+                                  Background="White"
+                                  BorderBrush="#FFCCCCCC"
+                                  BorderThickness="1">
+
                         </ComboBox>
 
-
-                        <TextBox Width="30" FontSize="20" Height="auto"
-Text="{Binding Parameter_value}" Visibility="{Binding Show_number}"/>
-
+                        <TextBox Width="60" 
+                                 Height="36"
+                                 Margin="0,0,0,0"
+                                 FontSize="16"
+                                 Text="{Binding Parameter_value}" 
+                                 Visibility="{Binding Show_number}"
+                                 Padding="8,4"
+                                 BorderBrush="#FFCCCCCC"
+                                 BorderThickness="1"/>
                     </StackPanel>
-
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
