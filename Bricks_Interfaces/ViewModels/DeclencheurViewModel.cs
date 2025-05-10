@@ -59,12 +59,13 @@ namespace Bricks_Interfaces.ViewModels
                 return;
             }
 
-            selectedEvent.Text = selectedEvent.Name + " " + selectedEvent.Parameter_value;
+            selectedEvent.Text = selectedEvent.Name + "" + selectedEvent.Parameter_value;
             selectedEvent.id = Guid.NewGuid().ToString();
-            selectedEvent.Parameter_value = null;
             SavedEvents = Event.GetSavedEvents();
             SavedEvents.Add(selectedEvent);
             Event.SaveEvents(SavedEvents);
+            selectedEvent.Parameter_value = null;
+
 
         }
     }
