@@ -37,6 +37,7 @@ namespace Bricks_Interfaces.ViewModels
         private string event_top_image = MainWindowViewModel.AssetsPath + "/lego_bleu_top.png";
         private string event_mid_image = MainWindowViewModel.AssetsPath + "/lego_bleu_mid.png";
 
+        public ICommand ResetCommand { get; set; }
         public Brick selectedBrick;
         public bool dragging = false;
         bool can_fuse = false;
@@ -130,6 +131,7 @@ namespace Bricks_Interfaces.ViewModels
             Debug = "TEST";
             ActionMenuSize = 170;
             EventMenuSize = 90;
+            ResetCommand = new RelayCommand(ResetNodes);
             ResetImage();
         }
 
@@ -277,6 +279,7 @@ namespace Bricks_Interfaces.ViewModels
                 node.Declencheur.Events.Remove(node.Declencheur.Events.FirstOrDefault(b => b.id == brick.id));
             }
 
+            string id = brick.NodeId;
 
             if (node.Mecanique.Actions.Count() + node.Declencheur.Events.Count() < 2)
             {
@@ -284,18 +287,18 @@ namespace Bricks_Interfaces.ViewModels
 
                 foreach (var b in Actions)
                 {
-                    if (b.NodeId == brick.NodeId && brick.id != b.id)
+                    if (b.NodeId == id)
                         b.NodeId = string.Empty;
                 }
                 foreach (var b in Events)
                 {
-                    if (b.NodeId == brick.NodeId && brick.id != b.id)
+                    if (b.NodeId == id)
                         b.NodeId = string.Empty;
                 }
             }
 
-            brick.NodeId = string.Empty;
             ResetImage();
+
 
             Node.SaveNodes(Nodes);
             Models.Action.SaveActions(Actions);
@@ -397,7 +400,7 @@ namespace Bricks_Interfaces.ViewModels
                 else if (selectedBrick is Models.Event) { node.Declencheur.Events.Add((Models.Event)selectedBrick); }
                 selectedBrick.NodeId = node.id;
             }
-            else if (BrickToFuse.NodeId != string.Empty && selectedBrick.NodeId != string.Empty)
+            else if (BrickToFuse.NodeId != string.Empty && selectedBrick.NodeId != string.Empty && BrickToFuse.NodeId == selectedBrick.NodeId)
             {
                 var selectedNode = Nodes.FirstOrDefault(obj => obj.id == selectedBrick.NodeId);
                 var BrickToFuseNode = Nodes.FirstOrDefault(obj => obj.id == BrickToFuse.NodeId);
@@ -495,9 +498,14 @@ namespace Bricks_Interfaces.ViewModels
                 if (item.NodeId == string.Empty) { item.Image = action_image; continue; }
                 if (BorderBricks.Contains(item.id)) continue;
                 if (NodesDone.Contains(item.NodeId)) { item.Image = action_mid_image; continue; }
+                Brick TopBrick = null;
 
                 var node = Nodes.FirstOrDefault(obj => obj.id == item.NodeId);
-                var TopBrick = GetTopBrick(node);
+                try
+                {
+                    TopBrick = GetTopBrick(node);
+                }
+                catch { MessageBox.Show(item.NodeId + " " + item.id); }
                 var BottomBrick = GetBottomBrick(node);
                 if (TopBrick is Models.Action) TopBrick.Image = action_top_image; else TopBrick.Image = event_top_image;
                 if (BottomBrick is Models.Action) BottomBrick.Image = action_bottom_image; else BottomBrick.Image = event_bottom_image;
@@ -545,6 +553,13 @@ namespace Bricks_Interfaces.ViewModels
             if (lowerEvent == null) return lowerAction;
             if (lowerAction.y > lowerEvent.y) return lowerAction;
             else return lowerEvent;
+        }
+
+        private void ResetNodes(object parameter)
+        {
+            Models.Action.SaveActions([]);
+            Models.Event.SaveEvents([]);
+            Node.SaveNodes([]);
         }
 
         private void InitializeFileWatcher()

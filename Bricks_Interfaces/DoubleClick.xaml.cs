@@ -24,17 +24,17 @@ namespace Bricks_Interfaces
         public DoubleClick(Entity entity)
         {
             InitializeComponent();
-            this.DataContext = new EntityMenuViewModel(entity);
-        }
+/*            this.DataContext = new EntityMenuViewModel(entity);
+*/        }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ((EntityMenuViewModel)this.DataContext).SaveEntity();
+            //((EntityMenuViewModel)this.DataContext).SaveEntity();
             this.Close();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            ((EntityMenuViewModel)this.DataContext).DeleteEntity();
+           // ((EntityMenuViewModel)this.DataContext).DeleteEntity();
             this.Close();
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e)

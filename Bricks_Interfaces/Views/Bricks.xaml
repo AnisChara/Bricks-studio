@@ -52,6 +52,9 @@
                         <!-- <TextBlock  Text="{Binding Debug, UpdateSourceTrigger=PropertyChanged}" Foreground="White"></TextBlock> -->
                     </StackPanel>
                     <StackPanel Grid.Row="1" PreviewMouseMove="Button_PreviewMouseMove" Name="Board">
+                        <Button Content="Reset" Width="40" HorizontalAlignment="Right" Command="{Binding ResetCommand}">
+                            
+                        </Button>
                         <ItemsControl ItemsSource="{Binding Events}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>

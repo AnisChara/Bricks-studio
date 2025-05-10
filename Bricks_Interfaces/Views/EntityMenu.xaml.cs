@@ -25,6 +25,7 @@ namespace Bricks_Interfaces.Views
         public EntityMenu()
         {
             InitializeComponent();
+            this.DataContext = new EntityMenuViewModel();
         }
 
 

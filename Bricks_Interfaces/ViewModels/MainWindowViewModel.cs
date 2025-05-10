@@ -25,6 +25,7 @@ namespace Bricks_Interfaces.ViewModels
         public static string ProjectPath = "";
         public static string AssetsPath = "";
         public static string NodesPath = "";
+        public static string DataPath = "";
         public static string MecaniquesPath = "";
         public static string DeclencheursPath = "";
         public static string ActionsPath = "";
@@ -51,6 +52,7 @@ namespace Bricks_Interfaces.ViewModels
 
             CompileCommand = new RelayCommand(Compile);
             ProjectPath = project_path.Replace("\\", "/");
+            DataPath = project_path + "/Data.json";
             NodesPath = project_path + "/Nodes.json";
             ActionsPath = project_path + "/Actions.json";
             EventsPath = project_path + "/Events.json";
@@ -72,8 +74,6 @@ namespace Bricks_Interfaces.ViewModels
 
             var nodes = JsonSerializer.Deserialize<List<Node>>(json);
             string code = string.Empty;
-
-            code += "    if keys[pygame.K_ESCAPE]: \n      Game.running = False \n";
 
             foreach (Node node in nodes)
             {

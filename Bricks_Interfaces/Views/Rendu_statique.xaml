@@ -53,7 +53,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid PreviewMouseMove="Button_PreviewMouseMove" >
+    <Grid PreviewMouseMove="Button_PreviewMouseMove" x:Name="Board">
         <Grid.Background>
             <ImageBrush ImageSource="{Binding CurrentLevel.Background}" />
         </Grid.Background>

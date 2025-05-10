@@ -122,10 +122,15 @@ namespace Bricks_Interfaces
                     Track: false
 
                 );
+
+                Projet projet = new Projet(ProjectName.Text, true,Player);
+                string json = JsonSerializer.Serialize(projet);
+                File.WriteAllText(ProjectPath + "/Data.json", json); 
+
                 ObservableCollection<Entity> Entitylevel = [Player];
                 var level = new Level("Niveau 1", Entitylevel, ProjectPath + "/Assets/Fond.jpg", 0, 0);
                 ObservableCollection<Level> Levels = [level];
-                string json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
+                 json = JsonSerializer.Serialize(Levels, new JsonSerializerOptions { WriteIndented = true });
                 System.IO.File.WriteAllText(ProjectPath + "/Entity.json", json);
 
             }

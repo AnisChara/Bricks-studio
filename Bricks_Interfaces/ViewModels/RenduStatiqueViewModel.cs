@@ -17,11 +17,13 @@ namespace Bricks_Interfaces.ViewModels
 {
     public class RenduStatiqueViewModel : BaseNotifyPropertyChanged
     {
+        public static Entity EntitySelected;
         public static DoubleClick entityMenu = null;
         public static bool copy = false;
         public static double Width;
         public static double Height;
-
+        private double mouseX;
+        private double mouseY;
         private ObservableCollection<string> listLevel { get; set; }
         public ObservableCollection<string> ListLevel
         {
@@ -143,11 +145,13 @@ namespace Bricks_Interfaces.ViewModels
         }
 
 
-        public void StartDrag(object parameter, Button button)
+        public void StartDrag(Point _startPoint,object parameter, Button button)
         {
             selectedEntity = parameter as Entity;
             selectedButton = button;
             dragging = true;
+            mouseX = _startPoint.X;
+            mouseY = _startPoint.Y;
         }
 
         public void ActualiseDrag(Point e)
@@ -200,23 +204,9 @@ namespace Bricks_Interfaces.ViewModels
 
         public void OpenEntityMenu(Entity entity)
         {
-            if (entityMenu != null)
-            {
-                MessageBox.Show("Un menu d'entité est deja ouvert veuillez d'abord sauvegarder ou annuler vos changements.");
-                return;
-            }
-
-            entityMenu = new DoubleClick(entity);
-
-            // Synchroniser les dimensions et l'état de la fenêtre
-            entityMenu.Width = 200;
-            entityMenu.Height = 450;
-
-            // Synchroniser la position de la fenêtre
-            entityMenu.Left = 700;
-            entityMenu.Top = 200;
-
-            entityMenu.Show();
+            var data = Projet.GetData();
+            data.SelectedEntity = entity;
+            Projet.SaveData(data);
         }
 
         public void CopyEntity(Entity entity)

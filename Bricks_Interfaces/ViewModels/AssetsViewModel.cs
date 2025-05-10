@@ -220,10 +220,10 @@ namespace Bricks_Interfaces.ViewModels
         {
             var levels = Entity.GetAllLevels();
             if (levels.Count == 1) return;
-            if (Level.CurrentLevel == Level.FirstLevel) return;
             int index = levels.IndexOf(levels.FirstOrDefault(l => l.Name == Level.CurrentLevel));
             levels.RemoveAt(index);
-            Level.CurrentLevel = Level.FirstLevel;
+            if (index == 0) Level.CurrentLevel = levels[0].Name;
+            else Level.CurrentLevel = levels[index - 1].Name;
             Entity.SaveAllLevels(levels);
 
         }

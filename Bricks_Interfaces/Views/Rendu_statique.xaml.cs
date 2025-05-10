@@ -37,13 +37,15 @@ namespace Bricks_Interfaces.Views
 
         private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Point _startPoint = e.GetPosition(sender as Grid);
+
             if (sender is Button button)
             {
                 // Récupérez l'entité liée via le DataContext
                 var entity = button.DataContext as Entity; // Remplacez YourEntityType par le type réel de vos entités
                 if (entity != null)
                 {
-                    ((RenduStatiqueViewModel)this.DataContext).StartDrag(entity, button);
+                    ((RenduStatiqueViewModel)this.DataContext).StartDrag(_startPoint,entity, button);
                 }
             }
         }
